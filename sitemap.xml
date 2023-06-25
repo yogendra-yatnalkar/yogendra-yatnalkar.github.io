@@ -2,13 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://yogendra-yatnalkar.github.io/blogs/</loc>
+    <loc>https://yogendra-yatnalkar.github.io/notes/kl-divergence.html</loc>
   </url><url>
-    <loc>https://yogendra-yatnalkar.github.io/categories/</loc>
+    <loc>https://yogendra-yatnalkar.github.io/notes.html</loc>
   </url><url>
-    <loc>https://yogendra-yatnalkar.github.io/notes/</loc>
+    <loc>https://yogendra-yatnalkar.github.io/blogs.html</loc>
   </url><url>
-    <loc>https://yogendra-yatnalkar.github.io/tags/</loc>
+    <loc>https://yogendra-yatnalkar.github.io/categories.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/</loc>
   </url>

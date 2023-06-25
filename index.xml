@@ -6,5 +6,17 @@
     <description>Recent content in Yogendra Yatnalkar on Activated Neuron</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kullback-Leibler Divergence (KL Divergence)</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/kl-divergence.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/kl-divergence.html</guid>
+      <description>Kullback-Leibler Divergence (KL Divergence)#Definition:#Measures the distance between 2 prabability distributions Explanation + Proof:#Base Video: Intuitively Understanding the KL Divergence - YouTubeSequence of flips: H -&amp;gt; H -&amp;gt; T &amp;hellip;..
+Multiply the probabilities from both the coins for the corresponding heads and tails. It is nothing but:
+for True coin: P1 raise to something and P2 raise to something else
+For coin2: Q1 raise to soemthing and Q2 raise to something else</description>
+    </item>
+    
   </channel>
 </rss>
