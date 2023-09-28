@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
 <head>
-	<meta name="generator" content="Hugo 0.111.3">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Yogendra Yatnalkar: The Activated Neuron 💡#Note:Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 😂 Connect/Follow Over LinkedInGitHubYouTubeAbout Me:#I am a Senior Machine/Deep Learning Engineer at Quantiphi Analytics. I have been working professionally (and in the AI domain) since August 2020. After working on various data-domain, I think that I am more inclined towards Computer Vision (I am biased). I have industry experience across various use-cases ranging from:">
+<meta name="description" content="BERT (Bidirectional Encoder Representation From Transformer)#Source:
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding - YouTubeOriginal Paper: https://arxiv.org/pdf/1810.04805v2.pdfSource:
+BERT Neural Network - EXPLAINED! - YouTubeBefore BERT:#LSTM&rsquo;s were used.
+Problems:
+Slow as each word is processed at a time (sequentially) Not truly bi-directional (left to right and right to left at a time in bidirectional LSTM) Bert Architecture: Multiple encoders stacked on each-other">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Yogendra Yatnalkar" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/" />
-<title>Yogendra Yatnalkar | Activated Neuron</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="BERT" />
+<meta property="og:description" content="BERT (Bidirectional Encoder Representation From Transformer)#Source:
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding - YouTubeOriginal Paper: https://arxiv.org/pdf/1810.04805v2.pdfSource:
+BERT Neural Network - EXPLAINED! - YouTubeBefore BERT:#LSTM&rsquo;s were used.
+Problems:
+Slow as each word is processed at a time (sequentially) Not truly bi-directional (left to right and right to left at a time in bidirectional LSTM) Bert Architecture: Multiple encoders stacked on each-other" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/nlp/bert.html" /><meta property="article:section" content="notes" />
+
+
+<title>BERT | Activated Neuron</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.9e26fe6c5833bf89b3a7d0ff538728e0c034a3e54372f2b1723c2aa5a30c24c8.js" integrity="sha256-nib&#43;bFgzv4mzp9D/U4co4MA0o&#43;VDcvKxcjwqpaMMJMg=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://yogendra-yatnalkar.github.io/index.xml" title="Activated Neuron" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -70,7 +78,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
     <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
       <a role="button" class="">Notes</a>
     </label>
@@ -232,7 +240,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle"  />
+    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle" checked />
     <label for="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="flex justify-between">
       <a role="button" class="">Nlp</a>
     </label>
@@ -248,7 +256,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/nlp/bert.html" class="">BERT</a>
+    <a href="/notes/nlp/bert.html" class="active">BERT</a>
   
 
         </li>
@@ -323,7 +331,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Yogendra Yatnalkar</strong>
+  <strong>BERT</strong>
 
   <label for="toc-control">
     
@@ -339,7 +347,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#about-me">About Me:</a></li>
+    <li><a href="#before-bert">Before BERT:</a></li>
   </ul>
 </nav>
 
@@ -352,58 +360,96 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="yogendra-yatnalkar-the-activated-neuron-">
-  Yogendra Yatnalkar: The Activated Neuron 💡
-  <a class="anchor" href="#yogendra-yatnalkar-the-activated-neuron-">#</a>
+  <article class="markdown"><hr>
+<h1 id="bert-bidirectional-encoder-representation-from-transformer">
+  BERT (Bidirectional Encoder Representation From Transformer)
+  <a class="anchor" href="#bert-bidirectional-encoder-representation-from-transformer">#</a>
 </h1>
 <hr>
-<pre tabindex="0"><code>Note:
-Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 😂
-</code></pre><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">Connect/Follow Over</th>
-<th><a href="https://www.linkedin.com/in/yogendra-yatnalkar-2477b3148/" target="_blank" rel="noopener">LinkedIn</a>
-</th>
-<th><a href="https://github.com/yogendra-yatnalkar" target="_blank" rel="noopener">GitHub</a>
-</th>
-<th><a href="https://www.youtube.com/channel/UCBv-Hg0vmSRdiUSlWDbcTTg" target="_blank" rel="noopener">YouTube</a>
-</th>
-</tr>
-</thead>
-</table>
-<h2 id="about-me">
-  About Me:
-  <a class="anchor" href="#about-me">#</a>
-</h2>
-<p><img src="_index/dbe15eb43570e14c754478fe250f1003a321be0c.jpg" alt="" /></p>
-<p>I am a <strong>Senior Machine/Deep Learning Engineer</strong> at <strong>Quantiphi Analytics</strong>. I have been working professionally (and in the AI domain) <strong>since August 2020</strong>. After working on various data-domain, I think that I am more inclined towards Computer Vision (I am biased). I have industry experience across various use-cases ranging from:</p>
+<p>Source:</p>
 <ul>
 <li>
-<p>Image Segmentation (<strong>U2Net</strong>, <strong>UNet, SegmentAnything ..</strong>&hellip;. the list is quite big)</p>
+<p><a href="https://www.youtube.com/watch?v=-9evrZnBorM&amp;t=1403s" target="_blank" rel="noopener">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding - YouTube</a>
+</p>
 </li>
 <li>
-<p>GAN&rsquo;s (Trained and deployed <strong>custom GAN</strong> to generate shadows below car)</p>
-</li>
-<li>
-<p><strong>Video Data:</strong> Video Deduplication **(Worked on 50 TB+ of raw video files for the task of de-duplication)****, Ad-Brand-Identification from sports-videos</p>
-</li>
-<li>
-<p>Churn Prediction (Worked on <strong>1.5+ TB of CSV</strong> data to generate 80+ features to predict churn in <strong>EdTech domain</strong>) &ndash;&gt; Worked with a lot of <strong>SQL🔥!!</strong></p>
-</li>
-<li>
-<p><strong>MLOps</strong> on <strong>AWS</strong> (Few tags: Pipelines - Airflow/SageMaker-Pipeline, Drift, Retraining, automatic trigger, Explainability&hellip;..)</p>
-</li>
-<li>
-<p><strong>Tagging</strong> (On different time-lines, I have managed more than 8 taggers to for more than 2 months to tag <strong>thousands of images for segmentation, GAN&rsquo;s and object detection</strong>)</p>
-</li>
-<li>
-<p>Object Detection (Used <strong>Yolo v5</strong>to detect web-elements on web-page)</p>
-<p>(I think I should stop&hellip;&hellip;.. the list will become un-readable now&hellip;.)</p>
+<p>Original Paper: <a href="https://arxiv.org/pdf/1810.04805v2.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1810.04805v2.pdf</a>
+</p>
 </li>
 </ul>
 <hr>
+<p>Source:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=xI0HHN5XKDo&amp;t=70s" target="_blank" rel="noopener">BERT Neural Network - EXPLAINED! - YouTube</a>
+</li>
+</ul>
+<h2 id="before-bert">
+  Before BERT:
+  <a class="anchor" href="#before-bert">#</a>
+</h2>
+<ul>
+<li>
+<p>LSTM&rsquo;s were used.</p>
+</li>
+<li>
+<p>Problems:</p>
+<ul>
+<li>Slow as each word is processed at a time (sequentially)</li>
+<li>Not truly bi-directional (left to right and right to left at a time in bidirectional LSTM)</li>
+</ul>
+</li>
+<li>
+<p><strong>Bert Architecture:</strong> Multiple encoders stacked on each-other</p>
+</li>
+<li>
+<p>Pretraining and Finetuning</p>
+</li>
+<li>
+<p>Pretraining Task is used to learn the language and its context. It is done using two tasks:</p>
+<ul>
+<li>
+<p><strong>Mask Language Model (MLM):</strong></p>
+<ul>
+<li>
+<p>Sentence sentence {Fill_in_the_Blanks} remaining sentence</p>
+</li>
+<li>
+<p>Helps bert understand the bidirectional meaning of a sentence</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Next Sentence Prediction (NSP):</strong></p>
+<ul>
+<li>
+<p>Predict whether the a given sentence is the next sentence of the current sentence. Like a binary classification task.</p>
+</li>
+<li>
+<p>It helps bert in understanding context across different sentences.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Usually, the MLM task and NSP task are performed simultaneously.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Finetuning:</strong></p>
+<ul>
+<li>
+<p>Finetune on task specific data.</p>
+</li>
+<li>
+<p>Fast and compute efficient</p>
+</li>
+<li>
+<p>Only replace last few layers of the original architecture</p>
+</li>
+</ul>
+<hr>
+</li>
+</ul>
 </article>
  
       
@@ -429,6 +475,15 @@ Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 
 
       
   
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -441,7 +496,7 @@ Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#about-me">About Me:</a></li>
+    <li><a href="#before-bert">Before BERT:</a></li>
   </ul>
 </nav>
 

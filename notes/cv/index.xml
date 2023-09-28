@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Activated Neuron</title>
+    <link>https://yogendra-yatnalkar.github.io/notes/cv.html</link>
+    <description>Recent content on Activated Neuron</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/notes/cv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SAM-Segment-Anything</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/sam-segment-anything.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/sam-segment-anything.html</guid>
+      <description>Segment Anything (SAM)#Last Edited 16/07/2023 Source: - Original Paper (notes till page no 7) - Youtube: https://www.youtube.com/watch?v=eYhvJR4zFUM Introduction:#Foundation model for segmentation.
+Important thing to note here, is that SAM is not just for semantic segmentation but can also be used for instance or panoptic or salient segmentation as well. We just need to engineer it accordingly.
+Trained ON: 11 million images and 1 billion corresponding masks</description>
+    </item>
+    
+    <item>
+      <title>SegFormer: Segmentation using Transformer</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/segformer.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/segformer.html</guid>
+      <description>SegFormer: Segmentation using Transformer#Last Edited 16/07/2023 Source: SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers - YouTubeInput patch size: 4x4
+In ViT, it was 16x16, but with smaller path size, the authors said, smaller batch size is better (and required) for dense prediction.
+Note: With reducing the patch size, the computation increases.
+After each transformer block (encoder in this case), there is a feed-forward block which is mainly used to lower the dimension like older UNet &amp;ndash;&amp;gt; i.</description>
+    </item>
+    
+    <item>
+      <title>Self Supervised Learning</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/self-supervised-learning.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/self-supervised-learning.html</guid>
+      <description>A Cookbook of Self-Supervised Learning:#Initial Notes from: https://arxiv.org/abs/2304.12210 Intro:#NLP advanced due to SSL &amp;ndash;&amp;gt; No need of labelled data to train supervised model
+SSL -&amp;gt; Define a pretext task &amp;ndash;&amp;gt; Un-labelled data &amp;ndash;&amp;gt; intelligent representation
+NLP: Word2Vec is SSL &amp;ndash; In a sentence, mask a word and predict the surrounding words (It learns context)
+CV: 2 current popular ways:
+mask a patch and prediction of masked path</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/bringyourownlatent-byol.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/bringyourownlatent-byol.html</guid>
+      <description>Bootstrap Your Own Latent (BYOL):#Tags: Self-Supervised Learning, SSL,
+Source: BYOL: Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning (Paper Explained) - YouTube</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/object-detection-general.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/object-detection-general.html</guid>
+      <description>Object Detection Notes:#</description>
+    </item>
+    
+  </channel>
+</rss>

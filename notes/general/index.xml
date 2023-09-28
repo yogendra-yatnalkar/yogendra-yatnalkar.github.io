@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Activated Neuron</title>
+    <link>https://yogendra-yatnalkar.github.io/notes/general.html</link>
+    <description>Recent content on Activated Neuron</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/notes/general/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>General Notes</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</guid>
+      <description>Linux:#Wget vs Curl#curl and wget both support http and various types of FTP protocols. curl is library but wget is a CLI tool. curl is used for both way data transfer (src to detination and vice-versa) But, wget can be used only for single way data transfer, example: downloading something form a web-server. Null Hypothesis test &amp;raquo; p-values &amp;raquo; calculated using t-test or z-test &amp;raquo;</description>
+    </item>
+    
+    <item>
+      <title>Kullback-Leibler Divergence (KL Divergence)</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/kl-divergence.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/kl-divergence.html</guid>
+      <description>Kullback-Leibler Divergence (KL Divergence)#Last Edited 25/06/2023 Definition:#Measures the distance between 2 prabability distributions Explanation + Proof:#Base Video: Intuitively Understanding the KL Divergence - YouTubeSequence of flips: H -&amp;gt; H -&amp;gt; T &amp;hellip;..
+Multiply the probabilities from both the coins for the corresponding heads and tails. It is nothing but:
+for True coin: P1 raise to something and P2 raise to something else</description>
+    </item>
+    
+    <item>
+      <title>Web-API performance improvement</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/api-performance-improvement.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/api-performance-improvement.html</guid>
+      <description>API Performance Improvement#Based on: Top 7 Ways to 10x Your API Performance - YouTubeOptimization should not be the first step of development
+1. Caching:#If same request is repeated multiple times &amp;ndash;&amp;gt; cache hence no need to recompute or hit the DB again.
+For DB, its: MemCacheD or Redis
+2. Connection Pooling:#Having continues connections with DB can slow down server as each connection requires a lot of handshake protocol.</description>
+    </item>
+    
+  </channel>
+</rss>

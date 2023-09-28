@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Segment Anything (SAM)#Last Edited 16/07/2023 Source: - Original Paper (notes till page no 7) - Youtube: https://www.youtube.com/watch?v=eYhvJR4zFUM Introduction:#Foundation model for segmentation.
+Important thing to note here, is that SAM is not just for semantic segmentation but can also be used for instance or panoptic or salient segmentation as well. We just need to engineer it accordingly.
+Trained ON: 11 million images and 1 billion corresponding masks">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="SAM-Segment-Anything" />
+<meta property="og:description" content="Segment Anything (SAM)#Last Edited 16/07/2023 Source: - Original Paper (notes till page no 7) - Youtube: https://www.youtube.com/watch?v=eYhvJR4zFUM Introduction:#Foundation model for segmentation.
+Important thing to note here, is that SAM is not just for semantic segmentation but can also be used for instance or panoptic or salient segmentation as well. We just need to engineer it accordingly.
+Trained ON: 11 million images and 1 billion corresponding masks" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/cv/sam-segment-anything.html" /><meta property="article:section" content="notes" />
+
+
+<title>SAM-Segment-Anything | Activated Neuron</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.9e26fe6c5833bf89b3a7d0ff538728e0c034a3e54372f2b1723c2aa5a30c24c8.js" integrity="sha256-nib&#43;bFgzv4mzp9D/U4co4MA0o&#43;VDcvKxcjwqpaMMJMg=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Activated Neuron</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
+    <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
+      <a role="button" class="">Notes</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle" checked />
+    <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
+      <a role="button" class="">Cv</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/sam-segment-anything.html" class="active">SAM-Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/self-supervised-learning.html" class="">Self Supervised Learning</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/bringyourownlatent-byol.html" class="">Bring Your Own Latent Byol</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/object-detection-general.html" class="">Object Detection General</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
+    <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
+      <a role="button" class="">General</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/general-general.html" class="">General Notes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/kl-divergence.html" class="">Kullback-Leibler Divergence (KL Divergence)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/api-performance-improvement.html" class="">Web-API performance improvement</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle"  />
+    <label for="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="flex justify-between">
+      <a role="button" class="">Nlp</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/bert.html" class="">BERT</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle"  />
+    <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
+      <a role="button" class="">Blogs</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>SAM-Segment-Anything</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction:</a></li>
+    <li><a href="#task">Task</a></li>
+    <li><a href="#model">Model:</a></li>
+    <li><a href="#dataset">Dataset</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="segment-anything-sam">
+  Segment Anything (SAM)
+  <a class="anchor" href="#segment-anything-sam">#</a>
+</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Edited</td>
+<td>16/07/2023</td>
+</tr>
+<tr>
+<td>Source:</td>
+<td>- Original Paper (notes till page no 7)</td>
+</tr>
+<tr>
+<td></td>
+<td>- Youtube: https://www.youtube.com/watch?v=eYhvJR4zFUM</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><img src="SAM-segment-anything/2023-07-16-19-47-07-image.png" alt="" /></p>
+<h2 id="introduction">
+  Introduction:
+  <a class="anchor" href="#introduction">#</a>
+</h2>
+<ul>
+<li>
+<p>Foundation  model for segmentation.</p>
+</li>
+<li>
+<p><strong>Important thing to note here,</strong> is that SAM is not just for semantic segmentation but can also be used for instance or panoptic or salient segmentation as well. We just need to engineer it accordingly.</p>
+</li>
+<li>
+<p><strong>Trained ON:</strong> 11 million images and 1 billion corresponding masks</p>
+</li>
+<li>
+<p>Earlier foundation model: <strong>Clip and Align</strong> &raquo; Now getting used in other downstream tasks like image generation <strong>(DALL-E</strong>).</p>
+</li>
+<li>
+<p>To build foundation mode, 3 things are necessary:</p>
+<ul>
+<li>
+<p>Task</p>
+</li>
+<li>
+<p>Model</p>
+</li>
+<li>
+<p>Dataset and Data-Engine</p>
+</li>
+</ul>
+<hr>
+</li>
+</ul>
+<h2 id="task">
+  Task
+  <a class="anchor" href="#task">#</a>
+</h2>
+<ul>
+<li>
+<p><strong>Task:</strong> Prompt-able segmentation task &raquo; prompt can be text or mask or BB or points &raquo; even if prompt is not accurate or it is confusing, the output should be <strong>good</strong>.</p>
+</li>
+<li>
+<p><strong>Zero-shot transfer:</strong> Example- if you have a OD model to detect cats, SAM can be used to segment each cat (instance segmentation) in your image. If you want semantic segmentation, convert that cat instances to single class.</p>
+</li>
+<li>
+<p><strong>SAM vs Other multi-segmentation models:</strong></p>
+<ul>
+<li>
+<p>Other models are not general. They do a set of predefined tasks they are trained on, they can be many but fixed.</p>
+</li>
+<li>
+<p>In case of SAM, it can be engineered to perform any task with itself alone or with other systems (example: OD model or older segmentation model). The prompt makes it key here and forms a general foundation model.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="model">
+  Model:
+  <a class="anchor" href="#model">#</a>
+</h2>
+<ul>
+<li>
+<p><strong>Model:</strong> Heavy and powerful image encoder, light prompt encoder, light++ prompt and image decoder.</p>
+</li>
+<li>
+<p>Import thing to note: for faster inference, the encoder can be hosted online on server, but prompt encoder and decoder can be hosted on edge (eg. browser). Hence reducing the network latency. <strong>++</strong> <strong>We need to encode only once, then we can prompt it as many times as needed.</strong></p>
+</li>
+<li>
+<p>SAM predicts multiple masks for single image (to battle confusion)</p>
+</li>
+<li>
+<p><strong>Image Encoder:</strong> Image encoder is pretrained <strong>ViT from MAE (Masked Auto-Encoders are Scalable Vision Learners)</strong>. In  MAE, random patches from ViT are masked and an autoencoder is trained to predict the masked patch.</p>
+<p><img src="SAM-segment-anything/2023-09-28-17-50-10-image.png" alt="" /></p>
+<p><strong>SAM uses this MAE encoder as its base encoder</strong></p>
+</li>
+<li>
+<p><strong>Prompt Encoder:</strong></p>
+<ul>
+<li>
+<p><strong>Text:</strong> Encoded using CLIP</p>
+</li>
+<li>
+<p><strong>Bounding box coordinates or point coordinates:</strong>  Positional Encoder with summed learned embedding</p>
+</li>
+<li>
+<p><strong>Mask</strong>: Embedding from CNN</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Mask Decoder:</strong></p>
+<ul>
+<li>
+<p>Inspired from <strong>original Transformer decoder</strong>. (modified)</p>
+</li>
+<li>
+<p>Output of decoder goes to dynamic prediction head</p>
+</li>
+<li>
+<p>Uses self-attention and cross-attention between prompt and image-embedding in bi-directional way (i.e prompt-to-image embedding and vice-versa)</p>
+</li>
+<li>
+<p>Later, up-sample and pass it to a linear classifier</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Ambiguity and Backprop</strong>: For each input, 3 masks are predicted and during backprop for loss computation, the mask with least amount of loss is counted. Loss is computed using IoU.</p>
+<p><img src="SAM-segment-anything/2023-09-28-22-14-46-image.png" alt="" /></p>
+</li>
+<li>
+<p><strong>Efficiency:</strong> Post encoder embedding, the prompt encoder and decoder can work on CPU (<strong>web-browser</strong>) with 50 ms latency.</p>
+</li>
+<li>
+<p><strong>Loss metrics used:</strong> <em>Focal loss and Dice Loss</em></p>
+<ul>
+<li>
+<p><strong>Focal Loss:</strong> Focal Loss is am improved version of Cross-Entropy Loss that tries to handle the class imbalance problem by down-weighting easy negative class and focusing training on hard positive classes. In paper, Focal Loss is mathematically defined as:
+<img src="SAM-segment-anything/2023-07-17-00-02-51-image.png" alt="" /></p>
+<p>Reference: <a href="https://theguywithblacktie.github.io/kernel/machine%20learning/pytorch/2021/05/20/cross-entropy-loss.html" target="_blank" rel="noopener">Understanding Cross-Entropy Loss and Focal Loss | Multiplying Matrices for a living (theguywithblacktie.github.io)</a>
+  (Do read it, very good explanation)
+Note: Focal loss was initially used for object detection (invented at FAIR)</p>
+</li>
+<li>
+<p><strong>Dice Loss:</strong> Dice loss is 1 - Dice Coefficient. You can directly imagine Dice Coefficient as IoU.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="dataset">
+  Dataset
+  <a class="anchor" href="#dataset">#</a>
+</h2>
+<ul>
+<li>
+<p><strong>Dataset and Data-Engine:</strong> 11 mil images, 1 billion masks. Tag with the help of model, retrain and retag &ndash;&gt; Cycle continues&hellip;</p>
+<ul>
+<li><strong>Responsible AI:</strong> Images are taken from all over the globe across all human species.</li>
+</ul>
+</li>
+</ul>
+<hr>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction:</a></li>
+    <li><a href="#task">Task</a></li>
+    <li><a href="#model">Model:</a></li>
+    <li><a href="#dataset">Dataset</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
 <head>
-	<meta name="generator" content="Hugo 0.111.3">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Yogendra Yatnalkar: The Activated Neuron 💡#Note:Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 😂 Connect/Follow Over LinkedInGitHubYouTubeAbout Me:#I am a Senior Machine/Deep Learning Engineer at Quantiphi Analytics. I have been working professionally (and in the AI domain) since August 2020. After working on various data-domain, I think that I am more inclined towards Computer Vision (I am biased). I have industry experience across various use-cases ranging from:">
+<meta name="description" content="A Cookbook of Self-Supervised Learning:#Initial Notes from: https://arxiv.org/abs/2304.12210 Intro:#NLP advanced due to SSL &ndash;&gt; No need of labelled data to train supervised model
+SSL -&gt; Define a pretext task &ndash;&gt; Un-labelled data &ndash;&gt; intelligent representation
+NLP: Word2Vec is SSL &ndash; In a sentence, mask a word and predict the surrounding words (It learns context)
+CV: 2 current popular ways:
+mask a patch and prediction of masked path">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Yogendra Yatnalkar" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/" />
-<title>Yogendra Yatnalkar | Activated Neuron</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Self Supervised Learning" />
+<meta property="og:description" content="A Cookbook of Self-Supervised Learning:#Initial Notes from: https://arxiv.org/abs/2304.12210 Intro:#NLP advanced due to SSL &ndash;&gt; No need of labelled data to train supervised model
+SSL -&gt; Define a pretext task &ndash;&gt; Un-labelled data &ndash;&gt; intelligent representation
+NLP: Word2Vec is SSL &ndash; In a sentence, mask a word and predict the surrounding words (It learns context)
+CV: 2 current popular ways:
+mask a patch and prediction of masked path" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/cv/self-supervised-learning.html" /><meta property="article:section" content="notes" />
+
+
+<title>Self Supervised Learning | Activated Neuron</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.9e26fe6c5833bf89b3a7d0ff538728e0c034a3e54372f2b1723c2aa5a30c24c8.js" integrity="sha256-nib&#43;bFgzv4mzp9D/U4co4MA0o&#43;VDcvKxcjwqpaMMJMg=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://yogendra-yatnalkar.github.io/index.xml" title="Activated Neuron" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -70,7 +78,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
     <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
       <a role="button" class="">Notes</a>
     </label>
@@ -86,7 +94,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle"  />
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle" checked />
     <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
       <a role="button" class="">Cv</a>
     </label>
@@ -128,7 +136,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/cv/self-supervised-learning.html" class="">Self Supervised Learning</a>
+    <a href="/notes/cv/self-supervised-learning.html" class="active">Self Supervised Learning</a>
   
 
         </li>
@@ -323,7 +331,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Yogendra Yatnalkar</strong>
+  <strong>Self Supervised Learning</strong>
 
   <label for="toc-control">
     
@@ -339,7 +347,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#about-me">About Me:</a></li>
+    <li><a href="#intro">Intro:</a></li>
+    <li><a href="#origin-of-ssl">Origin of SSL:</a></li>
   </ul>
 </nav>
 
@@ -352,58 +361,97 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="yogendra-yatnalkar-the-activated-neuron-">
-  Yogendra Yatnalkar: The Activated Neuron 💡
-  <a class="anchor" href="#yogendra-yatnalkar-the-activated-neuron-">#</a>
+  <article class="markdown"><h1 id="a-cookbook-of-self-supervised-learning">
+  A Cookbook of Self-Supervised Learning:
+  <a class="anchor" href="#a-cookbook-of-self-supervised-learning">#</a>
 </h1>
-<hr>
-<pre tabindex="0"><code>Note:
-Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 😂
-</code></pre><hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">Connect/Follow Over</th>
-<th><a href="https://www.linkedin.com/in/yogendra-yatnalkar-2477b3148/" target="_blank" rel="noopener">LinkedIn</a>
-</th>
-<th><a href="https://github.com/yogendra-yatnalkar" target="_blank" rel="noopener">GitHub</a>
-</th>
-<th><a href="https://www.youtube.com/channel/UCBv-Hg0vmSRdiUSlWDbcTTg" target="_blank" rel="noopener">YouTube</a>
-</th>
-</tr>
-</thead>
-</table>
-<h2 id="about-me">
-  About Me:
-  <a class="anchor" href="#about-me">#</a>
+<pre tabindex="0"><code>Initial Notes from: https://arxiv.org/abs/2304.12210
+</code></pre><h2 id="intro">
+  Intro:
+  <a class="anchor" href="#intro">#</a>
 </h2>
-<p><img src="_index/dbe15eb43570e14c754478fe250f1003a321be0c.jpg" alt="" /></p>
-<p>I am a <strong>Senior Machine/Deep Learning Engineer</strong> at <strong>Quantiphi Analytics</strong>. I have been working professionally (and in the AI domain) <strong>since August 2020</strong>. After working on various data-domain, I think that I am more inclined towards Computer Vision (I am biased). I have industry experience across various use-cases ranging from:</p>
 <ul>
 <li>
-<p>Image Segmentation (<strong>U2Net</strong>, <strong>UNet, SegmentAnything ..</strong>&hellip;. the list is quite big)</p>
+<p>NLP advanced due to SSL &ndash;&gt; No need of labelled data to train supervised model</p>
 </li>
 <li>
-<p>GAN&rsquo;s (Trained and deployed <strong>custom GAN</strong> to generate shadows below car)</p>
+<p>SSL -&gt; Define a pretext task &ndash;&gt; Un-labelled data &ndash;&gt; intelligent representation</p>
 </li>
 <li>
-<p><strong>Video Data:</strong> Video Deduplication **(Worked on 50 TB+ of raw video files for the task of de-duplication)****, Ad-Brand-Identification from sports-videos</p>
+<p>NLP: Word2Vec is SSL &ndash; In a sentence, mask a word and predict the surrounding words (It learns context)</p>
 </li>
 <li>
-<p>Churn Prediction (Worked on <strong>1.5+ TB of CSV</strong> data to generate 80+ features to predict churn in <strong>EdTech domain</strong>) &ndash;&gt; Worked with a lot of <strong>SQL🔥!!</strong></p>
+<p>CV: 2 current popular ways:</p>
+<ul>
+<li>
+<p>mask a patch and prediction of masked path</p>
 </li>
 <li>
-<p><strong>MLOps</strong> on <strong>AWS</strong> (Few tags: Pipelines - Airflow/SageMaker-Pipeline, Drift, Retraining, automatic trigger, Explainability&hellip;..)</p>
-</li>
-<li>
-<p><strong>Tagging</strong> (On different time-lines, I have managed more than 8 taggers to for more than 2 months to tag <strong>thousands of images for segmentation, GAN&rsquo;s and object detection</strong>)</p>
-</li>
-<li>
-<p>Object Detection (Used <strong>Yolo v5</strong>to detect web-elements on web-page)</p>
-<p>(I think I should stop&hellip;&hellip;.. the list will become un-readable now&hellip;.)</p>
+<p>augmented version of the same sample &ndash;&gt; train model such that embeddings from these 2 images are close as compared to any other image.</p>
 </li>
 </ul>
-<hr>
+</li>
+<li>
+<p><strong>Why SSL is hard and need of cookbook</strong></p>
+<ul>
+<li>
+<p>Computational Cost</p>
+</li>
+<li>
+<p>No detailed papers and its proper implementation with parameters</p>
+</li>
+<li>
+<p>unified vocab</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="origin-of-ssl">
+  Origin of SSL:
+  <a class="anchor" href="#origin-of-ssl">#</a>
+</h2>
+<p>Discussion about several pre-text tasks which were used few years ago in the field of SSL:</p>
+<ol>
+<li>
+<p><strong>Information restoration:</strong></p>
+<ul>
+<li>
+<p>Remove something from image and restore it or convert to grayscale and train a ML model to predict the colors. This helps in learning object semantics and boundaries.</p>
+</li>
+<li>
+<p><strong>Newer Method:</strong> Masked-AutoEncoding - Transformer based where patches are masked</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Video Temporal Relationship:</strong></p>
+<ul>
+<li>
+<p>Model training using triplet loss for similarity of two representations of same object in 2 different frames.</p>
+</li>
+<li>
+<p>Remove audio track and predict it based on the video input</p>
+</li>
+<li>
+<p>Prediction of depth mapping between un-labelled image pairs.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Learning spatial context:</strong></p>
+<ul>
+<li>
+<p>Random rotation &ndash;&gt; predict the amount of rotation</p>
+</li>
+<li>
+<p>Jigsaw: convert image to blocks and create pairs &ndash;&gt; predict the relative position of each pair.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>:</strong></p>
+</li>
+</ol>
 </article>
  
       
@@ -429,6 +477,15 @@ Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 
 
       
   
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -441,7 +498,8 @@ Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#about-me">About Me:</a></li>
+    <li><a href="#intro">Intro:</a></li>
+    <li><a href="#origin-of-ssl">Origin of SSL:</a></li>
   </ul>
 </nav>
 

@@ -2,9 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://yogendra-yatnalkar.github.io/notes/kl-divergence.html</loc>
+    <loc>https://yogendra-yatnalkar.github.io/notes/nlp/bert.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/general/kl-divergence.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/cv/sam-segment-anything.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/cv/segformer.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/cv/self-supervised-learning.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/general/api-performance-improvement.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/cv.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/cv/bringyourownlatent-byol.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/cv/object-detection-general.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/general.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/nlp.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/blogs.html</loc>
   </url><url>

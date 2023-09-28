@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kullback-Leibler Divergence (KL Divergence)#Last Edited 25/06/2023 Definition:#Measures the distance between 2 prabability distributions Explanation &#43; Proof:#Base Video: Intuitively Understanding the KL Divergence - YouTubeSequence of flips: H -&gt; H -&gt; T &hellip;..
+Multiply the probabilities from both the coins for the corresponding heads and tails. It is nothing but:
+for True coin: P1 raise to something and P2 raise to something else">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Kullback-Leibler Divergence (KL Divergence)" />
+<meta property="og:description" content="Kullback-Leibler Divergence (KL Divergence)#Last Edited 25/06/2023 Definition:#Measures the distance between 2 prabability distributions Explanation &#43; Proof:#Base Video: Intuitively Understanding the KL Divergence - YouTubeSequence of flips: H -&gt; H -&gt; T &hellip;..
+Multiply the probabilities from both the coins for the corresponding heads and tails. It is nothing but:
+for True coin: P1 raise to something and P2 raise to something else" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/kl-divergence.html" /><meta property="article:section" content="notes" />
+
+
+<title>Kullback-Leibler Divergence (KL Divergence) | Activated Neuron</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.9e26fe6c5833bf89b3a7d0ff538728e0c034a3e54372f2b1723c2aa5a30c24c8.js" integrity="sha256-nib&#43;bFgzv4mzp9D/U4co4MA0o&#43;VDcvKxcjwqpaMMJMg=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Activated Neuron</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
+    <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
+      <a role="button" class="">Notes</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle"  />
+    <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
+      <a role="button" class="">Cv</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/sam-segment-anything.html" class="">SAM-Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/self-supervised-learning.html" class="">Self Supervised Learning</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/bringyourownlatent-byol.html" class="">Bring Your Own Latent Byol</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/object-detection-general.html" class="">Object Detection General</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle" checked />
+    <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
+      <a role="button" class="">General</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/general-general.html" class="">General Notes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/kl-divergence.html" class="active">Kullback-Leibler Divergence (KL Divergence)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/api-performance-improvement.html" class="">Web-API performance improvement</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle"  />
+    <label for="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="flex justify-between">
+      <a role="button" class="">Nlp</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/bert.html" class="">BERT</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle"  />
+    <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
+      <a role="button" class="">Blogs</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Kullback-Leibler Divergence (KL Divergence)</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#definition">Definition:</a></li>
+        <li><a href="#explanation--proof">Explanation + Proof:</a></li>
+        <li><a href="#important-notes">Important Notes:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-why-take-log-of-probability-">** Why take log of probability ?</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="kullback-leibler-divergence-kl-divergence">
+  Kullback-Leibler Divergence (KL Divergence)
+  <a class="anchor" href="#kullback-leibler-divergence-kl-divergence">#</a>
+</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Edited</td>
+<td>25/06/2023</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="definition">
+  Definition:
+  <a class="anchor" href="#definition">#</a>
+</h3>
+<ul>
+<li>Measures the distance between 2 prabability distributions</li>
+</ul>
+<h3 id="explanation--proof">
+  Explanation + Proof:
+  <a class="anchor" href="#explanation--proof">#</a>
+</h3>
+<p>Base Video: <a href="https://www.youtube.com/watch?v=SxGYPqCgJWM" target="_blank" rel="noopener">Intuitively Understanding the KL Divergence - YouTube</a>
+</p>
+<p><img src="kl-divergence/2023-06-25-13-09-22-image.png" alt="" /></p>
+<p>Sequence of flips: <strong>H -&gt; H -&gt; T &hellip;..</strong></p>
+<p>Multiply the probabilities from both the coins for the corresponding heads and tails. It is nothing but:</p>
+<ul>
+<li>
+<p>for True coin: P1 raise to something and P2 raise to something else</p>
+</li>
+<li>
+<p>For coin2: Q1 raise to soemthing and Q2 raise to something else</p>
+</li>
+</ul>
+<p><img src="kl-divergence/2023-06-25-13-13-33-image.png" alt="" /></p>
+<ul>
+<li>
+<p>after applying log to the RHS: (** &ndash;&gt; Explained at the end)</p>
+<p><img src="kl-divergence/2023-06-25-13-14-41-image.png" alt="" /></p>
+</li>
+<li>
+<p>As the number of observations tends towards infinity:</p>
+<ul>
+<li>
+<p><strong>Nh/n ~~ p1</strong></p>
+</li>
+<li>
+<p><strong>Nt/N ~~ p2</strong></p>
+</li>
+</ul>
+<p>This leads us to the final log expression:</p>
+</li>
+</ul>
+<p><img src="kl-divergence/2023-06-25-13-23-53-image.png" alt="" /></p>
+<h4 id="general-formulae">
+  General Formulae:
+  <a class="anchor" href="#general-formulae">#</a>
+</h4>
+<p><img src="kl-divergence/37beef4003f8bc42829a3442f26431d7c02b70a4.png" alt="" /></p>
+<p>&ldquo;This computes the distance between 2 distributions motivated by looking at how likely the 2nd distribution would be able to generate samples from the first distribution&rdquo;</p>
+<p><strong>Cross-entropy Loss is very related to KL Divergence</strong></p>
+<h3 id="important-notes">
+  Important Notes:
+  <a class="anchor" href="#important-notes">#</a>
+</h3>
+<ul>
+<li>
+<p>KL Divergence is un-symmetric i.e the divergence depends on the distribution placed on the denominator.</p>
+</li>
+<li>
+<p>In other words: Divergence of distribution1 wrt distribution2 is not same as divergence of distribution2 wrt distribution1.</p>
+<hr>
+</li>
+</ul>
+<h2 id="-why-take-log-of-probability-">
+  ** Why take log of probability ?
+  <a class="anchor" href="#-why-take-log-of-probability-">#</a>
+</h2>
+<p><em><strong>From the probabilities of ratio, why did we suddenly take log of ratio ??</strong></em></p>
+<ul>
+<li>
+<p>The log of probabilities is closely related entropy. In <a href="https://en.wikipedia.org/wiki/Information_theory" title="Information theory" target="_blank" rel="noopener">information theory</a>
+, the <strong>entropy</strong> of a <a href="https://en.wikipedia.org/wiki/Random_variable" title="Random variable" target="_blank" rel="noopener">random variable</a>
+ is the average level of &ldquo;information&rdquo;, &ldquo;surprise&rdquo;, or &ldquo;uncertainty&rdquo; inherent to the variable&rsquo;s possible outcomes.</p>
+<p><img src="kl-divergence/2023-06-25-16-12-19-image.png" alt="" /></p>
+<h5 id="kl-divergence-is-also-known-as-relative-entropy-between-2-distributions">
+  KL Divergence is also known as relative entropy between 2 distributions.
+  <a class="anchor" href="#kl-divergence-is-also-known-as-relative-entropy-between-2-distributions">#</a>
+</h5>
+<p>For good reference to entropy, watch statquest video:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=YtebGVx-Fxw" target="_blank" rel="noopener">Entropy (for data science) Clearly Explained!!! - YouTube</a>
+</li>
+</ul>
+</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#definition">Definition:</a></li>
+        <li><a href="#explanation--proof">Explanation + Proof:</a></li>
+        <li><a href="#important-notes">Important Notes:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-why-take-log-of-probability-">** Why take log of probability ?</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
 <head>
-	<meta name="generator" content="Hugo 0.111.3">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Yogendra Yatnalkar: The Activated Neuron 💡#Note:Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 😂 Connect/Follow Over LinkedInGitHubYouTubeAbout Me:#I am a Senior Machine/Deep Learning Engineer at Quantiphi Analytics. I have been working professionally (and in the AI domain) since August 2020. After working on various data-domain, I think that I am more inclined towards Computer Vision (I am biased). I have industry experience across various use-cases ranging from:">
+<meta name="description" content="SegFormer: Segmentation using Transformer#Last Edited 16/07/2023 Source: SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers - YouTubeInput patch size: 4x4
+In ViT, it was 16x16, but with smaller path size, the authors said, smaller batch size is better (and required) for dense prediction.
+Note: With reducing the patch size, the computation increases.
+After each transformer block (encoder in this case), there is a feed-forward block which is mainly used to lower the dimension like older UNet &ndash;&gt; i.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Yogendra Yatnalkar" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/" />
-<title>Yogendra Yatnalkar | Activated Neuron</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="SegFormer: Segmentation using Transformer" />
+<meta property="og:description" content="SegFormer: Segmentation using Transformer#Last Edited 16/07/2023 Source: SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers - YouTubeInput patch size: 4x4
+In ViT, it was 16x16, but with smaller path size, the authors said, smaller batch size is better (and required) for dense prediction.
+Note: With reducing the patch size, the computation increases.
+After each transformer block (encoder in this case), there is a feed-forward block which is mainly used to lower the dimension like older UNet &ndash;&gt; i." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/cv/segformer.html" /><meta property="article:section" content="notes" />
+
+
+<title>SegFormer: Segmentation using Transformer | Activated Neuron</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.9e26fe6c5833bf89b3a7d0ff538728e0c034a3e54372f2b1723c2aa5a30c24c8.js" integrity="sha256-nib&#43;bFgzv4mzp9D/U4co4MA0o&#43;VDcvKxcjwqpaMMJMg=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://yogendra-yatnalkar.github.io/index.xml" title="Activated Neuron" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -70,7 +76,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
     <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
       <a role="button" class="">Notes</a>
     </label>
@@ -86,7 +92,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle"  />
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle" checked />
     <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
       <a role="button" class="">Cv</a>
     </label>
@@ -115,7 +121,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
+    <a href="/notes/cv/segformer.html" class="active">SegFormer: Segmentation using Transformer</a>
   
 
         </li>
@@ -323,7 +329,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Yogendra Yatnalkar</strong>
+  <strong>SegFormer: Segmentation using Transformer</strong>
 
   <label for="toc-control">
     
@@ -337,11 +343,7 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#about-me">About Me:</a></li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
 
 
 
@@ -352,57 +354,63 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="yogendra-yatnalkar-the-activated-neuron-">
-  Yogendra Yatnalkar: The Activated Neuron 💡
-  <a class="anchor" href="#yogendra-yatnalkar-the-activated-neuron-">#</a>
+  <article class="markdown"><h1 id="segformer-segmentation-using-transformer">
+  SegFormer: Segmentation using Transformer
+  <a class="anchor" href="#segformer-segmentation-using-transformer">#</a>
 </h1>
-<hr>
-<pre tabindex="0"><code>Note:
-Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 😂
-</code></pre><hr>
 <table>
 <thead>
 <tr>
-<th style="text-align:right">Connect/Follow Over</th>
-<th><a href="https://www.linkedin.com/in/yogendra-yatnalkar-2477b3148/" target="_blank" rel="noopener">LinkedIn</a>
-</th>
-<th><a href="https://github.com/yogendra-yatnalkar" target="_blank" rel="noopener">GitHub</a>
-</th>
-<th><a href="https://www.youtube.com/channel/UCBv-Hg0vmSRdiUSlWDbcTTg" target="_blank" rel="noopener">YouTube</a>
-</th>
+<th></th>
+<th></th>
 </tr>
 </thead>
+<tbody>
+<tr>
+<td>Last Edited</td>
+<td>16/07/2023</td>
+</tr>
+</tbody>
 </table>
-<h2 id="about-me">
-  About Me:
-  <a class="anchor" href="#about-me">#</a>
-</h2>
-<p><img src="_index/dbe15eb43570e14c754478fe250f1003a321be0c.jpg" alt="" /></p>
-<p>I am a <strong>Senior Machine/Deep Learning Engineer</strong> at <strong>Quantiphi Analytics</strong>. I have been working professionally (and in the AI domain) <strong>since August 2020</strong>. After working on various data-domain, I think that I am more inclined towards Computer Vision (I am biased). I have industry experience across various use-cases ranging from:</p>
+<hr>
+<p>Source: <a href="https://www.youtube.com/watch?v=hz3MO1j-wB4" target="_blank" rel="noopener">SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers - YouTube</a>
+</p>
+<p><img src="segformer/2023-07-16-12-37-30-image.png" alt="" /></p>
 <ul>
 <li>
-<p>Image Segmentation (<strong>U2Net</strong>, <strong>UNet, SegmentAnything ..</strong>&hellip;. the list is quite big)</p>
+<p>Input patch size: <strong>4x4</strong></p>
+<ul>
+<li>
+<p>In ViT, it was 16x16, but with smaller path size, the authors said, smaller batch size is better (and required) for dense prediction.</p>
 </li>
 <li>
-<p>GAN&rsquo;s (Trained and deployed <strong>custom GAN</strong> to generate shadows below car)</p>
-</li>
-<li>
-<p><strong>Video Data:</strong> Video Deduplication **(Worked on 50 TB+ of raw video files for the task of de-duplication)****, Ad-Brand-Identification from sports-videos</p>
-</li>
-<li>
-<p>Churn Prediction (Worked on <strong>1.5+ TB of CSV</strong> data to generate 80+ features to predict churn in <strong>EdTech domain</strong>) &ndash;&gt; Worked with a lot of <strong>SQL🔥!!</strong></p>
-</li>
-<li>
-<p><strong>MLOps</strong> on <strong>AWS</strong> (Few tags: Pipelines - Airflow/SageMaker-Pipeline, Drift, Retraining, automatic trigger, Explainability&hellip;..)</p>
-</li>
-<li>
-<p><strong>Tagging</strong> (On different time-lines, I have managed more than 8 taggers to for more than 2 months to tag <strong>thousands of images for segmentation, GAN&rsquo;s and object detection</strong>)</p>
-</li>
-<li>
-<p>Object Detection (Used <strong>Yolo v5</strong>to detect web-elements on web-page)</p>
-<p>(I think I should stop&hellip;&hellip;.. the list will become un-readable now&hellip;.)</p>
+<p><strong>Note:</strong> With reducing the patch size, the computation increases.</p>
 </li>
 </ul>
+</li>
+<li>
+<p>After each transformer block (encoder in this case), there is a feed-forward block which is mainly used to lower the dimension like older UNet &ndash;&gt; i.e in HxWxC &hellip;. as we go ahead in the encoder block, the height and width will decrease but the number of channels will keep on increasing.</p>
+<ul>
+<li>
+<p>In normal ViT as well, there are multiple transformer blocks, output dimension of each block of encoder is same its input.</p>
+</li>
+<li>
+<p>These MLP blocks used in the encoder (Not transformer encoder), not just downsample the input (and increase channels) but also dynamically adjusts the patch embedding vector passed on to the next transformer block.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Efficient self-attention reduces the sequence to lower computation cost</strong> (NOTE: Later need to read about efficient self attention)</p>
+</li>
+<li>
+<p>The segformer decoder consists of Dense NN (MLP) which has upsamping blocks in between.</p>
+</li>
+<li>
+<p><img src="segformer/2023-07-16-12-49-23-image.png" alt="" /></p>
+</li>
+</ul>
+<hr>
+<p><em><strong>Important: One big achievement of segformer is, it not just has high mIoU, its Params size is also very small&hellip;.. hence inference speed is also high.</strong></em></p>
 <hr>
 </article>
  
@@ -429,6 +437,15 @@ Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 
 
       
   
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -439,11 +456,7 @@ Under Development &gt;&gt;&gt;&gt;&gt;&gt; Just imagine how much lethargic I am 
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#about-me">About Me:</a></li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
 
 
  

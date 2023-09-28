@@ -7,14 +7,112 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Kullback-Leibler Divergence (KL Divergence)</title>
-      <link>https://yogendra-yatnalkar.github.io/notes/kl-divergence.html</link>
+      <title>BERT</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/nlp/bert.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://yogendra-yatnalkar.github.io/notes/kl-divergence.html</guid>
+      <guid>https://yogendra-yatnalkar.github.io/notes/nlp/bert.html</guid>
+      <description>BERT (Bidirectional Encoder Representation From Transformer)#Source:
+BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding - YouTubeOriginal Paper: https://arxiv.org/pdf/1810.04805v2.pdfSource:
+BERT Neural Network - EXPLAINED! - YouTubeBefore BERT:#LSTM&amp;rsquo;s were used.
+Problems:
+Slow as each word is processed at a time (sequentially) Not truly bi-directional (left to right and right to left at a time in bidirectional LSTM) Bert Architecture: Multiple encoders stacked on each-other</description>
+    </item>
+    
+    <item>
+      <title>General Notes</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</guid>
+      <description>Linux:#Wget vs Curl#curl and wget both support http and various types of FTP protocols. curl is library but wget is a CLI tool. curl is used for both way data transfer (src to detination and vice-versa) But, wget can be used only for single way data transfer, example: downloading something form a web-server. Null Hypothesis test &amp;raquo; p-values &amp;raquo; calculated using t-test or z-test &amp;raquo;</description>
+    </item>
+    
+    <item>
+      <title>Kullback-Leibler Divergence (KL Divergence)</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/kl-divergence.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/kl-divergence.html</guid>
       <description>Kullback-Leibler Divergence (KL Divergence)#Last Edited 25/06/2023 Definition:#Measures the distance between 2 prabability distributions Explanation + Proof:#Base Video: Intuitively Understanding the KL Divergence - YouTubeSequence of flips: H -&amp;gt; H -&amp;gt; T &amp;hellip;..
 Multiply the probabilities from both the coins for the corresponding heads and tails. It is nothing but:
 for True coin: P1 raise to something and P2 raise to something else</description>
+    </item>
+    
+    <item>
+      <title>SAM-Segment-Anything</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/sam-segment-anything.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/sam-segment-anything.html</guid>
+      <description>Segment Anything (SAM)#Last Edited 16/07/2023 Source: - Original Paper (notes till page no 7) - Youtube: https://www.youtube.com/watch?v=eYhvJR4zFUM Introduction:#Foundation model for segmentation.
+Important thing to note here, is that SAM is not just for semantic segmentation but can also be used for instance or panoptic or salient segmentation as well. We just need to engineer it accordingly.
+Trained ON: 11 million images and 1 billion corresponding masks</description>
+    </item>
+    
+    <item>
+      <title>SegFormer: Segmentation using Transformer</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/segformer.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/segformer.html</guid>
+      <description>SegFormer: Segmentation using Transformer#Last Edited 16/07/2023 Source: SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers - YouTubeInput patch size: 4x4
+In ViT, it was 16x16, but with smaller path size, the authors said, smaller batch size is better (and required) for dense prediction.
+Note: With reducing the patch size, the computation increases.
+After each transformer block (encoder in this case), there is a feed-forward block which is mainly used to lower the dimension like older UNet &amp;ndash;&amp;gt; i.</description>
+    </item>
+    
+    <item>
+      <title>Self Supervised Learning</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/self-supervised-learning.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/self-supervised-learning.html</guid>
+      <description>A Cookbook of Self-Supervised Learning:#Initial Notes from: https://arxiv.org/abs/2304.12210 Intro:#NLP advanced due to SSL &amp;ndash;&amp;gt; No need of labelled data to train supervised model
+SSL -&amp;gt; Define a pretext task &amp;ndash;&amp;gt; Un-labelled data &amp;ndash;&amp;gt; intelligent representation
+NLP: Word2Vec is SSL &amp;ndash; In a sentence, mask a word and predict the surrounding words (It learns context)
+CV: 2 current popular ways:
+mask a patch and prediction of masked path</description>
+    </item>
+    
+    <item>
+      <title>Web-API performance improvement</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/api-performance-improvement.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/api-performance-improvement.html</guid>
+      <description>API Performance Improvement#Based on: Top 7 Ways to 10x Your API Performance - YouTubeOptimization should not be the first step of development
+1. Caching:#If same request is repeated multiple times &amp;ndash;&amp;gt; cache hence no need to recompute or hit the DB again.
+For DB, its: MemCacheD or Redis
+2. Connection Pooling:#Having continues connections with DB can slow down server as each connection requires a lot of handshake protocol.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/bringyourownlatent-byol.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/bringyourownlatent-byol.html</guid>
+      <description>Bootstrap Your Own Latent (BYOL):#Tags: Self-Supervised Learning, SSL,
+Source: BYOL: Bootstrap Your Own Latent: A New Approach to Self-Supervised Learning (Paper Explained) - YouTube</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/object-detection-general.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/object-detection-general.html</guid>
+      <description>Object Detection Notes:#</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</guid>
+      <description></description>
     </item>
     
   </channel>
