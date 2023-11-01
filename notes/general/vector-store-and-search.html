@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SegFormer: Segmentation using Transformer#Last Edited 16/07/2023 Source: SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers - YouTubeInput patch size: 4x4
-In ViT, it was 16x16, but with smaller path size, the authors said, smaller batch size is better (and required) for dense prediction.
-Note: With reducing the patch size, the computation increases.
-After each transformer block (encoder in this case), there is a feed-forward block which is mainly used to lower the dimension like older UNet &ndash;&gt; i.">
+<meta name="description" content="Note: Just putting down few notes from AWS partner-cast session
+Vector Search and Vector Stores#How to measure similarity in embeddings?#Cosine Similarity: Gives the angle between the 2 embeddings. Higher the angle, bigger is the difference between 2 embeddings.
+Dot-Product: Same as cosine similarity but gives us the magnitude between 2 vectors instead of direction/angle.
+Real-life Use cases:#Semantic search
+Recommendation System
+Anomaly detection and pattern recognition">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="SegFormer: Segmentation using Transformer" />
-<meta property="og:description" content="SegFormer: Segmentation using Transformer#Last Edited 16/07/2023 Source: SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers - YouTubeInput patch size: 4x4
-In ViT, it was 16x16, but with smaller path size, the authors said, smaller batch size is better (and required) for dense prediction.
-Note: With reducing the patch size, the computation increases.
-After each transformer block (encoder in this case), there is a feed-forward block which is mainly used to lower the dimension like older UNet &ndash;&gt; i." />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Vector Search and Stores" />
+<meta property="og:description" content="Note: Just putting down few notes from AWS partner-cast session
+Vector Search and Vector Stores#How to measure similarity in embeddings?#Cosine Similarity: Gives the angle between the 2 embeddings. Higher the angle, bigger is the difference between 2 embeddings.
+Dot-Product: Same as cosine similarity but gives us the magnitude between 2 vectors instead of direction/angle.
+Real-life Use cases:#Semantic search
+Recommendation System
+Anomaly detection and pattern recognition" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/cv/segformer.html" /><meta property="article:section" content="notes" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/vector-store-and-search.html" /><meta property="article:section" content="notes" />
 
 
-<title>SegFormer: Segmentation using Transformer | Activated Neuron</title>
+<title>Vector Search and Stores | Activated Neuron</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
@@ -113,7 +117,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle" checked />
     <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
       <a role="button" class="">General</a>
     </label>
@@ -168,7 +172,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/general/vector-store-and-search.html" class="">Vector Search and Stores</a>
+    <a href="/notes/general/vector-store-and-search.html" class="active">Vector Search and Stores</a>
   
 
         </li>
@@ -199,7 +203,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle" checked />
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle"  />
     <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
       <a role="button" class="">CV</a>
     </label>
@@ -228,7 +232,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/cv/segformer.html" class="active">SegFormer: Segmentation using Transformer</a>
+    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
   
 
         </li>
@@ -347,7 +351,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>SegFormer: Segmentation using Transformer</strong>
+  <strong>Vector Search and Stores</strong>
 
   <label for="toc-control">
     
@@ -361,7 +365,17 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-to-measure-similarity-in-embeddings">How to measure similarity in embeddings?</a></li>
+        <li><a href="#real-life-use-cases">Real-life Use cases:</a></li>
+        <li><a href="#rag-implementation-in-aws">RAG Implementation in AWS:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
 
@@ -372,64 +386,78 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="segformer-segmentation-using-transformer">
-  SegFormer: Segmentation using Transformer
-  <a class="anchor" href="#segformer-segmentation-using-transformer">#</a>
+  <article class="markdown"><p>Note: Just putting down few notes from AWS partner-cast session</p>
+<hr>
+<h1 id="vector-search-and-vector-stores">
+  Vector Search and Vector Stores
+  <a class="anchor" href="#vector-search-and-vector-stores">#</a>
 </h1>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Last Edited</td>
-<td>16/07/2023</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<p>Source: <a href="https://www.youtube.com/watch?v=hz3MO1j-wB4" target="_blank" rel="noopener">SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers - YouTube</a>
+<h3 id="how-to-measure-similarity-in-embeddings">
+  How to measure similarity in embeddings?
+  <a class="anchor" href="#how-to-measure-similarity-in-embeddings">#</a>
+</h3>
+<ul>
+<li>
+<p><strong>Cosine Similarity:</strong> Gives the angle between the 2 embeddings. Higher the angle, bigger is the difference between 2 embeddings.</p>
+</li>
+<li>
+<p><strong>Dot-Product:</strong> Same as cosine similarity but gives us the magnitude between 2 vectors instead of direction/angle.</p>
+</li>
+</ul>
+<h3 id="real-life-use-cases">
+  Real-life Use cases:
+  <a class="anchor" href="#real-life-use-cases">#</a>
+</h3>
+<ul>
+<li>
+<p>Semantic search</p>
+</li>
+<li>
+<p>Recommendation System</p>
+</li>
+<li>
+<p>Anomaly detection and pattern recognition</p>
+</li>
+<li>
+<p>GenAI: RAG (Retrieval Augmented Generation)</p>
+</li>
+</ul>
+<h3 id="rag-implementation-in-aws">
+  RAG Implementation in AWS:
+  <a class="anchor" href="#rag-implementation-in-aws">#</a>
+</h3>
+<p><img src="vector-store-and-search/2023-10-06-14-42-01-image.png" alt="" /></p>
+<ul>
+<li>
+<p>Vector embedding is used to find top 3 most similar chunks</p>
+</li>
+<li>
+<p>In the prompts, the context provided needs to be given in natural language i.e english and not in embeddings format</p>
+</li>
+<li>
+<p><img src="vector-store-and-search/2023-10-06-14-44-57-image.png" alt="" /></p>
+</li>
+<li>
+<p><img src="vector-store-and-search/2023-10-06-14-48-43-image.png" alt="" /></p>
+</li>
+<li>
+<p>Read about HNSW:  <a href="https://www.pinecone.io/learn/series/faiss/hnsw/" target="_blank" rel="noopener">Hierarchical Navigable Small Worlds (HNSW) | Pinecone</a>
+ and <a href="https://www.timescale.com/blog/nearest-neighbor-indexes-what-are-ivfflat-indexes-in-pgvector-and-how-do-they-work/" target="_blank" rel="noopener">Nearest Neighbor Indexes: What Are ivfflat Indexes in pgvector and How Do They Work</a>
 </p>
-<p><img src="segformer/2023-07-16-12-37-30-image.png" alt="" /></p>
-<ul>
-<li>
-<p>Input patch size: <strong>4x4</strong></p>
-<ul>
-<li>
-<p>In ViT, it was 16x16, but with smaller path size, the authors said, smaller batch size is better (and required) for dense prediction.</p>
 </li>
 <li>
-<p><strong>Note:</strong> With reducing the patch size, the computation increases.</p>
-</li>
-</ul>
+<p>Vector search is read-only</p>
 </li>
 <li>
-<p>After each transformer block (encoder in this case), there is a feed-forward block which is mainly used to lower the dimension like older UNet &ndash;&gt; i.e in HxWxC &hellip;. as we go ahead in the encoder block, the height and width will decrease but the number of channels will keep on increasing.</p>
-<ul>
-<li>
-<p>In normal ViT as well, there are multiple transformer blocks, output dimension of each block of encoder is same its input.</p>
+<p>Read about: Knn search vs ANN search</p>
 </li>
 <li>
-<p>These MLP blocks used in the encoder (Not transformer encoder), not just downsample the input (and increase channels) but also dynamically adjusts the patch embedding vector passed on to the next transformer block.</p>
+<p>Read about: Postgres integration with aurora and rds for vector search</p>
+</li>
+<li>
+<p><img src="vector-store-and-search/2023-10-06-15-17-28-image.png" alt="" /></p>
 </li>
 </ul>
-</li>
-<li>
-<p><strong>Efficient self-attention reduces the sequence to lower computation cost</strong> (NOTE: Later need to read about efficient self attention)</p>
-</li>
-<li>
-<p>The segformer decoder consists of Dense NN (MLP) which has upsamping blocks in between.</p>
-</li>
-<li>
-<p><img src="segformer/2023-07-16-12-49-23-image.png" alt="" /></p>
-</li>
-</ul>
-<hr>
-<p><em><strong>Important: One big achievement of segformer is, it not just has high mIoU, its Params size is also very small&hellip;.. hence inference speed is also high.</strong></em></p>
-<hr>
 </article>
  
       
@@ -474,7 +502,17 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#how-to-measure-similarity-in-embeddings">How to measure similarity in embeddings?</a></li>
+        <li><a href="#real-life-use-cases">Real-life Use cases:</a></li>
+        <li><a href="#rag-implementation-in-aws">RAG Implementation in AWS:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
  

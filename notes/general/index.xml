@@ -27,6 +27,32 @@ for True coin: P1 raise to something and P2 raise to something else</description
     </item>
     
     <item>
+      <title>Un-Answered Questions</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/unanswered-questions.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/unanswered-questions.html</guid>
+      <description>Un-Answered Questions:#Difference between Float16 vs Bfloat16 vs Tensor-Float16 ?
+Vector Databases: HNSW vs IVF ?
+Difference between vector DB&amp;rsquo;s and FAISS library (by Meta) ?
+From my current knowledge both are same, but then why is everyone behind vector DB&amp;rsquo;s instead of using FAISS directly ? </description>
+    </item>
+    
+    <item>
+      <title>Vector Search and Stores</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/vector-store-and-search.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/vector-store-and-search.html</guid>
+      <description>Note: Just putting down few notes from AWS partner-cast session
+Vector Search and Vector Stores#How to measure similarity in embeddings?#Cosine Similarity: Gives the angle between the 2 embeddings. Higher the angle, bigger is the difference between 2 embeddings.
+Dot-Product: Same as cosine similarity but gives us the magnitude between 2 vectors instead of direction/angle.
+Real-life Use cases:#Semantic search
+Recommendation System
+Anomaly detection and pattern recognition</description>
+    </item>
+    
+    <item>
       <title>Web-API performance improvement</title>
       <link>https://yogendra-yatnalkar.github.io/notes/general/api-performance-improvement.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
