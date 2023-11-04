@@ -25,7 +25,7 @@ Slow as each word is processed at a time (sequentially) Not truly bi-directional
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</guid>
-      <description>Linux:#Wget vs Curl#curl and wget both support http and various types of FTP protocols. curl is library but wget is a CLI tool. curl is used for both way data transfer (src to detination and vice-versa) But, wget can be used only for single way data transfer, example: downloading something form a web-server. Null Hypothesis test &amp;raquo; p-values &amp;raquo; calculated using t-test or z-test &amp;raquo;</description>
+      <description>Linux:#Wget vs Curl#curl and wget both support http and various types of FTP protocols. curl is library but wget is a CLI tool. curl is used for both way data transfer (src to detination and vice-versa) But, wget can be used only for single way data transfer, example: downloading something form a web-server. </description>
     </item>
     
     <item>
@@ -37,6 +37,15 @@ Slow as each word is processed at a time (sequentially) Not truly bi-directional
       <description>Kullback-Leibler Divergence (KL Divergence)#Last Edited 25/06/2023 Definition:#Measures the distance between 2 prabability distributions Explanation + Proof:#Base Video: Intuitively Understanding the KL Divergence - YouTubeSequence of flips: H -&amp;gt; H -&amp;gt; T &amp;hellip;..
 Multiply the probabilities from both the coins for the corresponding heads and tails. It is nothing but:
 for True coin: P1 raise to something and P2 raise to something else</description>
+    </item>
+    
+    <item>
+      <title>NLP-General</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</guid>
+      <description>NLP General:#I will keep on appending stuff which I read about NLP as and when I get time in this place This is mainly intended for two things: Quick glance on what I had read in past for a given topic If needed to deep-dive, just look at the sources I used while reading it for the first time Hackers Guide to Language Model:#Source: A Hackers&#39; Guide to Language Models - YouTubeNotebook: GitHub - fastai/lm-hackers: Hackers&#39; Guide to Language ModelsDate: 02/11/2023</description>
     </item>
     
     <item>
@@ -81,10 +90,10 @@ mask a patch and prediction of masked path</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/unanswered-questions.html</guid>
-      <description>Un-Answered Questions:#Difference between Float16 vs Bfloat16 vs Tensor-Float16 ?
+      <description>Un-Answered Questions:#Difference between Float16 vs Bfloat16 vs Tensor-Float16 ?
 Vector Databases: HNSW vs IVF ?
 Difference between vector DB&amp;rsquo;s and FAISS library (by Meta) ?
-From my current knowledge both are same, but then why is everyone behind vector DB&amp;rsquo;s instead of using FAISS directly ? </description>
+From my current knowledge both are same, but then why is everyone behind vector DB&amp;rsquo;s instead of using FAISS directly ? Null Hypothesis test &amp;raquo; p-values &amp;raquo; calculated using t-test or z-test</description>
     </item>
     
     <item>
@@ -115,11 +124,13 @@ For DB, its: MemCacheD or Redis
     
     <item>
       <title></title>
-      <link>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</link>
+      <link>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</guid>
-      <description></description>
+      <guid>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</guid>
+      <description>Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
+Co-Author: Palash NimodiaDate: June 23, 2022
+Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place.</description>
     </item>
     
   </channel>

@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="NLP General:#I will keep on appending stuff which I read about NLP as and when I get time in this place This is mainly intended for two things: Quick glance on what I had read in past for a given topic If needed to deep-dive, just look at the sources I used while reading it for the first time Hackers Guide to Language Model:#Source: A Hackers&#39; Guide to Language Models - YouTubeNotebook: GitHub - fastai/lm-hackers: Hackers&#39; Guide to Language ModelsDate: 02/11/2023">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
-<meta property="og:description" content="" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="NLP-General" />
+<meta property="og:description" content="NLP General:#I will keep on appending stuff which I read about NLP as and when I get time in this place This is mainly intended for two things: Quick glance on what I had read in past for a given topic If needed to deep-dive, just look at the sources I used while reading it for the first time Hackers Guide to Language Model:#Source: A Hackers&#39; Guide to Language Models - YouTubeNotebook: GitHub - fastai/lm-hackers: Hackers&#39; Guide to Language ModelsDate: 02/11/2023" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html" /><meta property="article:section" content="notes" />
 
 
-<title>Nlp General | Activated Neuron</title>
+<title>NLP-General | Activated Neuron</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.edde387fdc5b3d423ea12791cf83284a5c49ce52ad75ae766236124cc138d1b0.js" integrity="sha256-7d44f9xbPUI&#43;oSeRz4MoSlxJzlKtda52YjYSTME40bA=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.1fd98860571c8566dbd66febd2adb392d860de1eddd98c71d226277d8b973ccd.js" integrity="sha256-H9mIYFcchWbb1m/r0q2zkthg3h7d2Yxx0iYnfYuXPM0=" crossorigin="anonymous"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
 <script>
@@ -89,6 +89,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/backtracking_aws_lookout_for_vision_service.html" class="">Backtracking Aws Lookout for Vision Service</a>
+  
+
+        </li>
+      
     
   </ul>
 
@@ -287,29 +300,22 @@ https://github.com/alex-shpak/hugo-book
       
     
       
-    
-  </ul>
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
-    
-      
         <li>
           
   
   
 
   
-    <a href="/project-experience.html" class="">Project Experience</a>
+    <a href="/notes/nlp/nlp_general.html" class="active">NLP-General</a>
   
 
-          
-  <ul>
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
     
   </ul>
 
@@ -370,7 +376,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Nlp General</strong>
+  <strong>NLP-General</strong>
 
   <label for="toc-control">
     
@@ -384,7 +390,12 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#hackers-guide-to-language-model">Hackers Guide to Language Model:</a></li>
+    <li><a href="#how-to-make-inference-faster-in-casual-language-model">How to make inference faster in Casual Language Model:</a></li>
+  </ul>
+</nav>
 
 
 
@@ -395,7 +406,168 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"></article>
+  <article class="markdown"><h1 id="nlp-general">
+  NLP General:
+  <a class="anchor" href="#nlp-general">#</a>
+</h1>
+<ul>
+<li>I will keep on appending stuff which I read about NLP as and when I get time in this place</li>
+<li>This is mainly intended for two things:
+<ul>
+<li>Quick glance on what I had read in past for a given topic</li>
+<li>If needed to deep-dive, just look at the sources I used while reading it for the first time</li>
+</ul>
+</li>
+</ul>
+<hr>
+<hr>
+<h2 id="hackers-guide-to-language-model">
+  Hackers Guide to Language Model:
+  <a class="anchor" href="#hackers-guide-to-language-model">#</a>
+</h2>
+<p>Source: <a href="https://www.youtube.com/watch?v=jkrNMKz9pWU" target="_blank" rel="noopener">A Hackers' Guide to Language Models - YouTube</a>
+</p>
+<p>Notebook: <a href="https://github.com/fastai/lm-hackers" target="_blank" rel="noopener">GitHub - fastai/lm-hackers: Hackers' Guide to Language Models</a>
+</p>
+<p>Date: 02/11/2023</p>
+<hr>
+<ul>
+<li>
+<p>On a high note, what is a language mode:</p>
+<ul>
+<li>
+<p>Predicts the next word</p>
+</li>
+<li>
+<p>or predicts the missing word</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Byte-Pair-Encoding tokenizer for OpenAI models: <a href="https://github.com/openai/tiktoken" target="_blank" rel="noopener">GitHub - openai/tiktoken: tiktoken is a fast BPE tokeniser for use with OpenAI's models.</a>
+</p>
+</li>
+<li>
+<p>&ldquo;NN has got the ability to create rich hierarchy of abstractions and representations on the base training data which is clearly a form of <strong>knowledge compression.</strong>&rdquo;</p>
+</li>
+<li>
+<p><img src="https://production-media.paperswithcode.com/methods/Screen_Shot_2020-05-26_at_5.11.04_PM.png" alt="" /></p>
+</li>
+<li>
+<p>LM&rsquo;s (mainly LLM&rsquo;s) are trained in 3 parts:</p>
+<ul>
+<li>
+<p><em><strong>Pretrained:</strong></em> Unsupervised training on large corpus of data and building a generalized model. The tasks can be:</p>
+<ul>
+<li>
+<p>Next word prediction</p>
+</li>
+<li>
+<p>Mask word and predict the masked word</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>LLM Fine-Tuning:</strong></em> Again <strong>unsupervised training like next word prediction</strong>, but on small amount of task-specific data</p>
+<ul>
+<li>
+<p>Within this second step, the paradigm has recently shifted to <strong>Instruction Finetuning</strong>. In this, the input text is of the form: <em>Instruction &ndash;&gt; Context &ndash;&gt; Question</em>. For further knowledge, a good source is: <a href="https://heidloff.net/article/instruct-tuning-large-language-models/" target="_blank" rel="noopener">Instruction Fine-tuning of Large Language Models | Niklas Heidloff</a>
+</p>
+</li>
+<li>
+<p>Llama2-chat models are instruction fine-tuned where the instruction of llama2-chat is quite long for example:</p>
+<ul>
+<li>
+<pre tabindex="0"><code>You are a helpful, respectful and honest assistant. Always answer as helpfully 
+as possible, while being safe. Your answers should not include any harmful, 
+unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure 
+that your responses are socially unbiased and positive in nature. If a question 
+does not make any sense, or is not factually coherent, explain why instead of 
+answering something not correct. If you don’t know the answer to a question, 
+please don’t share false information.
+
+&lt;&lt;CONTEXT&gt;&gt;
+
+Question: &lt;&lt;Question&gt;&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em><strong>Classifier fine-tuning:</strong></em></p>
+<ul>
+<li>
+<p>Reinforcement Learning with Human Feedback:</p>
+<ul>
+<li>
+<p>Good source to learn is from Yannick&rsquo;s video: <a href="https://www.youtube.com/watch?v=vLTmnaMpQCs&amp;pp=ygUUWWFubmljayBraWxjaGVyIFJMSEY%3D" target="_blank" rel="noopener">Learning to summarize from human feedback (Paper Explained) - YouTube</a>
+ (This is the original paper released in 2020 by OpenAI)</p>
+<ul>
+<li>
+<p>From my current understanding, there will be a separate scoring model</p>
+</li>
+<li>
+<p>The LLM would generate some output for the input and scoring model will generate the score for the output.</p>
+</li>
+<li>
+<p>The scoring model will be trained on small supervised data where the scores are generated by humans.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>As of September 2023, GPT4 is the best SOTA LLM. Listing down few things which GPT4 cannot do:</p>
+<ul>
+<li>
+<p>Hallucinations</p>
+</li>
+<li>
+<p>It doesn&rsquo;t know about itself. (Why not?)  &ndash;&gt; Because it was not included in its training and due to RLHF, it is just hallucinating</p>
+</li>
+<li>
+<p>It doesn&rsquo;t know about URLs.</p>
+</li>
+<li>
+<p>Knowledge cutoff</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>OpenAI Cost:</strong></p>
+</li>
+</ul>
+<p><img src="nlp_general/2023-11-02-10-18-07-image.png" alt="" /></p>
+<ul>
+<li>
+<p><strong>Small Note on GPU Performance per price:</strong></p>
+<ul>
+<li>Higher priced GPU is not always as good as its price because we need GPU having ultra-fast memory transfer speed as compared to ultra-fast compute operations.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<hr>
+<h2 id="how-to-make-inference-faster-in-casual-language-model">
+  How to make inference faster in Casual Language Model:
+  <a class="anchor" href="#how-to-make-inference-faster-in-casual-language-model">#</a>
+</h2>
+<ul>
+<li>
+<p>To increase performance of LLM prediction, we should try to reduce output tokens as compared to input tokens. It will have <strong>HUGE Impact</strong>.</p>
+</li>
+<li>
+<p>KV Cache</p>
+</li>
+</ul>
+<hr>
+<hr>
+</article>
  
       
 
@@ -420,6 +592,15 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -430,7 +611,12 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#hackers-guide-to-language-model">Hackers Guide to Language Model:</a></li>
+    <li><a href="#how-to-make-inference-faster-in-casual-language-model">How to make inference faster in Casual Language Model:</a></li>
+  </ul>
+</nav>
 
 
  

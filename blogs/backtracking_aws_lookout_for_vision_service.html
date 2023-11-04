@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
+Co-Author: Palash NimodiaDate: June 23, 2022
+Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
+Co-Author: Palash NimodiaDate: June 23, 2022
+Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html" /><meta property="article:section" content="blogs" />
+
+
+<title>Backtracking Aws Lookout for Vision Service | Activated Neuron</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.1fd98860571c8566dbd66febd2adb392d860de1eddd98c71d226277d8b973ccd.js" integrity="sha256-H9mIYFcchWbb1m/r0q2zkthg3h7d2Yxx0iYnfYuXPM0=" crossorigin="anonymous"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DTLBL509Z2', { 'anonymize_ip': false });
+}
+</script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Activated Neuron</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle" checked />
+    <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
+      <a role="button" class="">Blogs</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/backtracking_aws_lookout_for_vision_service.html" class="active">Backtracking Aws Lookout for Vision Service</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
+    <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
+      <a role="button" class="">Notes</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
+    <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
+      <a role="button" class="">General</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/general-general.html" class="">General Notes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/kl-divergence.html" class="">Kullback-Leibler Divergence (KL Divergence)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/unanswered-questions.html" class="">Un-Answered Questions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/vector-store-and-search.html" class="">Vector Search and Stores</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/api-performance-improvement.html" class="">Web-API performance improvement</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle"  />
+    <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
+      <a role="button" class="">CV</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/sam-segment-anything.html" class="">SAM-Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/self-supervised-learning.html" class="">Self Supervised Learning</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle"  />
+    <label for="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="flex justify-between">
+      <a role="button" class="">NLP</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/bert.html" class="">BERT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/nlp_general.html" class="">NLP-General</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/resume/" class="">Resume</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Backtracking Aws Lookout for Vision Service</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction"><strong>Introduction:</strong></a></li>
+    <li><a href="#the-journey-begins"><strong>THE JOURNEY BEGINS:</strong></a>
+      <ul>
+        <li><a href="#a-model-packaging">A. Model Packaging:</a></li>
+        <li><a href="#b-analyzing-zipped-model">B. Analyzing Zipped model</a></li>
+        <li><a href="#the-analysis-from-the-folder-and-json-file-is-as-follows">The Analysis from the folder and JSON file is as follows:</a></li>
+        <li><a href="#c-edge-model-custom-loading">C. Edge Model Custom Loading:</a></li>
+      </ul>
+    </li>
+    <li><a href="#model-loading-and-inference"><strong>Model Loading and Inference:</strong></a>
+      <ul>
+        <li><a href="#result"><strong>Result:</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="backtracking-aws-lookout-for-vision-service">
+  Backtracking AWS Lookout For Vision Service
+  <a class="anchor" href="#backtracking-aws-lookout-for-vision-service">#</a>
+</h1>
+<p><em><strong>The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)</strong></em></p>
+<p><strong>Co-Author:</strong>  <a href="https://medium.com/u/4a42e8900052?source=post_page-----136c47c85168--------------------------------" target="_blank" rel="noopener"><strong>Palash Nimodia</strong></a>
+</p>
+<hr>
+<p><strong>Date:</strong> June 23, 2022</p>
+<p><strong>Medium Link:</strong> <a href="https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168" target="_blank" rel="noopener">https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168</a>
+</p>
+<hr>
+<h2 id="introduction">
+  <strong>Introduction:</strong>
+  <a class="anchor" href="#introduction">#</a>
+</h2>
+<blockquote>
+<p><strong>NOTE for the reader</strong>: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place.</p>
+</blockquote>
+<p>Amazon Lookout for Vision <strong>(LFV)</strong> has recently released preview support for anomaly detection at the edge. It is a machine learning (ML) service that spots defects and anomalies in visual representations of manufactured products using computer vision (CV), allowing users to automate quality inspection. ML model is trained to spot anomalies from live production line <strong>with as few as 30 images for the process which needs to be visually inspected</strong> — with no machine learning experience required. <strong>Now, in addition to detecting anomalies in the cloud, Amazon LFV model can be hosted on edge using AWs IoT Greengrass V2 compatible edge devices.</strong></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:645/0*LplUPnqheXlYpvav.png" alt="" /></p>
+<p><em><strong>Prerequisite:</strong></em><br>
+→ Train a Lookout For Vision Model using AWS Console<br>
+→ Compile and package the model for edge hosting<br>
+→ <strong>The below work has been tested on EC2 instance and SageMaker Notebook Instance (EC2 instance as edge) having Nvidia T4 GPU (instance — G4dn.xlarge)</strong></p>
+<p>Once training and packaging the trained model is complete, our journey starts here.</p>
+<p>We try to trace-back the service to identify how the LFV service trains its anomaly detection model, what post-processing it performs on the trained model and if there is any minute chance of custom hosting it for inference.</p>
+<hr>
+<h2 id="the-journey-begins">
+  <strong>THE JOURNEY BEGINS:</strong>
+  <a class="anchor" href="#the-journey-begins">#</a>
+</h2>
+<h3 id="a-model-packaging">
+  A. Model Packaging:
+  <a class="anchor" href="#a-model-packaging">#</a>
+</h3>
+<p>A model packaging job packages an Amazon Lookout for Vision model as a model component. While packaging your custom trained model, there is an option for <strong>target-device</strong> and <strong>target-platform</strong>. Since we are testing this on EC2 instance, we will choose our target as: <strong>target-platform</strong> in this case.</p>
+<p>After choosing the platform, we will choose <strong>compiler-options.</strong> Within compiler option, we will have to provide the GPU which we will be using, the tensorrt version and the Cuda library version. For more details, please follow the documentation at the following link: <a href="https://docs.aws.amazon.com/lookout-for-vision/latest/developer-guide/package-settings.html" target="_blank" rel="noopener"><strong>LINK</strong></a>
+</p>
+<blockquote>
+<p>Our configuration for G4dn.xlarge Instance:<br>
+<strong>{‘gpu-code’: ‘sm_75’, ‘trt-ver’: ‘7.1.3’, ‘cuda-ver’: ‘10.2’}</strong></p>
+</blockquote>
+<p>So here comes our first clue, the service is post-processing our model by optimizing it using <strong>NVIDIA TensorRT SDK.<br>
+<em>Question:</em></strong> <em>We still do not know if the following model is trained using</em> <em><strong>Tensorflow or Pytorch or any other Deep Learning framework… !!</strong></em></p>
+<hr>
+<h3 id="b-analyzing-zipped-model">
+  B. Analyzing Zipped model
+  <a class="anchor" href="#b-analyzing-zipped-model">#</a>
+</h3>
+<p>Image Description: Zipped Model Contents</p>
+<blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:875/1*rpgN5C7zCkYh7JQxpsDeSA.png" alt="" /></p>
+<p>Zipped Model contents</p>
+</blockquote>
+<p>Once the model is trained → compiled → TensorRT optimized, it gets saved to AWS S3 in a zipped format. In our case, the zip file and contents within the zip looked something like image above:</p>
+<p>If we closely observe, there are two things inside it:</p>
+<ol>
+<li>Folder — “mochi” (including the sub-files within this folder)</li>
+<li>manifest.json file</li>
+</ol>
+<p>The <strong>manifest.json file</strong> contains the following contents:</p>
+<blockquote>
+<p>{&ldquo;model_graph&rdquo;: {&ldquo;model_graph_type&rdquo;: &ldquo;single_stage_model_graph&rdquo;, &ldquo;stages&rdquo;: [{&ldquo;class_normal_ids&rdquo;: [1], &ldquo;seg_normal_ids&rdquo;: [], &ldquo;classification_head_enabled&rdquo;: true, &ldquo;segmentation_head_enabled&rdquo;: false, <strong>&ldquo;threshold&rdquo;: 0.7021560668945312, &ldquo;normalize&rdquo;: true,</strong> &ldquo;image_range_scale&rdquo;: true, &ldquo;image_width&rdquo;: 1000, &ldquo;image_height&rdquo;: 1000, &ldquo;input_shape&rdquo;: [1, 3, 1000, 1000], &ldquo;type&rdquo;: &ldquo;mochi&rdquo;}], &ldquo;image_level_classes&rdquo;: {<strong>&ldquo;names&rdquo;: [&ldquo;anomaly&rdquo;, &ldquo;normal&rdquo;],</strong> &ldquo;normal_ids&rdquo;: [1]}, &ldquo;pixel_level_classes&rdquo;: {&ldquo;names&rdquo;: [], &ldquo;normal_ids&rdquo;: []}}, &ldquo;compilable_models&rdquo;: <strong>[{&ldquo;filename&rdquo;: &ldquo;mochi.pt&rdquo;, &ldquo;data_input_config&rdquo;: {&ldquo;input&rdquo;: [1, 3, 1000, 1000]}, &ldquo;framework&rdquo;: &ldquo;PYTORCH&rdquo;}], &ldquo;dataset&rdquo;: {&ldquo;image_width&rdquo;: 1000, &ldquo;image_height&rdquo;: 1000}}</strong></p>
+</blockquote>
+<h3 id="the-analysis-from-the-folder-and-json-file-is-as-follows">
+  The Analysis from the folder and JSON file is as follows:
+  <a class="anchor" href="#the-analysis-from-the-folder-and-json-file-is-as-follows">#</a>
+</h3>
+<ul>
+<li>The folder name itself is quite unique and hence raises a question: Could <strong>“mochi”</strong> be some latest/open-source model ?</li>
+<li>The JSON file contains a key-word named: <strong>“mochi.pt”</strong></li>
+<li>Web-searching on the “mochi” term led to an interesting discovery. It resulted in the following paper: <strong>Hard Negative Mixing for Contrastive Learning</strong> <a href="https://europe.naverlabs.com/research/computer-vision/mochi/" target="_blank" rel="noopener"><strong>(Paper Link)</strong></a>
+ where <strong>MoCHI</strong> stands for “(<strong>M</strong>)ixing (<strong>o</strong>)f **(C-)**ontrastive (<strong>H</strong>)ard negat(<strong>i</strong>)ves”.</li>
+<li>The paper proposes a <strong>semi-supervised way</strong> of training Deep Learning models using <strong>Contrastive Loss where it highlights the importance of “Hard-negatives”.</strong> The proposed approach generates synthetic hard negatives on-the-fly for each positive (query). (<strong>Note:</strong> <em>Please read about contrastive loss and semi-supervised learning for more details …… this was first time for me as-well</em>😢)</li>
+</ul>
+<blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:693/0*hdMNp5E3JPrm2SbS.png" alt="" /></p>
+<p>Illustration of <strong>MoCHi</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>It could be assumed that Lookout for Vision has a <strong>pre-trained semi-supervised defect detection model</strong>. For new model training on customer data, this pre-trained model is further fine-tuned on new data and saved. Hence, this can be also related to the <strong>unique feature</strong> of the service, which is the <strong>need for a very small amount of annotated data</strong> as it could be using semi-supervised learning algorithm internally.</p>
+<blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:875/1*TTfE-DmzjGPxH7Xi8BKrjg.png" alt="" /></p>
+<p>Content within manifest.json file…</p>
+</blockquote>
+</li>
+<li>
+<p>Now, lets have a quick peek at <strong>content.json</strong> file:</p>
+<ul>
+<li>It tells us that the trained model is a <strong>“Pytorch” model</strong> with model name as: <strong>mochi.pt</strong>.</li>
+<li>The model is trained and inferred on shape: <strong>1000x1000x3</strong></li>
+<li>Even though the service only supports binary classification, the model has 2 output neurons. One output states whether the input image is “<strong>normal</strong>” or not. Another output states whether the input image is “<strong>anomaly</strong>” or not.</li>
+<li>The threshold for detecting output is set at: **0.7021 (at-least to the model trained in our case)<br>
+**- There is key-value pair named: → <strong>“normalized”: True.</strong> From here, we can assume that the output of the last layer is <strong>Normalized using Softmax layer.</strong></li>
+</ul>
+</li>
+<li>
+<p>Now, lets quickly analyze the other sub-files from the “<strong>mochi</strong>” folder.</p>
+<ul>
+<li>The <strong>libdlr.so file and dlr.h file</strong> tells us that the model is compiled using <a href="https://github.com/neo-ai/neo-ai-dlr" target="_blank" rel="noopener"><strong>Neo-AI-DLR package (LINK).</strong></a>
+<strong>-</strong> DLR is a compact, common runtime for deep learning models and decision tree models compiled by <a href="https://aws.amazon.com/sagemaker/neo/" target="_blank" rel="noopener">AWS SageMaker Neo</a>
+, <a href="https://github.com/neo-ai/tvm" target="_blank" rel="noopener">TVM</a>
+, or <a href="https://treelite.readthedocs.io/en/latest/install.html" target="_blank" rel="noopener">Treelite</a>
+. DLR uses the TVM runtime, Treelite runtime, NVIDIA TensorRT™, and can include other hardware-specific runtimes.</li>
+</ul>
+</li>
+<li>
+<p>The <strong>libdlr.so file</strong> in the model zip specifies the platform details of the compiled model while custom loading in <strong>NeoAI-dlr.</strong> Hence, it’s required while loading the model on any g4dn.xlarge instance (<strong>Nvidia T4 GPU</strong>) (Note: Our model was compiled for Nvidia T4 GPU)</p>
+</li>
+</ul>
+<hr>
+<h3 id="c-edge-model-custom-loading">
+  C. Edge Model Custom Loading:
+  <a class="anchor" href="#c-edge-model-custom-loading">#</a>
+</h3>
+<p>We have learnt a lot about this model now. Somehow, lets crack the hidden mystery on how to load it manually without using AWS SDK….</p>
+<h4 id="requirements">
+  Requirements:
+  <a class="anchor" href="#requirements">#</a>
+</h4>
+<ul>
+<li>Instance with Nvidia T4 GPU (<strong>Tested on SageMaker Notebook and EC2 instance of type: g4dn.xlarge</strong>)</li>
+<li><a href="https://github.com/neo-ai/neo-ai-dlr" target="_blank" rel="noopener"><strong>DLR</strong></a>
+ installed with GPU support. It can be installed by building from source or using **pip with pre-built binaries. (**on development instance, it was installed using: <strong>pip install {prebuilt supported binary} )</strong></li>
+<li>Edge model zip file locally available and unzipped.</li>
+<li>Python libraries required: <strong>dlr, numpy, cv2, os, torch</strong></li>
+</ul>
+<h4 id="image-pre-processing-before-inference">
+  Image pre-processing before inference:
+  <a class="anchor" href="#image-pre-processing-before-inference">#</a>
+</h4>
+<blockquote>
+<p><em><strong>(IMPORTANT NOTE:</strong></em> <em>The below listed pre-processing was found using multiple trial and error by comparing custom loaded model inference with the console displayed information)</em></p>
+</blockquote>
+<ul>
+<li>Read the image using Opencv (<strong>cv2</strong>) image library</li>
+<li>Convert <strong>BGR</strong> channel image to <strong>RGB</strong> channel image (Opencv image are read in BGR channel)</li>
+<li>Resize the image to size: <strong>1000x1000 (3 channel)</strong></li>
+<li>Normalize the image between scale: <strong>0–1 (divide by 255)</strong></li>
+<li>Standardize the image with **ImageNet channel wise mean and standard deviation (order: RGB):
+<ul>
+<li>mean=[0.485, 0.456, 0.406]</li>
+<li>standard-deviation (std) =[0.229, 0.224, 0.225]**</li>
+</ul>
+</li>
+<li>Make the image channel first <strong>(Earlier: 1000x100x3, After: 3x1000x1000)</strong></li>
+<li>Expand image dimension to treat it as batch size 1 for inference. <strong>(final dimension: 1x3x1000x1000)</strong></li>
+</ul>
+<hr>
+<h2 id="model-loading-and-inference">
+  <strong>Model Loading and Inference:</strong>
+  <a class="anchor" href="#model-loading-and-inference">#</a>
+</h2>
+<p><strong>We have finally analyzed multiple things and came to few major conclusions, such as:</strong></p>
+<ol>
+<li>The training is performed using Pytorch Library</li>
+<li>The model is TensorRT optimized</li>
+<li>The model is compiled using NeoAI-DLR package for Nvidia GPU</li>
+<li>The trained model is a Semi-supervised model (MOCHI)</li>
+<li>Inference Image Size: 1000x1000x3</li>
+<li>Image Pre-processing decoded(mean, standard-deviation, order of image channel)</li>
+</ol>
+<ul>
+<li><strong>Code to load the model using DLR package and inference.</strong></li>
+</ul>
+<p><a href="https://gist.github.com/yogendra-yatnalkar/ba0bad7d0bea6450e44b082c317eb847" target="_blank" rel="noopener">lookout_for_vision_custom_loading.py · GitHub</a>
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> dlr
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># DLR installation</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># pip install https://neo-ai-dlr-release.s3-us-west-2.amazonaws.com/v1.10.0/gpu/dlr-1.10.0-py3-none-any.whl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load model.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># /path/to/model is a directory containing the compiled model artifacts (.so, .params, .json)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> dlr<span style="color:#f92672">.</span>DLRModel(<span style="color:#e6db74">&#39;./mochi/&#39;</span>, <span style="color:#e6db74">&#39;gpu&#39;</span>, <span style="color:#ae81ff">0</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">process_image</span>(img):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># normalizing the image (0-1) and </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># standardizing with ImageNet Mean and Std-deviation</span>
+</span></span><span style="display:flex;"><span>    img <span style="color:#f92672">=</span> img<span style="color:#f92672">/</span><span style="color:#ae81ff">255</span>
+</span></span><span style="display:flex;"><span>    img[:,:,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> (img[:,:,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.485</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">0.229</span>
+</span></span><span style="display:flex;"><span>    img[:,:,<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> (img[:,:,<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.456</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">0.224</span>
+</span></span><span style="display:flex;"><span>    img[:,:,<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> (img[:,:,<span style="color:#ae81ff">2</span>] <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.406</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">0.225</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># convert image to channel first from channel last</span>
+</span></span><span style="display:flex;"><span>    img <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Expanding dimension to treat it as batch-size: 1</span>
+</span></span><span style="display:flex;"><span>    img <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>expand_dims(img, axis <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> img
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">predict_on_image</span>(img_path, model):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># read image and convert to RGB</span>
+</span></span><span style="display:flex;"><span>    img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(img_path)
+</span></span><span style="display:flex;"><span>    img <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>cvtColor(img, cv2<span style="color:#f92672">.</span>COLOR_BGR2RGB)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># resize the images if needed</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Process image </span>
+</span></span><span style="display:flex;"><span>    img <span style="color:#f92672">=</span> process_image(img)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># infer and print result</span>
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>run(img)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> round(y[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>], <span style="color:#ae81ff">3</span>), round(y[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">3</span>), np<span style="color:#f92672">.</span>argmax(y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>folder_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;./temp/&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> img_name <span style="color:#f92672">in</span> sorted(os<span style="color:#f92672">.</span>listdir(folder_path)):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#e6db74">&#39;.jpg&#39;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> img_name):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>    img_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(folder_path, img_name)
+</span></span><span style="display:flex;"><span>    print(img_name)
+</span></span><span style="display:flex;"><span>    a,b,c <span style="color:#f92672">=</span> predict_on_image(img_path, model)
+</span></span><span style="display:flex;"><span>    print(c,<span style="color:#e6db74">&#39;====&#39;</span>, a,b)</span></span></code></pre></div>
+<hr>
+<p>We were able to successfully load and infer on our test images using the above attached code. <strong>To validate our work, we performed one experiment on it which is as follows:</strong></p>
+<p>— Took one image data-set and converted it to train and test set<br>
+— Train the model on train-set using AWS console and package it for edge such that its zip file is saved in S3. Fetch the zip file and store it in test-environment<br>
+— Infer the model on the cloud using the AWS Console on the test-set. Record its results and model confidence<br>
+— Now, infer using the edge-model on the testing instance using the above code on the test-set images. Record the results and confidence score</p>
+<h3 id="result">
+  <strong>Result:</strong>
+  <a class="anchor" href="#result">#</a>
+</h3>
+<p><em><strong>We observed that, when the test-set was inferred on the edge using custom loading of the model, the inference results and the confidence scores were exactly identical as compared with the AWS LFV Console inference.</strong></em></p>
+<p>With this in hand, we can easily see how much cost we could save in future, as we will only have to bear the training cost and avoid all the AWS API/SDK inference cost. Lets say, we are on a NVIDIA Jetson device and we have trained a AWS LFV model, we will be able to directly infer on new images/video-frames using custom loading.</p>
+<p>If you have actually read this much and liked it, please do not forget to give a <strong>clap and subscribe for future articles…..</strong></p>
+<blockquote>
+<p>THE END…..</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Tags</th>
+<th>AWS, Computer Vision, Pytorch, Deep Learning, Cloud Computing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction"><strong>Introduction:</strong></a></li>
+    <li><a href="#the-journey-begins"><strong>THE JOURNEY BEGINS:</strong></a>
+      <ul>
+        <li><a href="#a-model-packaging">A. Model Packaging:</a></li>
+        <li><a href="#b-analyzing-zipped-model">B. Analyzing Zipped model</a></li>
+        <li><a href="#the-analysis-from-the-folder-and-json-file-is-as-follows">The Analysis from the folder and JSON file is as follows:</a></li>
+        <li><a href="#c-edge-model-custom-loading">C. Edge Model Custom Loading:</a></li>
+      </ul>
+    </li>
+    <li><a href="#model-loading-and-inference"><strong>Model Loading and Inference:</strong></a>
+      <ul>
+        <li><a href="#result"><strong>Result:</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

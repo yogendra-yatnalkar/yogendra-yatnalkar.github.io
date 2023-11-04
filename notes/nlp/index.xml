@@ -20,12 +20,12 @@ Slow as each word is processed at a time (sequentially) Not truly bi-directional
     </item>
     
     <item>
-      <title></title>
+      <title>NLP-General</title>
       <link>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</guid>
-      <description></description>
+      <description>NLP General:#I will keep on appending stuff which I read about NLP as and when I get time in this place This is mainly intended for two things: Quick glance on what I had read in past for a given topic If needed to deep-dive, just look at the sources I used while reading it for the first time Hackers Guide to Language Model:#Source: A Hackers&#39; Guide to Language Models - YouTubeNotebook: GitHub - fastai/lm-hackers: Hackers&#39; Guide to Language ModelsDate: 02/11/2023</description>
     </item>
     
   </channel>

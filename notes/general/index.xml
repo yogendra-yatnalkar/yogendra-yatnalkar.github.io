@@ -12,7 +12,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</guid>
-      <description>Linux:#Wget vs Curl#curl and wget both support http and various types of FTP protocols. curl is library but wget is a CLI tool. curl is used for both way data transfer (src to detination and vice-versa) But, wget can be used only for single way data transfer, example: downloading something form a web-server. Null Hypothesis test &amp;raquo; p-values &amp;raquo; calculated using t-test or z-test &amp;raquo;</description>
+      <description>Linux:#Wget vs Curl#curl and wget both support http and various types of FTP protocols. curl is library but wget is a CLI tool. curl is used for both way data transfer (src to detination and vice-versa) But, wget can be used only for single way data transfer, example: downloading something form a web-server. </description>
     </item>
     
     <item>
@@ -32,10 +32,10 @@ for True coin: P1 raise to something and P2 raise to something else</description
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/unanswered-questions.html</guid>
-      <description>Un-Answered Questions:#Difference between Float16 vs Bfloat16 vs Tensor-Float16 ?
+      <description>Un-Answered Questions:#Difference between Float16 vs Bfloat16 vs Tensor-Float16 ?
 Vector Databases: HNSW vs IVF ?
 Difference between vector DB&amp;rsquo;s and FAISS library (by Meta) ?
-From my current knowledge both are same, but then why is everyone behind vector DB&amp;rsquo;s instead of using FAISS directly ? </description>
+From my current knowledge both are same, but then why is everyone behind vector DB&amp;rsquo;s instead of using FAISS directly ? Null Hypothesis test &amp;raquo; p-values &amp;raquo; calculated using t-test or z-test</description>
     </item>
     
     <item>
