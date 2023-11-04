@@ -7,6 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Backtracking AWS Lookout for Vision Service</title>
+      <link>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</guid>
+      <description>Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
+Co-Author: Palash NimodiaDate: June 23, 2022
+Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place.</description>
+    </item>
+    
+    <item>
       <title>BERT</title>
       <link>https://yogendra-yatnalkar.github.io/notes/nlp/bert.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -17,6 +28,17 @@ BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding
 BERT Neural Network - EXPLAINED! - YouTubeBefore BERT:#LSTM&amp;rsquo;s were used.
 Problems:
 Slow as each word is processed at a time (sequentially) Not truly bi-directional (left to right and right to left at a time in bidirectional LSTM) Bert Architecture: Multiple encoders stacked on each-other</description>
+    </item>
+    
+    <item>
+      <title>Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto</title>
+      <link>https://yogendra-yatnalkar.github.io/blogs/finding-nth-aggregate-from-every-group-aws-athena.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/blogs/finding-nth-aggregate-from-every-group-aws-athena.html</guid>
+      <description>Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto#Co-Author: Palash NimodiaDate: June 2, 2022
+Medium Link: https://medium.com/selectfrom/finding-the-nth-aggregate-value-from-every-group-in-aws-athena-presto-1da505310901Prerequisite:#Before going ahead, a quick read for those who don’t know what AWS Athena and Presto are.
+AWS Athena: Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is easy to use, fast, scalable and serverless, so there is no infrastructure to manage, and we pay only for the queries that we run.</description>
     </item>
     
     <item>
@@ -120,17 +142,6 @@ Anomaly detection and pattern recognition</description>
 1. Caching:#If same request is repeated multiple times &amp;ndash;&amp;gt; cache hence no need to recompute or hit the DB again.
 For DB, its: MemCacheD or Redis
 2. Connection Pooling:#Having continues connections with DB can slow down server as each connection requires a lot of handshake protocol.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</guid>
-      <description>Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
-Co-Author: Palash NimodiaDate: June 23, 2022
-Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place.</description>
     </item>
     
   </channel>

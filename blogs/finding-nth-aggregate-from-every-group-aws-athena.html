@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto#Co-Author: Palash NimodiaDate: June 2, 2022
+Medium Link: https://medium.com/selectfrom/finding-the-nth-aggregate-value-from-every-group-in-aws-athena-presto-1da505310901Prerequisite:#Before going ahead, a quick read for those who don’t know what AWS Athena and Presto are.
+AWS Athena: Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is easy to use, fast, scalable and serverless, so there is no infrastructure to manage, and we pay only for the queries that we run.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto" />
+<meta property="og:description" content="Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto#Co-Author: Palash NimodiaDate: June 2, 2022
+Medium Link: https://medium.com/selectfrom/finding-the-nth-aggregate-value-from-every-group-in-aws-athena-presto-1da505310901Prerequisite:#Before going ahead, a quick read for those who don’t know what AWS Athena and Presto are.
+AWS Athena: Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is easy to use, fast, scalable and serverless, so there is no infrastructure to manage, and we pay only for the queries that we run." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/blogs/finding-nth-aggregate-from-every-group-aws-athena.html" /><meta property="article:section" content="blogs" />
+
+
+<title>Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto | Activated Neuron</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.ff62664429f3c0e35fa514783b66abf1df10b955c172a987434305a5893589b1.js" integrity="sha256-/2JmRCnzwONfpRR4O2ar8d8QuVXBcqmHQ0MFpYk1ibE=" crossorigin="anonymous"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DTLBL509Z2', { 'anonymize_ip': false });
+}
+</script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Activated Neuron</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle" checked />
+    <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
+      <a href="/blogs.html" class="">Blogs</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/backtracking_aws_lookout_for_vision_service.html" class="">Backtracking AWS Lookout for Vision Service</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/finding-nth-aggregate-from-every-group-aws-athena.html" class="active">Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
+    <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
+      <a role="button" class="">Notes</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
+    <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
+      <a role="button" class="">General</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/general-general.html" class="">General Notes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/kl-divergence.html" class="">Kullback-Leibler Divergence (KL Divergence)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/unanswered-questions.html" class="">Un-Answered Questions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/vector-store-and-search.html" class="">Vector Search and Stores</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/api-performance-improvement.html" class="">Web-API performance improvement</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle"  />
+    <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
+      <a role="button" class="">CV</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/sam-segment-anything.html" class="">SAM-Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/self-supervised-learning.html" class="">Self Supervised Learning</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle"  />
+    <label for="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="flex justify-between">
+      <a role="button" class="">NLP</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/bert.html" class="">BERT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/nlp_general.html" class="">NLP-General</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/resume/" class="">Resume</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#prerequisite">Prerequisite:</a></li>
+    <li><a href="#introduction">Introduction:</a></li>
+    <li><a href="#question-1"><strong>Question 1:</strong></a>
+      <ul>
+        <li><a href="#solution">Solution:</a></li>
+        <li><a href="#part-1">Part 1:</a></li>
+        <li><a href="#query1">Query1:</a></li>
+        <li><a href="#query1-output">Query1 Output:</a></li>
+        <li><a href="#part2">Part2:</a></li>
+        <li><a href="#query2-in-combination-with-query1">Query2 (In combination with Query1):</a></li>
+        <li><a href="#query2-output">Query2 Output:</a></li>
+        <li><a href="#part3-final">Part3 (Final):</a></li>
+        <li><a href="#query3">Query3:</a></li>
+        <li><a href="#query3-output">Query3 Output:</a></li>
+      </ul>
+    </li>
+    <li><a href="#question2"><strong>Question2:</strong></a>
+      <ul>
+        <li></li>
+        <li><a href="#solution-1">Solution:</a></li>
+        <li><a href="#question2-output">Question2 Output:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="finding-the-nth-aggregate-value-from-every-group-in-aws-athenapresto">
+  Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto
+  <a class="anchor" href="#finding-the-nth-aggregate-value-from-every-group-in-aws-athenapresto">#</a>
+</h1>
+<p><strong>Co-Author:</strong>  <a href="https://medium.com/u/4a42e8900052?source=post_page-----136c47c85168--------------------------------" target="_blank" rel="noopener"><strong>Palash Nimodia</strong></a>
+</p>
+<hr>
+<p><strong>Date:</strong> June 2, 2022</p>
+<p><strong>Medium Link:</strong> <a href="https://medium.com/selectfrom/finding-the-nth-aggregate-value-from-every-group-in-aws-athena-presto-1da505310901" target="_blank" rel="noopener">https://medium.com/selectfrom/finding-the-nth-aggregate-value-from-every-group-in-aws-athena-presto-1da505310901</a>
+</p>
+<hr>
+<h2 id="prerequisite">
+  Prerequisite:
+  <a class="anchor" href="#prerequisite">#</a>
+</h2>
+<p>Before going ahead, a quick read for those who don’t know what AWS Athena and Presto are.</p>
+<ul>
+<li><strong>AWS Athena:</strong></li>
+</ul>
+<blockquote>
+<p>Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is easy to use, fast, scalable and serverless, so there is no infrastructure to manage, and we pay only for the queries that we run. We also don’t have to pay for failed queries. This makes it easy for anyone with SQL skills to quickly analyze large-scale datasets.</p>
+</blockquote>
+<ul>
+<li><strong>Presto:</strong></li>
+</ul>
+<blockquote>
+<p>Presto is an open source distributed SQL query engine for running interactive analytic queries against data sources of all sizes ranging from gigabytes to petabytes. AWS Athena uses Presto internally as its query engine.</p>
+</blockquote>
+<hr>
+<h2 id="introduction">
+  Introduction:
+  <a class="anchor" href="#introduction">#</a>
+</h2>
+<p>Continuing on with our main focus, today we will discuss finding the nth aggregate value from every group in AWS Athena/Presto).</p>
+<p>Let’s take an example: finding some aggregate value from every group in SQL is possible and its solutions are quite easily available. Across the few solutions that I went through, two things were common:</p>
+<ul>
+<li>It always referred to the 2nd highest/lowest.</li>
+<li>Most of the solutions used SQL variables and inner join.</li>
+</ul>
+<blockquote>
+<p>Now imagine a scenario where you are required to <strong>find the 5th…. 6th…. nth largest/smallest/aggregate value from every group where data size is HUGE (in TB’s) and you are restricted from using SQL variables.</strong></p>
+</blockquote>
+<p>In such scenarios, due to the sheer scale, inner-join will be a very heavy operation and hence its best to avoid it. Another restriction being the use of variables in AWS Athena. Since AWS Athena is used for data analytics and not transactional databases, the use of variables is not supported as of now.</p>
+<p><strong>So after the above discussion, is there any other way ???</strong> <strong>…… Yes, there is.</strong> Let’s have a quick look at the dummy data-set first and then move onto our solution.</p>
+<p>The dummy data-set has 1,000 rows and 4 columns. The <strong>“id”</strong> column has 10 unique values of type <strong>varchar</strong>. The <strong>“date”</strong> column is of type <strong>date-type</strong>. The <strong>“class-type”</strong> column is of data-type <strong>varchar</strong> containing values namely: <strong>“extra”, “vip”, “normal”</strong>. The <strong>“class-marks”</strong> column contains <strong>integers</strong> ranging between 0 and 100.</p>
+<blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:875/1*KLjY7yqi4qQGrLnJPac9sg.png" alt="" /></p>
+<p>This is how the dummy data-set looks</p>
+</blockquote>
+<p><strong>Data Download:</strong> The dummy data-set is very small in size and it is uploaded on GitHub — <a href="https://github.com/yogendra-yatnalkar/Blogs/blob/main/Athena_aggregation/augmented-data.csv" target="_blank" rel="noopener">augmented-data.csv</a>
+</p>
+<hr>
+<p>Let’s define a question now:</p>
+<h2 id="question-1">
+  <strong>Question 1:</strong>
+  <a class="anchor" href="#question-1">#</a>
+</h2>
+<p><strong>For every ID, find the 5th highest scorer from every unique “class-type”.</strong></p>
+<blockquote>
+<p><strong>Pre-work:</strong> The above data-set is uploaded on <strong>AWS S3</strong> and crawled using <strong>AWS Glue</strong>. This crawled table is now easily accessible using <strong>AWS Athena.</strong></p>
+</blockquote>
+<h3 id="solution">
+  Solution:
+  <a class="anchor" href="#solution">#</a>
+</h3>
+<p>Let’s divide the solution into 3 parts, hence containing 3 nested queries. <em><strong>(The entire query is attached at part 3)</strong></em></p>
+<h3 id="part-1">
+  Part 1:
+  <a class="anchor" href="#part-1">#</a>
+</h3>
+<p>— — — — — —<br>
+As we are required to compute the highest scorer, we will need to sort the table based on marks in descending order. The query to perform that will be as follows:<br>
+— — — — — —</p>
+<h3 id="query1">
+  Query1:
+  <a class="anchor" href="#query1">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> <span style="color:#e6db74">&#34;sorted_marks_table&#34;</span> <span style="color:#66d9ef">AS</span>(
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;augmented_data&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#34;augmented_data&#34;</span>.<span style="color:#e6db74">&#34;class-marks&#34;</span> <span style="color:#66d9ef">DESC</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;sorted_marks_table&#34;</span>;</span></span></code></pre></div>
+<h3 id="query1-output">
+  Query1 Output:
+  <a class="anchor" href="#query1-output">#</a>
+</h3>
+<blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:875/1*phMKjZfuLN_wrnxagWg1vQ.png" alt="" /></p>
+<p><strong>augmented_data</strong> table in sorted order</p>
+</blockquote>
+<hr>
+<h3 id="part2">
+  Part2:
+  <a class="anchor" href="#part2">#</a>
+</h3>
+<p>— — — — — —<br>
+In the next part, let’s work on grouping. We need to compute the highest scorer for every ID, hence we will need to <strong>group by on the ID column</strong>. In this sub-query, we will c<strong>reate a mapping (you can imagine a hash-map/dictionary) between “class-type” and “class-marks” column</strong> and <strong>group by on “id” column.</strong> It will be such that for every unique id the map key will be unique class type and value will be a list consisting of all the marks associated with that id and class name.</p>
+<p>Please observe the output image, since we had already sorted the table based on marks in the earlier sub-query, the value list is also sorted in the highest to lowest marks(descending).<br>
+— — — — — —</p>
+<h3 id="query2-in-combination-with-query1">
+  Query2 (In combination with Query1):
+  <a class="anchor" href="#query2-in-combination-with-query1">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> <span style="color:#e6db74">&#34;sorted_marks_table&#34;</span> <span style="color:#66d9ef">AS</span>(
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;augmented_data&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#34;augmented_data&#34;</span>.<span style="color:#e6db74">&#34;class-marks&#34;</span> <span style="color:#66d9ef">DESC</span>
+</span></span><span style="display:flex;"><span>),
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;mapping_table&#34;</span> <span style="color:#66d9ef">AS</span> (
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">SELECT</span> id,
+</span></span><span style="display:flex;"><span>  multimap_agg(<span style="color:#e6db74">&#34;class-type&#34;</span>, <span style="color:#e6db74">&#34;class-marks&#34;</span>) <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#34;mapping_col&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;sorted_marks_table&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#34;id&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;mapping_table&#34;</span>;</span></span></code></pre></div>
+<h3 id="query2-output">
+  Query2 Output:
+  <a class="anchor" href="#query2-output">#</a>
+</h3>
+<blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:875/1*1pGaQoJhcfJZ6hr6dPpyuA.png" alt="" /></p>
+<p>Table grouped on “id” column such that all the marks are associated with the unique class-types.</p>
+</blockquote>
+<hr>
+<h3 id="part3-final">
+  Part3 (Final):
+  <a class="anchor" href="#part3-final">#</a>
+</h3>
+<p>— — — — — —<br>
+Now, in the final part we just need to display the required results from our map. As we have all the marks in sorted order for every class type and we need the 5th highest scorer, we will <strong>select the 5th place value from every key of the map.</strong></p>
+<p><strong>One caveat of this solution is that we need to know the unique keys beforehand and need to explicitly specify the key-name</strong>. But there is a reason behind this, unlike some programming languages like Python or Java, we are using a form of SQL and we need to know the schema of the Database before-hand.<br>
+— — — — — —</p>
+<h3 id="query3">
+  Query3:
+  <a class="anchor" href="#query3">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> <span style="color:#e6db74">&#34;sorted_marks_table&#34;</span> <span style="color:#66d9ef">AS</span>(
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;augmented_data&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#34;augmented_data&#34;</span>.<span style="color:#e6db74">&#34;class-marks&#34;</span> <span style="color:#66d9ef">DESC</span>
+</span></span><span style="display:flex;"><span>),
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;mapping_table&#34;</span> <span style="color:#66d9ef">AS</span> (
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">SELECT</span> id,
+</span></span><span style="display:flex;"><span>  multimap_agg(<span style="color:#e6db74">&#34;class-type&#34;</span>, <span style="color:#e6db74">&#34;class-marks&#34;</span>) <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#34;mapping_col&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;sorted_marks_table&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#34;id&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#34;id&#34;</span>,
+</span></span><span style="display:flex;"><span> mapping_col [ <span style="color:#e6db74">&#39;normal&#39;</span> ] [ <span style="color:#ae81ff">5</span> ] <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;normal_max_5th&#34;</span>,
+</span></span><span style="display:flex;"><span> mapping_col [ <span style="color:#e6db74">&#39;vip&#39;</span> ] [ <span style="color:#ae81ff">5</span> ] <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;vip_max_5th&#34;</span>,
+</span></span><span style="display:flex;"><span> mapping_col [ <span style="color:#e6db74">&#39;extra&#39;</span> ] [ <span style="color:#ae81ff">5</span> ] <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;extra_max_5th&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;mapping_table&#34;</span>;</span></span></code></pre></div>
+<h3 id="query3-output">
+  Query3 Output:
+  <a class="anchor" href="#query3-output">#</a>
+</h3>
+<blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:875/1*GD5tzehdosv4ZUJD3NvH6A.png" alt="" /></p>
+<p>Final output containing the 5th highest marks from every‘ class-type’ for every ‘id’</p>
+</blockquote>
+<p>That’s it! We are done and dusted. We have found the 5th largest scorer for every id for every “class-type”.</p>
+<p>— — — — — — — — — — — — — — — — — — — — — — — — — —</p>
+<p>Are we not done? Why is this blog not ending here?</p>
+<p>Let’s try computing another very similar question.</p>
+<h2 id="question2">
+  <strong>Question2:</strong>
+  <a class="anchor" href="#question2">#</a>
+</h2>
+<h4 id="for-every-id-find-the-3rd-lowest-scorer-from-every-unique-class-type">
+  For every ID, find the 3rd lowest scorer from every unique “class-type”
+  <a class="anchor" href="#for-every-id-find-the-3rd-lowest-scorer-from-every-unique-class-type">#</a>
+</h4>
+<h3 id="solution-1">
+  Solution:
+  <a class="anchor" href="#solution-1">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">WITH</span> <span style="color:#e6db74">&#34;sorted_marks_table&#34;</span> <span style="color:#66d9ef">AS</span>(
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;augmented_data&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#34;augmented_data&#34;</span>.<span style="color:#e6db74">&#34;class-marks&#34;</span>
+</span></span><span style="display:flex;"><span>),
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;mapping_table&#34;</span> <span style="color:#66d9ef">AS</span> (
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">SELECT</span> id,
+</span></span><span style="display:flex;"><span>  multimap_agg(<span style="color:#e6db74">&#34;class-type&#34;</span>, <span style="color:#e6db74">&#34;class-marks&#34;</span>) <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#34;mapping_col&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;sorted_marks_table&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> <span style="color:#e6db74">&#34;id&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#34;id&#34;</span>,
+</span></span><span style="display:flex;"><span> mapping_col [ <span style="color:#e6db74">&#39;normal&#39;</span> ] [ <span style="color:#ae81ff">3</span> ] <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;normal_max_3rd&#34;</span>,
+</span></span><span style="display:flex;"><span> mapping_col [ <span style="color:#e6db74">&#39;vip&#39;</span> ] [ <span style="color:#ae81ff">3</span> ] <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;vip_max_3rd&#34;</span>,
+</span></span><span style="display:flex;"><span> mapping_col [ <span style="color:#e6db74">&#39;extra&#39;</span> ] [ <span style="color:#ae81ff">3</span> ] <span style="color:#66d9ef">as</span> <span style="color:#e6db74">&#34;extra_max_3rd&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">&#34;mapping_table&#34;</span>;</span></span></code></pre></div>
+<h3 id="question2-output">
+  Question2 Output:
+  <a class="anchor" href="#question2-output">#</a>
+</h3>
+<blockquote>
+<p><img src="https://miro.medium.com/v2/resize:fit:875/1*K5JsbOyRDYuVREVnC5aZPQ.png" alt="" /></p>
+<p>Final output containing the 3rd lowest marks from every‘ class-type’ for every ‘id’</p>
+</blockquote>
+<p><strong>So what did we change:</strong><br>
+We sorted the table in ascending order in the first part of the query and selected the 3rd element this time.</p>
+<p>That’s it! GG! 👏</p>
+<p>I hope you found this article instructional and informative. If you have any feedback or queries, please let me know in the comments below.</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th>Tags</th>
+<th>AWS, SQL, Presto, Data Science, Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#prerequisite">Prerequisite:</a></li>
+    <li><a href="#introduction">Introduction:</a></li>
+    <li><a href="#question-1"><strong>Question 1:</strong></a>
+      <ul>
+        <li><a href="#solution">Solution:</a></li>
+        <li><a href="#part-1">Part 1:</a></li>
+        <li><a href="#query1">Query1:</a></li>
+        <li><a href="#query1-output">Query1 Output:</a></li>
+        <li><a href="#part2">Part2:</a></li>
+        <li><a href="#query2-in-combination-with-query1">Query2 (In combination with Query1):</a></li>
+        <li><a href="#query2-output">Query2 Output:</a></li>
+        <li><a href="#part3-final">Part3 (Final):</a></li>
+        <li><a href="#query3">Query3:</a></li>
+        <li><a href="#query3-output">Query3 Output:</a></li>
+      </ul>
+    </li>
+    <li><a href="#question2"><strong>Question2:</strong></a>
+      <ul>
+        <li></li>
+        <li><a href="#solution-1">Solution:</a></li>
+        <li><a href="#question2-output">Question2 Output:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

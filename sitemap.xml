@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</loc>
+  </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/nlp/bert.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/blogs/finding-nth-aggregate-from-every-group-aws-athena.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</loc>
   </url><url>
@@ -23,8 +27,6 @@
     <loc>https://yogendra-yatnalkar.github.io/notes/general/api-performance-improvement.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/</loc>
-  </url><url>
-    <loc>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/general.html</loc>
   </url><url>

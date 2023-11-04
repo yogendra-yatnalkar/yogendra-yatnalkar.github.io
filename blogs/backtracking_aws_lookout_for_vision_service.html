@@ -7,7 +7,7 @@
 Co-Author: Palash NimodiaDate: June 23, 2022
 Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Backtracking AWS Lookout for Vision Service" />
 <meta property="og:description" content="Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
 Co-Author: Palash NimodiaDate: June 23, 2022
 Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place." />
@@ -15,12 +15,12 @@ Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-se
 <meta property="og:url" content="https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html" /><meta property="article:section" content="blogs" />
 
 
-<title>Backtracking Aws Lookout for Vision Service | Activated Neuron</title>
+<title>Backtracking AWS Lookout for Vision Service | Activated Neuron</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.1fd98860571c8566dbd66febd2adb392d860de1eddd98c71d226277d8b973ccd.js" integrity="sha256-H9mIYFcchWbb1m/r0q2zkthg3h7d2Yxx0iYnfYuXPM0=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ff62664429f3c0e35fa514783b66abf1df10b955c172a987434305a5893589b1.js" integrity="sha256-/2JmRCnzwONfpRR4O2ar8d8QuVXBcqmHQ0MFpYk1ibE=" crossorigin="anonymous"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
 <script>
@@ -87,7 +87,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle" checked />
     <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
-      <a role="button" class="">Blogs</a>
+      <a href="/blogs.html" class="">Blogs</a>
     </label>
   
 
@@ -101,7 +101,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/blogs/backtracking_aws_lookout_for_vision_service.html" class="active">Backtracking Aws Lookout for Vision Service</a>
+    <a href="/blogs/backtracking_aws_lookout_for_vision_service.html" class="active">Backtracking AWS Lookout for Vision Service</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/finding-nth-aggregate-from-every-group-aws-athena.html" class="">Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto</a>
   
 
         </li>
@@ -380,7 +393,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Backtracking Aws Lookout for Vision Service</strong>
+  <strong>Backtracking AWS Lookout for Vision Service</strong>
 
   <label for="toc-control">
     
@@ -495,7 +508,7 @@ https://github.com/alex-shpak/hugo-book
 <li>The folder name itself is quite unique and hence raises a question: Could <strong>“mochi”</strong> be some latest/open-source model ?</li>
 <li>The JSON file contains a key-word named: <strong>“mochi.pt”</strong></li>
 <li>Web-searching on the “mochi” term led to an interesting discovery. It resulted in the following paper: <strong>Hard Negative Mixing for Contrastive Learning</strong> <a href="https://europe.naverlabs.com/research/computer-vision/mochi/" target="_blank" rel="noopener"><strong>(Paper Link)</strong></a>
- where <strong>MoCHI</strong> stands for “(<strong>M</strong>)ixing (<strong>o</strong>)f **(C-)**ontrastive (<strong>H</strong>)ard negat(<strong>i</strong>)ves”.</li>
+ where <strong>MoCHI</strong> stands for “(<strong>M</strong>)ixing (<strong>o</strong>)f (<strong>C</strong>)ontrastive (<strong>H</strong>)ard negat(<strong>i</strong>)ves”.</li>
 <li>The paper proposes a <strong>semi-supervised way</strong> of training Deep Learning models using <strong>Contrastive Loss where it highlights the importance of “Hard-negatives”.</strong> The proposed approach generates synthetic hard negatives on-the-fly for each positive (query). (<strong>Note:</strong> <em>Please read about contrastive loss and semi-supervised learning for more details …… this was first time for me as-well</em>😢)</li>
 </ul>
 <blockquote>
