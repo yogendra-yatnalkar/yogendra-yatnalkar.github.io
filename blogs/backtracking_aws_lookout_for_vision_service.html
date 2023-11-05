@@ -3,24 +3,20 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
-Co-Author: Palash NimodiaDate: June 23, 2022
-Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place.">
+<meta name="description" content="Blog related to AWS Lookout for Vision Service and how I backtracked it for ML inference without AWS API">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Backtracking AWS Lookout for Vision Service" />
-<meta property="og:description" content="Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
-Co-Author: Palash NimodiaDate: June 23, 2022
-Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place." />
+<meta property="og:description" content="Blog related to AWS Lookout for Vision Service and how I backtracked it for ML inference without AWS API" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html" /><meta property="article:section" content="blogs" />
 
 
-<title>Backtracking AWS Lookout for Vision Service | Activated Neuron</title>
+<title>Backtracking AWS Lookout for Vision Service | Yogendra Y.</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ff62664429f3c0e35fa514783b66abf1df10b955c172a987434305a5893589b1.js" integrity="sha256-/2JmRCnzwONfpRR4O2ar8d8QuVXBcqmHQ0MFpYk1ibE=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.23042fe51bb0bf71cae637dca5d2be2953a5e3e057169b36d365e35f812f1fd8.js" integrity="sha256-IwQv5Ruwv3HK5jfcpdK&#43;KVOl4&#43;BXFps202XjX4EvH9g=" crossorigin="anonymous"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
 <script>
@@ -47,7 +43,7 @@ https://github.com/alex-shpak/hugo-book
         
   <nav>
 <h2 class="book-brand">
-  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Activated Neuron</span>
+  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Yogendra Y.</span>
   </a>
 </h2>
 

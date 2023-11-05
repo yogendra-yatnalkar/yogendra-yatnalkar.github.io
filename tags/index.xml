@@ -1,10 +1,91 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Activated Neuron</title>
+    <title>Tags on Yogendra Y.</title>
     <link>https://yogendra-yatnalkar.github.io/tags.html</link>
-    <description>Recent content in Tags on Activated Neuron</description>
+    <description>Recent content in Tags on Yogendra Y.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Aggregation</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/aggregation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/aggregation.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AWS</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/aws.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Edge IOT</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/edge-iot.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/edge-iot.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Inference</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/inference.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/inference.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenCV</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/opencv.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/opencv.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Presto</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/presto.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/presto.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/python.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/python.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/sql.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/sql.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Yogendra Yatnalkar</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/yogendra-yatnalkar.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/yogendra-yatnalkar.html</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

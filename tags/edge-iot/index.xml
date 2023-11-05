@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Edge IOT on Yogendra Y.</title>
+    <link>https://yogendra-yatnalkar.github.io/tags/edge-iot.html</link>
+    <description>Recent content in Edge IOT on Yogendra Y.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/tags/edge-iot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Backtracking AWS Lookout for Vision Service</title>
+      <link>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</guid>
+      <description>Backtracking AWS Lookout For Vision Service#The article tries to trace back AWS Lookout for Vision: Edge service model and successfully custom loads the model for inference (Just imagine the reduced inference cost 🔥)
+Co-Author: Palash NimodiaDate: June 23, 2022
+Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-service-136c47c85168Introduction:#NOTE for the reader: Its fine if you have not used AWS Lookout For Vision service before, but if you are interested in knowing how we can back-track a managed service (if possible 🙈), you are at the right place.</description>
+    </item>
+    
+  </channel>
+</rss>
