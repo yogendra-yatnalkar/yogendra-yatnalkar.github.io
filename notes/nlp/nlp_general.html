@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.23042fe51bb0bf71cae637dca5d2be2953a5e3e057169b36d365e35f812f1fd8.js" integrity="sha256-IwQv5Ruwv3HK5jfcpdK&#43;KVOl4&#43;BXFps202XjX4EvH9g=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.9fee7c780272cc3757041fb1fac91a519833d46243c29a9e8a8920cf89f2ac73.js" integrity="sha256-n&#43;58eAJyzDdXBB&#43;x&#43;skaUZgz1GJDwpqeiokgz4nyrHM=" crossorigin="anonymous"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
 <script>
@@ -89,6 +89,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/sam-automatic-semantic-segmentation.html" class="">Meta-AI SAM: AutoMatic Semantic Segmentation</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -325,6 +338,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/transformers_at_training_vs_inference.html" class="">NLP-General</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -484,6 +510,9 @@ https://github.com/alex-shpak/hugo-book
 <p><em><strong>LLM Fine-Tuning:</strong></em> Again <strong>unsupervised training like next word prediction</strong>, but on small amount of task-specific data</p>
 <ul>
 <li>
+<p><strong>Note</strong>: In Computer vision mainly, when we say fine-tuning, we usually train only a small part of model (usually last few layers) again. <strong>But in the case of LLM&rsquo;s, we retrain the entire Model.</strong></p>
+</li>
+<li>
 <p>Within this second step, the paradigm has recently shifted to <strong>Instruction Finetuning</strong>. In this, the input text is of the form: <em>Instruction &ndash;&gt; Context &ndash;&gt; Question</em>. For further knowledge, a good source is: <a href="https://heidloff.net/article/instruct-tuning-large-language-models/" target="_blank" rel="noopener">Instruction Fine-tuning of Large Language Models | Niklas Heidloff</a>
 </p>
 </li>
@@ -577,6 +606,19 @@ Question: &lt;&lt;Question&gt;&gt;
 <li>
 <p>KV Cache</p>
 </li>
+<li>
+<p>Continuous Batching (different than dynamic batching)</p>
+</li>
+<li>
+<p>Paged Attention</p>
+</li>
+<li>
+<p>For Nvidia GPUs, use dtype: <strong>bfloat16</strong> instead of <strong>fp16</strong>. The &ldquo;blfoat16&rdquo; dtype is Nvidia Sepecfic which uses more memory but prvides faster compute.</p>
+</li>
+<li>
+<p>Flash Attention (v2 at the time of writing) &ndash;&gt; Need to confirm if the principles of Flash-Attention are also application to non-Nvidia GPU&rsquo;s. Eg: Inferentia/TPU</p>
+</li>
+<li></li>
 </ul>
 <hr>
 <hr>

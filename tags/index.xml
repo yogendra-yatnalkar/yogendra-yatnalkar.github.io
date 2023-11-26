@@ -25,6 +25,15 @@
     </item>
     
     <item>
+      <title>Computer Vision</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/computer-vision.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/computer-vision.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Edge IOT</title>
       <link>https://yogendra-yatnalkar.github.io/tags/edge-iot.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -39,6 +48,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/tags/inference.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kaggle</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/kaggle.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/kaggle.html</guid>
       <description></description>
     </item>
     
@@ -66,6 +84,24 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/tags/python.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SAM</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/sam.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/sam.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SEGMENTATION</title>
+      <link>https://yogendra-yatnalkar.github.io/tags/segmentation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/tags/segmentation.html</guid>
       <description></description>
     </item>
     

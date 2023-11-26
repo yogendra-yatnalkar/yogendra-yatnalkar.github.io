@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://yogendra-yatnalkar.github.io/blogs/sam-automatic-semantic-segmentation.html</loc>
+  </url><url>
     <loc>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/blogs/finding-nth-aggregate-from-every-group-aws-athena.html</loc>
@@ -13,6 +15,8 @@
     <loc>https://yogendra-yatnalkar.github.io/notes/general/kl-divergence.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/nlp/nlp_general.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/notes/nlp/transformers_at_training_vs_inference.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/cv/sam-segment-anything.html</loc>
   </url><url>
@@ -38,11 +42,15 @@
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/categories.html</loc>
   </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags/computer-vision.html</loc>
+  </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/cv.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/tags/edge-iot.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/tags/inference.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags/kaggle.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/nlp.html</loc>
   </url><url>
@@ -57,6 +65,10 @@
     <loc>https://yogendra-yatnalkar.github.io/tags/python.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/resume/</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags/sam.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags/segmentation.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/tags/sql.html</loc>
   </url><url>
