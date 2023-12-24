@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="Benchmarking Inference with Torchserve#Last Edited 24/12/2023 Pytorch default - g4dn.xlarge#Notes:#Instance Type: ml.g4dn.xlarge
+GPU: Nvidia T4 vCPU no: 4 CPU memory: 16 GB GPU memory: 16 GB Max RPS achieved: 32
+With various different configuration ranging from min/max worker = 1 to 4 and batch-size 4 to 32, the max RPS possible was only 32. Locust Configuration: Max Users: 200, Spawn Rate: 10 Max Response time at 95th percentile: ~5-6 sec">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Kaggle" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/tags/kaggle.html" />
-<title>Kaggle | Yogendra Y.</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Benchmarking Inference with Torchserve" />
+<meta property="og:description" content="Benchmarking Inference with Torchserve#Last Edited 24/12/2023 Pytorch default - g4dn.xlarge#Notes:#Instance Type: ml.g4dn.xlarge
+GPU: Nvidia T4 vCPU no: 4 CPU memory: 16 GB GPU memory: 16 GB Max RPS achieved: 32
+With various different configuration ranging from min/max worker = 1 to 4 and batch-size 4 to 32, the max RPS possible was only 32. Locust Configuration: Max Users: 200, Spawn Rate: 10 Max Response time at 95th percentile: ~5-6 sec" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/benchmarking-with-torchserve.html" /><meta property="article:section" content="notes" />
+
+
+<title>Benchmarking Inference with Torchserve | Yogendra Y.</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
@@ -26,7 +32,6 @@ if (!doNotTrack) {
 	gtag('config', 'G-DTLBL509Z2', { 'anonymize_ip': false });
 }
 </script>
-<link rel="alternate" type="application/rss+xml" href="https://yogendra-yatnalkar.github.io/tags/kaggle/index.xml" title="Yogendra Y." />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -140,7 +145,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
     <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
       <a role="button" class="">Notes</a>
     </label>
@@ -156,7 +161,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle" checked />
     <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
       <a role="button" class="">General</a>
     </label>
@@ -172,7 +177,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/general/benchmarking-with-torchserve.html" class="">Benchmarking Inference with Torchserve</a>
+    <a href="/notes/general/benchmarking-with-torchserve.html" class="active">Benchmarking Inference with Torchserve</a>
   
 
         </li>
@@ -440,7 +445,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Kaggle</strong>
+  <strong>Benchmarking Inference with Torchserve</strong>
 
   <label for="toc-control">
     
@@ -453,94 +458,24 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#pytorch-default---g4dnxlarge">Pytorch default - g4dn.xlarge</a>
       <ul>
-      
+        <li><a href="#notes">Notes:</a></li>
+        <li><a href="#configuration">Configuration:</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
+    <li><a href="#pytorch-default---g4dn2xlarge">Pytorch default - g4dn.2xlarge</a>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/aggregation.html">Aggregation</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/aws.html">AWS</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/computer-vision.html">Computer Vision</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/edge-iot.html">Edge IOT</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/inference.html">Inference</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kaggle.html">Kaggle</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/opencv.html">OpenCV</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/presto.html">Presto</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/python.html">Python</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/sam.html">SAM</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/segmentation.html">SEGMENTATION</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/sql.html">SQL</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/yogendra-yatnalkar.html">Yogendra Yatnalkar</a>
-          <span>3</span>
-        </li>
-      
+        <li><a href="#notes-1">Notes:</a></li>
+        <li><a href="#configuration-1">Configuration:</a></li>
       </ul>
     </li>
-    
-  
   </ul>
 </nav>
+
 
 
   </aside>
@@ -550,40 +485,141 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/blogs/sam-automatic-semantic-segmentation.html">Meta-AI SAM: AutoMatic Semantic Segmentation</a>
-    </h2>
-    
-
-
-  
-
-  
-  <div>
-    
-      <a href="/tags/yogendra-yatnalkar.html">Yogendra Yatnalkar</a>, 
-      <a href="/tags/python.html">Python</a>, 
-      <a href="/tags/kaggle.html">Kaggle</a>, 
-      <a href="/tags/sam.html">SAM</a>, 
-      <a href="/tags/computer-vision.html">Computer Vision</a>, 
-      <a href="/tags/segmentation.html">SEGMENTATION</a>
-  </div>
-  
-
-
-
-
-    <p>Meta-AI SAM: AutoMatic Semantic Segmentation#Date: November 26, 2023#NOTE:#The NB was originally developed on Kaggle: https://www.kaggle.com/code/yogendrayatnalkar/finetuning-segment-anythingRelated Github Repository: https://github.com/yogendra-yatnalkar/SAM-Automatic-Semantic-SegmentationTask:#Semantically segment objects from image AUTOMATICALLY with the help of META AI SAM, without PROMPTS/TRAINING#Segment all the pepperoni pieces from the pizza topping#Approach:#1. Automatic Mask Generation (AMG)
-Utilizing the Segment Anything Model (SAM) from the MetaAI SAM repository, perform instance segmentation on the entire image.
-        <a href="/blogs/sam-automatic-semantic-segmentation.html">...</a>
-      
-    </p>
-  </article>
-  
-
-  
+  <article class="markdown"><h1 id="benchmarking-inference-with-torchserve">
+  Benchmarking Inference with Torchserve
+  <a class="anchor" href="#benchmarking-inference-with-torchserve">#</a>
+</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Edited</td>
+<td>24/12/2023</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="pytorch-default---g4dnxlarge">
+  Pytorch default - g4dn.xlarge
+  <a class="anchor" href="#pytorch-default---g4dnxlarge">#</a>
+</h2>
+<h3 id="notes">
+  Notes:
+  <a class="anchor" href="#notes">#</a>
+</h3>
+<ul>
+<li>
+<p><strong>Instance Type: ml.g4dn.xlarge</strong></p>
+<ul>
+<li>GPU: Nvidia T4</li>
+<li>vCPU no: 4</li>
+<li>CPU memory: 16 GB</li>
+<li>GPU memory: 16 GB</li>
+</ul>
+</li>
+<li>
+<p><strong>Max RPS achieved: 32</strong></p>
+<ul>
+<li>With various different configuration ranging from min/max worker = 1 to 4 and batch-size 4 to 32, the max RPS possible was only 32.
+<ul>
+<li>Locust Configuration: Max Users: 200, Spawn Rate: 10</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Max Response time at 95th percentile: ~5-6 sec</strong></p>
+</li>
+</ul>
+<hr>
+<p><img src="benchmarking-with-torchserve/image-3.png" alt="Alt text" /></p>
+<p><img src="benchmarking-with-torchserve/image-1.png" alt="Alt text" /></p>
+<h3 id="configuration">
+  Configuration:
+  <a class="anchor" href="#configuration">#</a>
+</h3>
+<pre tabindex="0"><code>enable_envvars_config=true
+load_models=all
+model_store=./model_store
+models={\
+  &#34;vit_l_16&#34;: {\
+    &#34;1.0&#34;: {\
+        &#34;defaultVersion&#34;: true,\
+        &#34;marName&#34;: &#34;vit_l_16.mar&#34;,\
+        &#34;minWorkers&#34;: 4,\
+        &#34;maxWorkers&#34;: 4,\
+        &#34;batchSize&#34;: 16,\
+        &#34;maxBatchDelay&#34;: 50\
+    }\
+  }\
+}
+</code></pre><hr>
+<hr>
+<h2 id="pytorch-default---g4dn2xlarge">
+  Pytorch default - g4dn.2xlarge
+  <a class="anchor" href="#pytorch-default---g4dn2xlarge">#</a>
+</h2>
+<h3 id="notes-1">
+  Notes:
+  <a class="anchor" href="#notes-1">#</a>
+</h3>
+<ul>
+<li>
+<p><strong>Instance Type: ml.g4dn.2xlarge</strong></p>
+<ul>
+<li>GPU: Nvidia T4</li>
+<li>vCPU no: 8</li>
+<li>CPU memory: 32 GB</li>
+<li>GPU memory: 16 GB</li>
+</ul>
+</li>
+<li>
+<p><strong>Max RPS achieved: 32</strong></p>
+<ul>
+<li>With various different configuration ranging from min/max worker = 1 to 4 and batch-size 4 to 64, the max RPS possible was only around 32.
+<ul>
+<li>Locust Configuration: Max Users: 200, Spawn Rate: 10</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Max Response time at 95th percentile: ~5-6 sec</strong></p>
+</li>
+</ul>
+<hr>
+<p><img src="benchmarking-with-torchserve/image.png" alt="Alt text" /></p>
+<ul>
+<li>It can be noted that the GPU utilization is at 100% but the gpu memory is underutilized and the vCPU&rsquo;s are also unutilized</li>
+<li>Never the less, with any change in configuration in number-of-model-workers or batch-size or delay, the results and utilization numbers does not change.</li>
+</ul>
+<p><img src="benchmarking-with-torchserve/image-2.png" alt="Alt text" /></p>
+<h3 id="configuration-1">
+  Configuration:
+  <a class="anchor" href="#configuration-1">#</a>
+</h3>
+<pre tabindex="0"><code>enable_envvars_config=true
+load_models=all
+model_store=./model_store
+models={\
+  &#34;vit_l_16&#34;: {\
+    &#34;1.0&#34;: {\
+        &#34;defaultVersion&#34;: true,\
+        &#34;marName&#34;: &#34;vit_l_16.mar&#34;,\
+        &#34;minWorkers&#34;: 1,\
+        &#34;maxWorkers&#34;: 1,\
+        &#34;batchSize&#34;: 64,\
+        &#34;maxBatchDelay&#34;: 200,\
+        &#34;responseTimeout&#34;: 240\
+    }\
+  }\
+}
+</code></pre></article>
  
       
 
@@ -608,6 +644,15 @@ Utilizing the Segment Anything Model (SAM) from the MetaAI SAM repository, perfo
 
       
   
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -617,94 +662,24 @@ Utilizing the Segment Anything Model (SAM) from the MetaAI SAM repository, perfo
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#pytorch-default---g4dnxlarge">Pytorch default - g4dn.xlarge</a>
       <ul>
-      
+        <li><a href="#notes">Notes:</a></li>
+        <li><a href="#configuration">Configuration:</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
+    <li><a href="#pytorch-default---g4dn2xlarge">Pytorch default - g4dn.2xlarge</a>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/aggregation.html">Aggregation</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/aws.html">AWS</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/computer-vision.html">Computer Vision</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/edge-iot.html">Edge IOT</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/inference.html">Inference</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kaggle.html">Kaggle</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/opencv.html">OpenCV</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/presto.html">Presto</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/python.html">Python</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/sam.html">SAM</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/segmentation.html">SEGMENTATION</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/sql.html">SQL</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/yogendra-yatnalkar.html">Yogendra Yatnalkar</a>
-          <span>3</span>
-        </li>
-      
+        <li><a href="#notes-1">Notes:</a></li>
+        <li><a href="#configuration-1">Configuration:</a></li>
       </ul>
     </li>
-    
-  
   </ul>
 </nav>
+
 
  
       </div>

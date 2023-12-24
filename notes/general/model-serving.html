@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="Notes on Model Serving#Example: Torchserve, Tf-Serving, Triton, Flask, etc
+TorchServe: - to check model status, I am using port 8081 - for inference, I am using port 8080 - if not using ts-config while deploying a model, it generates error - Question: - when to use 8080 vs 8081 &ndash;&gt; Inference api is bind to 8080, management api is bind to 8081 - how to load test ?">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Kaggle" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/tags/kaggle.html" />
-<title>Kaggle | Yogendra Y.</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Model Serving" />
+<meta property="og:description" content="Notes on Model Serving#Example: Torchserve, Tf-Serving, Triton, Flask, etc
+TorchServe: - to check model status, I am using port 8081 - for inference, I am using port 8080 - if not using ts-config while deploying a model, it generates error - Question: - when to use 8080 vs 8081 &ndash;&gt; Inference api is bind to 8080, management api is bind to 8081 - how to load test ?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/model-serving.html" /><meta property="article:section" content="notes" />
+
+
+<title>Model Serving | Yogendra Y.</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
@@ -26,7 +30,6 @@ if (!doNotTrack) {
 	gtag('config', 'G-DTLBL509Z2', { 'anonymize_ip': false });
 }
 </script>
-<link rel="alternate" type="application/rss+xml" href="https://yogendra-yatnalkar.github.io/tags/kaggle/index.xml" title="Yogendra Y." />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -140,7 +143,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
     <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
       <a role="button" class="">Notes</a>
     </label>
@@ -156,7 +159,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle" checked />
     <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
       <a role="button" class="">General</a>
     </label>
@@ -211,7 +214,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/general/model-serving.html" class="">Model Serving</a>
+    <a href="/notes/general/model-serving.html" class="active">Model Serving</a>
   
 
         </li>
@@ -440,7 +443,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Kaggle</strong>
+  <strong>Model Serving</strong>
 
   <label for="toc-control">
     
@@ -453,94 +456,9 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
-  <ul>
   
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/aggregation.html">Aggregation</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/aws.html">AWS</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/computer-vision.html">Computer Vision</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/edge-iot.html">Edge IOT</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/inference.html">Inference</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kaggle.html">Kaggle</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/opencv.html">OpenCV</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/presto.html">Presto</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/python.html">Python</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/sam.html">SAM</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/segmentation.html">SEGMENTATION</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/sql.html">SQL</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/yogendra-yatnalkar.html">Yogendra Yatnalkar</a>
-          <span>3</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
+
 
 
   </aside>
@@ -550,40 +468,29 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/blogs/sam-automatic-semantic-segmentation.html">Meta-AI SAM: AutoMatic Semantic Segmentation</a>
-    </h2>
-    
-
-
-  
-
-  
-  <div>
-    
-      <a href="/tags/yogendra-yatnalkar.html">Yogendra Yatnalkar</a>, 
-      <a href="/tags/python.html">Python</a>, 
-      <a href="/tags/kaggle.html">Kaggle</a>, 
-      <a href="/tags/sam.html">SAM</a>, 
-      <a href="/tags/computer-vision.html">Computer Vision</a>, 
-      <a href="/tags/segmentation.html">SEGMENTATION</a>
-  </div>
-  
-
-
-
-
-    <p>Meta-AI SAM: AutoMatic Semantic Segmentation#Date: November 26, 2023#NOTE:#The NB was originally developed on Kaggle: https://www.kaggle.com/code/yogendrayatnalkar/finetuning-segment-anythingRelated Github Repository: https://github.com/yogendra-yatnalkar/SAM-Automatic-Semantic-SegmentationTask:#Semantically segment objects from image AUTOMATICALLY with the help of META AI SAM, without PROMPTS/TRAINING#Segment all the pepperoni pieces from the pizza topping#Approach:#1. Automatic Mask Generation (AMG)
-Utilizing the Segment Anything Model (SAM) from the MetaAI SAM repository, perform instance segmentation on the entire image.
-        <a href="/blogs/sam-automatic-semantic-segmentation.html">...</a>
-      
-    </p>
-  </article>
-  
-
-  
+  <article class="markdown"><h1 id="notes-on-model-serving">
+  Notes on Model Serving
+  <a class="anchor" href="#notes-on-model-serving">#</a>
+</h1>
+<blockquote>
+<p><strong>Example: Torchserve, Tf-Serving, Triton, Flask, etc</strong></p>
+</blockquote>
+<p>TorchServe:
+- to check model status, I am using port 8081
+- for inference, I am using port 8080
+- if not using ts-config while deploying a model, it generates error
+- Question:
+- when to use 8080 vs 8081 &ndash;&gt; Inference api is bind to 8080, management api is bind to 8081
+- how to load test ? &ndash;&gt; locusts (fairly easy to use)
+-</p>
+<p>serve/examples/image_classifier/mnist/</p>
+<p>torch-model-archiver &ndash;model-name mnist &ndash;version 1.0 &ndash;model-file mnist.py <br>
+&ndash;serialized-file mnist_cnn.pt &ndash;handler  mnist_handler.py</p>
+<p>mkdir model_store
+mv mnist.mar model_store/
+torchserve &ndash;start &ndash;model-store model_store &ndash;models mnist=mnist.mar &ndash;workers 4 &ndash;ts-config config.properties
+curl http://127.0.0.1:8080/predictions/mnist -T test_data/0.png</p>
+</article>
  
       
 
@@ -608,6 +515,15 @@ Utilizing the Segment Anything Model (SAM) from the MetaAI SAM repository, perfo
 
       
   
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -617,94 +533,9 @@ Utilizing the Segment Anything Model (SAM) from the MetaAI SAM repository, perfo
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
-  <ul>
   
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/aggregation.html">Aggregation</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/aws.html">AWS</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/computer-vision.html">Computer Vision</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/edge-iot.html">Edge IOT</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/inference.html">Inference</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kaggle.html">Kaggle</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/opencv.html">OpenCV</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/presto.html">Presto</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/python.html">Python</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/sam.html">SAM</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/segmentation.html">SEGMENTATION</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/sql.html">SQL</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/yogendra-yatnalkar.html">Yogendra Yatnalkar</a>
-          <span>3</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
+
 
  
       </div>
