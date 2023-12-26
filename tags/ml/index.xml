@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ML on Yogendra Y.</title>
+    <link>https://yogendra-yatnalkar.github.io/tags/ml.html</link>
+    <description>Recent content in ML on Yogendra Y.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>End-to-End MLOps on AWS (3 blogs)</title>
+      <link>https://yogendra-yatnalkar.github.io/blogs/end-to-end-mlops-on-aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/blogs/end-to-end-mlops-on-aws.html</guid>
+      <description>End-to-End MLOps on AWS: Blog Series#Last Edit Date: December 26, 2023
+I had co-authored 3 blogs out of 7 blogs in total on the topic: &amp;ldquo;End-to-End MLOps on AWS&amp;rdquo;. The blog series is hosted on Quantiphi&amp;rsquo;s Medium Account Other than Quantiphi&amp;rsquo;s Medium account, the blogs are also hosted seperately on github as follows:
+https://sagemaker-mlops-samples.github.io/#Authors of the below 3 blogs:
+Palash Nimodia(Architect — Machine Learning)</description>
+    </item>
+    
+  </channel>
+</rss>

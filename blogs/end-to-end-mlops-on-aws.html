@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="Blog related to End-to-end MLOps on AWS">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Notes" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes.html" />
-<title>Notes | Yogendra Y.</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="End-to-End MLOps on AWS (3 blogs)" />
+<meta property="og:description" content="Blog related to End-to-end MLOps on AWS" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/blogs/end-to-end-mlops-on-aws.html" /><meta property="article:section" content="blogs" />
+
+
+<title>End-to-End MLOps on AWS (3 blogs) | Yogendra Y.</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
@@ -26,7 +28,6 @@ if (!doNotTrack) {
 	gtag('config', 'G-DTLBL509Z2', { 'anonymize_ip': false });
 }
 </script>
-<link rel="alternate" type="application/rss+xml" href="https://yogendra-yatnalkar.github.io/notes/index.xml" title="Yogendra Y." />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -80,7 +81,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle"  />
+    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle" checked />
     <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
       <a href="/blogs.html" class="">Blogs</a>
     </label>
@@ -96,7 +97,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/blogs/end-to-end-mlops-on-aws.html" class="">End-to-End MLOps on AWS (3 blogs)</a>
+    <a href="/blogs/end-to-end-mlops-on-aws.html" class="active">End-to-End MLOps on AWS (3 blogs)</a>
   
 
         </li>
@@ -153,9 +154,9 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
     <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
-      <a role="button" class="active">Notes</a>
+      <a role="button" class="">Notes</a>
     </label>
   
 
@@ -453,7 +454,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Notes</strong>
+  <strong>End-to-End MLOps on AWS (3 blogs)</strong>
 
   <label for="toc-control">
     
@@ -467,7 +468,18 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#httpssagemaker-mlops-samplesgithubio"><a href="https://sagemaker-mlops-samples.github.io/">https://sagemaker-mlops-samples.github.io/</a></a></li>
+        <li><a href="#1-introducing-end-to-end-mlops-on-aws-part1httpsmediumcomdatalab_70093introducing-end-to-end-mlops-on-aws-part1-ae42dad5c487">1. <a href="https://medium.com/@datalab_70093/introducing-end-to-end-mlops-on-aws-part1-ae42dad5c487">Introducing End-to-End MLOps on AWS: Part1</a></a></li>
+        <li><a href="#2-end-to-end-mlops-on-aws-part21---computer-vision-simulation-with-drift--retraininghttpsmediumcomdatalab_70093end-to-end-mlops-on-aws-part2-1-computer-vision-simulation-with-drift-retraining-268f5033bb7f">2. <a href="https://medium.com/@datalab_70093/end-to-end-mlops-on-aws-part2-1-computer-vision-simulation-with-drift-retraining-268f5033bb7f">End-to-End MLOps on AWS: Part2.1 - Computer Vision Simulation with Drift &amp; Retraining</a></a></li>
+        <li><a href="#3-end-to-end-mlops-on-aws-part22---computer-vision-components-and-pipelines-deep-divehttpsmediumcomdatalab_70093sagemaker-pipelinessagemaker-pipelinesend-to-end-mlops-on-aws-part2-2-c912cca9ef35">3. <a href="https://medium.com/@datalab_70093/sagemaker-pipelinessagemaker-pipelinesend-to-end-mlops-on-aws-part2-2-c912cca9ef35">End-to-End MLOps on AWS: Part2.2 - Computer Vision Components and Pipelines Deep Dive</a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
 
@@ -478,7 +490,61 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"></article>
+  <article class="markdown"><h1 id="end-to-end-mlops-on-aws-blog-series">
+  End-to-End MLOps on AWS: Blog Series
+  <a class="anchor" href="#end-to-end-mlops-on-aws-blog-series">#</a>
+</h1>
+<p><strong>Last Edit Date: December 26, 2023</strong></p>
+<hr>
+<ul>
+<li><strong>I had co-authored 3 blogs out of 7 blogs in total on the topic: <em>&ldquo;End-to-End MLOps on AWS&rdquo;</em>.</strong></li>
+<li>The blog series is hosted on Quantiphi&rsquo;s Medium Account</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>Other than Quantiphi&rsquo;s Medium account, the blogs are also hosted seperately on github as follows:</strong></p>
+</blockquote>
+<h3 id="httpssagemaker-mlops-samplesgithubio">
+  <a href="https://sagemaker-mlops-samples.github.io/" target="_blank" rel="noopener">https://sagemaker-mlops-samples.github.io/</a>
+
+  <a class="anchor" href="#httpssagemaker-mlops-samplesgithubio">#</a>
+</h3>
+<hr>
+<p><strong>Authors of the below 3 blogs:</strong></p>
+<ul>
+<li>
+<p><a href="https://www.linkedin.com/in/palash-nimodia-94975b4b/" target="_blank" rel="noopener">Palash Nimodia</a>
+ (Architect — Machine Learning)</p>
+</li>
+<li>
+<p><a href="https://www.linkedin.com/in/yogendra-yatnalkar-2477b3148/" target="_blank" rel="noopener">Yogendra Yatnalkar</a>
+ (Senior Machine Learning Engineer) at <a href="https://quantiphi.com/" target="_blank" rel="noopener">Quantiphi</a>
+</p>
+</li>
+</ul>
+<hr>
+<h3 id="1-introducing-end-to-end-mlops-on-aws-part1httpsmediumcomdatalab_70093introducing-end-to-end-mlops-on-aws-part1-ae42dad5c487">
+  1. <a href="https://medium.com/@datalab_70093/introducing-end-to-end-mlops-on-aws-part1-ae42dad5c487" target="_blank" rel="noopener">Introducing End-to-End MLOps on AWS: Part1</a>
+
+  <a class="anchor" href="#1-introducing-end-to-end-mlops-on-aws-part1httpsmediumcomdatalab_70093introducing-end-to-end-mlops-on-aws-part1-ae42dad5c487">#</a>
+</h3>
+<p><img src="End-to-End-MLOps-on-AWS/image.png" alt="Alt text" /></p>
+<hr>
+<h3 id="2-end-to-end-mlops-on-aws-part21---computer-vision-simulation-with-drift--retraininghttpsmediumcomdatalab_70093end-to-end-mlops-on-aws-part2-1-computer-vision-simulation-with-drift-retraining-268f5033bb7f">
+  2. <a href="https://medium.com/@datalab_70093/end-to-end-mlops-on-aws-part2-1-computer-vision-simulation-with-drift-retraining-268f5033bb7f" target="_blank" rel="noopener">End-to-End MLOps on AWS: Part2.1 - Computer Vision Simulation with Drift &amp; Retraining</a>
+
+  <a class="anchor" href="#2-end-to-end-mlops-on-aws-part21---computer-vision-simulation-with-drift--retraininghttpsmediumcomdatalab_70093end-to-end-mlops-on-aws-part2-1-computer-vision-simulation-with-drift-retraining-268f5033bb7f">#</a>
+</h3>
+<p><img src="End-to-End-MLOps-on-AWS/image-1.png" alt="Alt text" /></p>
+<hr>
+<h3 id="3-end-to-end-mlops-on-aws-part22---computer-vision-components-and-pipelines-deep-divehttpsmediumcomdatalab_70093sagemaker-pipelinessagemaker-pipelinesend-to-end-mlops-on-aws-part2-2-c912cca9ef35">
+  3. <a href="https://medium.com/@datalab_70093/sagemaker-pipelinessagemaker-pipelinesend-to-end-mlops-on-aws-part2-2-c912cca9ef35" target="_blank" rel="noopener">End-to-End MLOps on AWS: Part2.2 - Computer Vision Components and Pipelines Deep Dive</a>
+
+  <a class="anchor" href="#3-end-to-end-mlops-on-aws-part22---computer-vision-components-and-pipelines-deep-divehttpsmediumcomdatalab_70093sagemaker-pipelinessagemaker-pipelinesend-to-end-mlops-on-aws-part2-2-c912cca9ef35">#</a>
+</h3>
+<p><img src="End-to-End-MLOps-on-AWS/image-2.png" alt="Alt text" /></p>
+<hr>
+</article>
  
       
 
@@ -503,6 +569,15 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -513,7 +588,18 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#httpssagemaker-mlops-samplesgithubio"><a href="https://sagemaker-mlops-samples.github.io/">https://sagemaker-mlops-samples.github.io/</a></a></li>
+        <li><a href="#1-introducing-end-to-end-mlops-on-aws-part1httpsmediumcomdatalab_70093introducing-end-to-end-mlops-on-aws-part1-ae42dad5c487">1. <a href="https://medium.com/@datalab_70093/introducing-end-to-end-mlops-on-aws-part1-ae42dad5c487">Introducing End-to-End MLOps on AWS: Part1</a></a></li>
+        <li><a href="#2-end-to-end-mlops-on-aws-part21---computer-vision-simulation-with-drift--retraininghttpsmediumcomdatalab_70093end-to-end-mlops-on-aws-part2-1-computer-vision-simulation-with-drift-retraining-268f5033bb7f">2. <a href="https://medium.com/@datalab_70093/end-to-end-mlops-on-aws-part2-1-computer-vision-simulation-with-drift-retraining-268f5033bb7f">End-to-End MLOps on AWS: Part2.1 - Computer Vision Simulation with Drift &amp; Retraining</a></a></li>
+        <li><a href="#3-end-to-end-mlops-on-aws-part22---computer-vision-components-and-pipelines-deep-divehttpsmediumcomdatalab_70093sagemaker-pipelinessagemaker-pipelinesend-to-end-mlops-on-aws-part2-2-c912cca9ef35">3. <a href="https://medium.com/@datalab_70093/sagemaker-pipelinessagemaker-pipelinesend-to-end-mlops-on-aws-part2-2-c912cca9ef35">End-to-End MLOps on AWS: Part2.2 - Computer Vision Components and Pipelines Deep Dive</a></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
  

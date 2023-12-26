@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://yogendra-yatnalkar.github.io/blogs/end-to-end-mlops-on-aws.html</loc>
+  </url><url>
     <loc>https://yogendra-yatnalkar.github.io/blogs/sam-automatic-semantic-segmentation.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/blogs/backtracking_aws_lookout_for_vision_service.html</loc>
@@ -55,6 +57,10 @@
     <loc>https://yogendra-yatnalkar.github.io/tags/inference.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/tags/kaggle.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags/ml.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags/mlops.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/nlp.html</loc>
   </url><url>
