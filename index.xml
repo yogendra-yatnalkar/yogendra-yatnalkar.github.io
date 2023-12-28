@@ -114,15 +114,6 @@ TorchServe: - to check model status, I am using port 8081 - for inference, I am 
     </item>
     
     <item>
-      <title>NLP-General</title>
-      <link>https://yogendra-yatnalkar.github.io/notes/nlp/transformers_at_training_vs_inference.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://yogendra-yatnalkar.github.io/notes/nlp/transformers_at_training_vs_inference.html</guid>
-      <description>Transformers at Training vs Inference#</description>
-    </item>
-    
-    <item>
       <title>SAM-Segment-Anything</title>
       <link>https://yogendra-yatnalkar.github.io/notes/cv/sam-segment-anything.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -156,6 +147,15 @@ SSL -&amp;gt; Define a pretext task &amp;ndash;&amp;gt; Un-labelled data &amp;nd
 NLP: Word2Vec is SSL &amp;ndash; In a sentence, mask a word and predict the surrounding words (It learns context)
 CV: 2 current popular ways:
 mask a patch and prediction of masked path</description>
+    </item>
+    
+    <item>
+      <title>Transformers at Training vs Inference</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/nlp/transformers_at_training_vs_inference.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/nlp/transformers_at_training_vs_inference.html</guid>
+      <description>Transformers at Training vs Inference#</description>
     </item>
     
     <item>
