@@ -3,25 +3,21 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Note: Just putting down few notes from AWS partner-cast session
-Vector Search and Vector Stores#How to measure similarity in embeddings?#Cosine Similarity: Gives the angle between the 2 embeddings. Higher the angle, bigger is the difference between 2 embeddings.
-Dot-Product: Same as cosine similarity but gives us the magnitude between 2 vectors instead of direction/angle.
-Real-life Use cases:#Semantic search
-Recommendation System
-Anomaly detection and pattern recognition">
+<meta name="description" content="Daily Scribble:#Scribbling the content seen in the day:
+January:#vLLM: Easy, fast, and cheap LLM serving for everyone
+https://github.com/vllm-project/vllmInvented the concept of &ldquo;PagedAttention&rdquo; uses xFormer internally, so indirectly uses FlashAttention and FlashAttention2 as well Has support for continuous batching (very useful for transformer/decoder architecture) When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference Fooocus:
+Fooocus is an image generating software.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Vector Search and Stores" />
-<meta property="og:description" content="Note: Just putting down few notes from AWS partner-cast session
-Vector Search and Vector Stores#How to measure similarity in embeddings?#Cosine Similarity: Gives the angle between the 2 embeddings. Higher the angle, bigger is the difference between 2 embeddings.
-Dot-Product: Same as cosine similarity but gives us the magnitude between 2 vectors instead of direction/angle.
-Real-life Use cases:#Semantic search
-Recommendation System
-Anomaly detection and pattern recognition" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Daily-Scribble-2024" />
+<meta property="og:description" content="Daily Scribble:#Scribbling the content seen in the day:
+January:#vLLM: Easy, fast, and cheap LLM serving for everyone
+https://github.com/vllm-project/vllmInvented the concept of &ldquo;PagedAttention&rdquo; uses xFormer internally, so indirectly uses FlashAttention and FlashAttention2 as well Has support for continuous batching (very useful for transformer/decoder architecture) When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference Fooocus:
+Fooocus is an image generating software." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/vector-store-and-search.html" /><meta property="article:section" content="notes" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/daily-scribble.html" /><meta property="article:section" content="notes" />
 
 
-<title>Vector Search and Stores | Yogendra Y.</title>
+<title>Daily-Scribble-2024 | Yogendra Y.</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
@@ -193,7 +189,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/daily-scribble.html" class="">Daily-Scribble-2024</a>
+    <a href="/notes/daily-scribble.html" class="active">Daily-Scribble-2024</a>
   
 
         </li>
@@ -206,7 +202,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle" checked />
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
     <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
       <a role="button" class="">General</a>
     </label>
@@ -287,7 +283,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/general/vector-store-and-search.html" class="active">Vector Search and Stores</a>
+    <a href="/notes/general/vector-store-and-search.html" class="">Vector Search and Stores</a>
   
 
         </li>
@@ -490,7 +486,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Vector Search and Stores</strong>
+  <strong>Daily-Scribble-2024</strong>
 
   <label for="toc-control">
     
@@ -506,13 +502,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#how-to-measure-similarity-in-embeddings">How to measure similarity in embeddings?</a></li>
-        <li><a href="#real-life-use-cases">Real-life Use cases:</a></li>
-        <li><a href="#rag-implementation-in-aws">RAG Implementation in AWS:</a></li>
-      </ul>
-    </li>
+    <li><a href="#january">January:</a></li>
   </ul>
 </nav>
 
@@ -525,76 +515,39 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><p>Note: Just putting down few notes from AWS partner-cast session</p>
-<hr>
-<h1 id="vector-search-and-vector-stores">
-  Vector Search and Vector Stores
-  <a class="anchor" href="#vector-search-and-vector-stores">#</a>
+  <article class="markdown"><h1 id="daily-scribble">
+  Daily Scribble:
+  <a class="anchor" href="#daily-scribble">#</a>
 </h1>
-<h3 id="how-to-measure-similarity-in-embeddings">
-  How to measure similarity in embeddings?
-  <a class="anchor" href="#how-to-measure-similarity-in-embeddings">#</a>
-</h3>
+<p>Scribbling the content seen in the day:</p>
+<h2 id="january">
+  January:
+  <a class="anchor" href="#january">#</a>
+</h2>
 <ul>
 <li>
-<p><strong>Cosine Similarity:</strong> Gives the angle between the 2 embeddings. Higher the angle, bigger is the difference between 2 embeddings.</p>
+<p><strong>vLLM:</strong> Easy, fast, and cheap LLM serving for everyone</p>
+<ul>
+<li><a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener">https://github.com/vllm-project/vllm</a>
+</li>
+<li>Invented the concept of &ldquo;<strong>PagedAttention</strong>&rdquo;</li>
+<li>uses <strong>xFormer</strong> internally, so indirectly uses FlashAttention and FlashAttention2 as well</li>
+<li>Has support for <strong>continuous batching</strong> (very useful for transformer/decoder architecture)</li>
+<li>When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference</li>
+</ul>
 </li>
 <li>
-<p><strong>Dot-Product:</strong> Same as cosine similarity but gives us the magnitude between 2 vectors instead of direction/angle.</p>
+<p><strong>Fooocus:</strong></p>
+<ul>
+<li>Fooocus is an image generating software. Fooocus is a rethinking of Stable Diffusion and Midjourney’s designs.</li>
+<li><strong>Made by the controlnet authors</strong></li>
+<li>Has direct support for colab and huggingface. <strong>Made on gradio</strong></li>
+<li>Looks quite good and easy to use:
+<ul>
+<li>On early analysis, it looks like: it can do inpainting/outpainting and image-super-resolution as well.</li>
+</ul>
 </li>
 </ul>
-<h3 id="real-life-use-cases">
-  Real-life Use cases:
-  <a class="anchor" href="#real-life-use-cases">#</a>
-</h3>
-<ul>
-<li>
-<p>Semantic search</p>
-</li>
-<li>
-<p>Recommendation System</p>
-</li>
-<li>
-<p>Anomaly detection and pattern recognition</p>
-</li>
-<li>
-<p>GenAI: RAG (Retrieval Augmented Generation)</p>
-</li>
-</ul>
-<h3 id="rag-implementation-in-aws">
-  RAG Implementation in AWS:
-  <a class="anchor" href="#rag-implementation-in-aws">#</a>
-</h3>
-<p><img src="vector-store-and-search/2023-10-06-14-42-01-image.png" alt="" /></p>
-<ul>
-<li>
-<p>Vector embedding is used to find top 3 most similar chunks</p>
-</li>
-<li>
-<p>In the prompts, the context provided needs to be given in natural language i.e english and not in embeddings format</p>
-</li>
-<li>
-<p><img src="vector-store-and-search/2023-10-06-14-44-57-image.png" alt="" /></p>
-</li>
-<li>
-<p><img src="vector-store-and-search/2023-10-06-14-48-43-image.png" alt="" /></p>
-</li>
-<li>
-<p>Read about HNSW:  <a href="https://www.pinecone.io/learn/series/faiss/hnsw/" target="_blank" rel="noopener">Hierarchical Navigable Small Worlds (HNSW) | Pinecone</a>
- and <a href="https://www.timescale.com/blog/nearest-neighbor-indexes-what-are-ivfflat-indexes-in-pgvector-and-how-do-they-work/" target="_blank" rel="noopener">Nearest Neighbor Indexes: What Are ivfflat Indexes in pgvector and How Do They Work</a>
-</p>
-</li>
-<li>
-<p>Vector search is read-only</p>
-</li>
-<li>
-<p>Read about: Knn search vs ANN search</p>
-</li>
-<li>
-<p>Read about: Postgres integration with aurora and rds for vector search</p>
-</li>
-<li>
-<p><img src="vector-store-and-search/2023-10-06-15-17-28-image.png" alt="" /></p>
 </li>
 </ul>
 </article>
@@ -643,13 +596,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#how-to-measure-similarity-in-embeddings">How to measure similarity in embeddings?</a></li>
-        <li><a href="#real-life-use-cases">Real-life Use cases:</a></li>
-        <li><a href="#rag-implementation-in-aws">RAG Implementation in AWS:</a></li>
-      </ul>
-    </li>
+    <li><a href="#january">January:</a></li>
   </ul>
 </nav>
 

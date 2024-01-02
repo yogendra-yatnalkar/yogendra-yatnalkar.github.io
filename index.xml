@@ -84,6 +84,18 @@ Slow as each word is processed at a time (sequentially) Not truly bi-directional
     </item>
     
     <item>
+      <title>Daily-Scribble-2024</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/daily-scribble.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/daily-scribble.html</guid>
+      <description>Daily Scribble:#Scribbling the content seen in the day:
+January:#vLLM: Easy, fast, and cheap LLM serving for everyone
+https://github.com/vllm-project/vllmInvented the concept of &amp;ldquo;PagedAttention&amp;rdquo; uses xFormer internally, so indirectly uses FlashAttention and FlashAttention2 as well Has support for continuous batching (very useful for transformer/decoder architecture) When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference Fooocus:
+Fooocus is an image generating software.</description>
+    </item>
+    
+    <item>
       <title>General Notes</title>
       <link>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -176,7 +188,9 @@ mask a patch and prediction of masked path</description>
       <description>Un-Answered Questions:#Difference between Float16 vs Bfloat16 vs Tensor-Float16 ?
 Vector Databases: HNSW vs IVF ?
 Difference between vector DB&amp;rsquo;s and FAISS library (by Meta) ?
-From my current knowledge both are same, but then why is everyone behind vector DB&amp;rsquo;s instead of using FAISS directly ? Null Hypothesis test &amp;raquo; p-values &amp;raquo; calculated using t-test or z-test</description>
+From my current knowledge both are same, but then why is everyone behind vector DB&amp;rsquo;s instead of using FAISS directly ? Null Hypothesis test &amp;raquo; p-values &amp;raquo; calculated using t-test or z-test
+Weeb Union Umar Jamil Cohehre&amp;rsquo;s embedding v3
+RetNet &amp;ndash;&amp;gt; Saw it on high note &amp;ndash;&amp;gt; Removes the softmax from the Transformer network and adds a exponential-moving-average-weights to the network by which it gives more importance to the recent tokens</description>
     </item>
     
     <item>
