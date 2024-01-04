@@ -22,7 +22,7 @@ Fooocus is an image generating software." />
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.6f15311521e9348956467a70040bb5fbf1fa2602f846e794df5b87df1c8648bf.js" integrity="sha256-bxUxFSHpNIlWRnpwBAu1&#43;/H6JgL4RueU31uH3xyGSL8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.20d74f6ee38cae5a639014110c94aac3a781fec16a5a689b2df68f8fb83b9d9b.js" integrity="sha256-INdPbuOMrlpjkBQRDJSqw6eB/sFqWmibLfaPj7g7nZs=" crossorigin="anonymous"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
 <script>
@@ -545,6 +545,39 @@ https://github.com/alex-shpak/hugo-book
 <li>Looks quite good and easy to use:
 <ul>
 <li>On early analysis, it looks like: it can do inpainting/outpainting and image-super-resolution as well.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>torchserve:</strong></p>
+<ul>
+<li>Started with g4dn.xlarge instance type and model: ViT L16. Later updgraded to G4Dn.2xlarge to check the effect of increasing the CPU number and CPU memory.
+<ul>
+<li>Played a lot of dynamic batching and worker count on single GPU. Came to 2 conclusion:
+<ol>
+<li>Dynamic batching helps (see below)</li>
+<li>On dynamic batching, once GPU utlization becomes 100%, no one can help later</li>
+</ol>
+</li>
+<li><strong>Conclusion</strong>: Once gpu memory utilization is full, whatever we do, it wont increasing the actual load.</li>
+<li><strong>Importance of AWS elastic inference</strong> (GPU as a service): Even though this ViT L16 is a medium level model with I believe update 300M params, 1 model only uses around 20 to 30% of the memory. With dynamic batching, the utilization is 100% even with 1 worker, so we are effectively not using memory at the fullest.</li>
+</ul>
+</li>
+<li>Does Dynamic batching helps ? On g4dn:
+<ul>
+<li>Yes. When it was set to 1, the max RPS was 21
+<ul>
+<li>When batch-size was 1 but workers was also 1, the gpu utilization was around 85%</li>
+<li>When workers were increased to 4 and batch-size was still 1, the gpu utilization became 100, but that did not affect the RPS.</li>
+<li>In both cases, the response time was slightly faster than dynamic batching.</li>
+</ul>
+</li>
+<li>When it was set to 32, the max RPS was 32
+<ul>
+<li>when dynamic batching is on, whatever is the worker count, it does no affect the RPS (for this model)</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

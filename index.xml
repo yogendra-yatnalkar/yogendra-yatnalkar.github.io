@@ -65,7 +65,7 @@ AWS Athena: Amazon Athena is an interactive query service that makes it easy to 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/benchmarking-with-torchserve.html</guid>
-      <description>Benchmarking Inference with Torchserve#Last Edited 24/12/2023 Pytorch default - g4dn.xlarge#Notes:#Instance Type: ml.g4dn.xlarge
+      <description>Benchmarking Inference with Torchserve#Last Edited 05/01/2023 Pytorch default - g4dn.xlarge#Notes:#Instance Type: ml.g4dn.xlarge
 GPU: Nvidia T4 vCPU no: 4 CPU memory: 16 GB GPU memory: 16 GB Max RPS achieved: 32
 With various different configuration ranging from min/max worker = 1 to 4 and batch-size 4 to 32, the max RPS possible was only 32. Locust Configuration: Max Users: 200, Spawn Rate: 10 Max Response time at 95th percentile: ~5-6 sec</description>
     </item>
