@@ -49,6 +49,16 @@ Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-se
     </item>
     
     <item>
+      <title>AI Assisted Video Generation with White-Board Animations</title>
+      <link>https://yogendra-yatnalkar.github.io/side-projects/ai-assisted-video-generation.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/side-projects/ai-assisted-video-generation.html</guid>
+      <description>AI Assisted Video Generation with White-Board Animations#AI Video Generation for: Story of Shepherd Boy and the Wolf#Github Link: https://github.com/yogendra-yatnalkar/storyboard-aiLast Edited: 06/01/2024
+Youtube Video#HOW THE VIDEO WAS MADE ?#The story was taken from internet. A 4 line summary of the story was generated using ChatGPT For each summary line, a corresponding image was generated using Stable Diffusion In each image (4 in our case), the important object were masked using MetaAI SAM I have developed a custom image to white-board animation code which converted the images to videos (This was the most time-consuming part of the development process).</description>
+    </item>
+    
+    <item>
       <title>Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto</title>
       <link>https://yogendra-yatnalkar.github.io/blogs/finding-nth-aggregate-from-every-group-aws-athena.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
