@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Finetune SAM model on Custom dataset to segment objects without prompts (during training and inference)">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Promptless Task-Specific Finetuning of MetaAI Segment-Anything" />
+<meta property="og:description" content="Finetune SAM model on Custom dataset to segment objects without prompts (during training and inference)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/blogs/promptless-taskspecific-finetuning-segment-anything.html" /><meta property="article:section" content="blogs" />
+
+
+<title>Promptless Task-Specific Finetuning of MetaAI Segment-Anything | Yogendra Y.</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.d100864afced027c42a085c1dacf69e27a70f461e263ed5fbc3142cb16886378.js" integrity="sha256-0QCGSvztAnxCoIXB2s9p4npw9GHiY&#43;1fvDFCyxaIY3g=" crossorigin="anonymous"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DTLBL509Z2', { 'anonymize_ip': false });
+}
+</script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Yogendra Y.</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle" checked />
+    <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
+      <a href="/blogs.html" class="">Blogs</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/promptless-taskspecific-finetuning-segment-anything.html" class="active">Promptless Task-Specific Finetuning of MetaAI Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/end-to-end-mlops-on-aws.html" class="">End-to-End MLOps on AWS (3 blogs)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/sam-automatic-semantic-segmentation.html" class="">Meta-AI SAM: AutoMatic Semantic Segmentation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/backtracking_aws_lookout_for_vision_service.html" class="">Backtracking AWS Lookout for Vision Service</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/finding-nth-aggregate-from-every-group-aws-athena.html" class="">Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle"  />
+    <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
+      <a role="button" class="">Notes</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/daily-scribble.html" class="">Daily-Scribble-2024</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
+    <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
+      <a role="button" class="">General</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/benchmarking-with-torchserve.html" class="">Benchmarking Inference with Torchserve</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/general-general.html" class="">General Notes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/kl-divergence.html" class="">Kullback-Leibler Divergence (KL Divergence)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/model-serving.html" class="">Model Serving</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/unanswered-questions.html" class="">Un-Answered Questions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/vector-store-and-search.html" class="">Vector Search and Stores</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/api-performance-improvement.html" class="">Web-API performance improvement</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle"  />
+    <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
+      <a role="button" class="">CV</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/sam-segment-anything.html" class="">SAM-Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/self-supervised-learning.html" class="">Self Supervised Learning</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle"  />
+    <label for="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="flex justify-between">
+      <a role="button" class="">NLP</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/bert.html" class="">BERT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/nlp_general.html" class="">NLP-General</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/transformers_at_training_vs_inference.html" class="">Transformers at Training vs Inference</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/resume/" class="">Resume</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-77dedc5429a7c70061bd8ace32d09bfc" class="toggle"  />
+    <label for="section-77dedc5429a7c70061bd8ace32d09bfc" class="flex justify-between">
+      <a href="/side-projects.html" class="">Side-Projects</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/side-projects/ai-assisted-video-generation.html" class="">AI Assisted Video Generation with White-Board Animations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Promptless Task-Specific Finetuning of MetaAI Segment-Anything</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#task">Task</a>
+      <ul>
+        <li><a href="#finetune-sam-model-on-custom-dataset-to-segment-objects-without-prompts-during-training-and-inference">Finetune SAM model on Custom dataset to segment objects <strong>without prompts</strong> (during training and inference)</a></li>
+      </ul>
+    </li>
+    <li><a href="#approach">Approach</a>
+      <ul>
+        <li><a href="#how-does-sam-work-high-level">How does SAM work (high-level):</a></li>
+        <li><a href="#what-i-tried-with-code-below">What I tried with code below:</a></li>
+        <li><a href="#dataset-used">Dataset Used:</a></li>
+        <li><a href="#training">Training:</a></li>
+        <li><a href="#results">Results:</a></li>
+        <li><a href="#installing-sam-dependencies-and-loading-the-model">Installing SAM dependencies and loading the model</a></li>
+      </ul>
+    </li>
+    <li><a href="#building-the-sam-decoder">Building the SAM decoder</a>
+      <ul>
+        <li></li>
+        <li><a href="#building-the-image-data-pipeline">Building the image data pipeline</a></li>
+        <li><a href="#3-datasets">3 datasets:</a></li>
+        <li><a href="#dataloader">DataLoader</a></li>
+      </ul>
+    </li>
+    <li><a href="#training-on-the-dataset">Training on the dataset</a>
+      <ul>
+        <li></li>
+        <li><a href="#setting-the-model-for-inferenceeval">Setting the model for inference/eval</a></li>
+        <li><a href="#plotting-few-outputs">Plotting few outputs</a></li>
+        <li><a href="#t1-dataset-loss">T1 Dataset Loss</a></li>
+        <li><a href="#t2-dataset-loss">T2 dataset loss</a></li>
+      </ul>
+    </li>
+    <li><a href="#saving-the-model">Saving the model</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="promptless-task-specific-finetuning-of-metaai-segment-anything">
+  Promptless Task-Specific Finetuning of MetaAI Segment-Anything
+  <a class="anchor" href="#promptless-task-specific-finetuning-of-metaai-segment-anything">#</a>
+</h1>
+<hr>
+<h4 id="date-january-01-2024">
+  <strong>Date:</strong> January 01, 2024
+  <a class="anchor" href="#date-january-01-2024">#</a>
+</h4>
+<h4 id="note">
+  <strong>NOTE:</strong>
+  <a class="anchor" href="#note">#</a>
+</h4>
+<ul>
+<li>The NB was originally developed on Kaggle: <a href="https://www.kaggle.com/code/yogendrayatnalkar/promptless-taskspecific-finetuning-of-metaai-sam" target="_blank" rel="noopener">https://www.kaggle.com/code/yogendrayatnalkar/promptless-taskspecific-finetuning-of-metaai-sam</a>
+</li>
+<li>Related Github Repository: <a href="https://github.com/yogendra-yatnalkar/SAM-Promptless-Task-Specific-Finetuning/tree/main" target="_blank" rel="noopener">https://github.com/yogendra-yatnalkar/SAM-Promptless-Task-Specific-Finetuning/tree/main</a>
+</li>
+</ul>
+<hr>
+<h2 id="task">
+  Task
+  <a class="anchor" href="#task">#</a>
+</h2>
+<blockquote>
+<h3 id="finetune-sam-model-on-custom-dataset-to-segment-objects-without-prompts-during-training-and-inference">
+  Finetune SAM model on Custom dataset to segment objects <strong>without prompts</strong> (during training and inference)
+  <a class="anchor" href="#finetune-sam-model-on-custom-dataset-to-segment-objects-without-prompts-during-training-and-inference">#</a>
+</h3>
+</blockquote>
+<h2 id="approach">
+  Approach
+  <a class="anchor" href="#approach">#</a>
+</h2>
+<p><img src="https://raw.githubusercontent.com/yogendra-yatnalkar/SAM-Promptless-Task-Specific-Finetuning/main/support-assets/SAM-promptless-task-specific-finetuning.png" alt="https://github.com/yogendra-yatnalkar/SAM-Promptless-Task-Specific-Finetuning/blob/main/support-assets/SAM-promptless-task-specific-finetuning.png" /></p>
+<hr>
+<h3 id="how-does-sam-work-high-level">
+  How does SAM work (high-level):
+  <a class="anchor" href="#how-does-sam-work-high-level">#</a>
+</h3>
+<ul>
+<li>Sam Encoder &ndash;&gt; <strong>ViT + Neck-Module</strong> (Consisting of 2 Conv2D layers used for downsampling the channels of the ViT output)</li>
+<li>The Encoder ViT has a patch-size of <strong>16x16</strong>.</li>
+<li>Input: <strong>1024x1024x3</strong></li>
+<li>With the above patch-size and input-image-size, the <strong>number patches formed are: 64x64</strong></li>
+<li>Output of Encoder: <strong>256x64x64</strong></li>
+<li>This output goes into the decoder with <strong>Prompt Input</strong> and generates the output</li>
+</ul>
+<hr>
+<h3 id="what-i-tried-with-code-below">
+  What I tried with code below:
+  <a class="anchor" href="#what-i-tried-with-code-below">#</a>
+</h3>
+<ul>
+<li>Removed the decoder</li>
+<li>Freeze the ViT part of encoder and <strong>un-freeze the Conv2d Neck</strong></li>
+<li>Add a custom decoder having multiple blocks of: <strong>Conv2d-Transpose + LayerNorm2D + Relu + Dropout</strong> &ndash;&gt; <em><strong>Added 4 such blocks</strong></em></li>
+<li>The input to the decoder will be of shape: <strong>256x64x64</strong> and the output will be of shape: <strong>1024x1024x1</strong></li>
+</ul>
+<hr>
+<h3 id="dataset-used">
+  Dataset Used:
+  <a class="anchor" href="#dataset-used">#</a>
+</h3>
+<ul>
+<li><a href="https://www.kaggle.com/datasets/swagatajana/football-match-adboards-mask-dataset" target="_blank" rel="noopener">https://www.kaggle.com/datasets/swagatajana/football-match-adboards-mask-dataset</a>
+</li>
+</ul>
+<hr>
+<h3 id="training">
+  Training:
+  <a class="anchor" href="#training">#</a>
+</h3>
+<ul>
+<li>I trained this SAM+Custom-Decoder model on a open kaggle dataset consisting of binary segmentation</li>
+<li>Dataset has <strong>1620 images</strong>.</li>
+<li><strong>To prove SAM&rsquo;s capability, I trained this model only on 135 images, ie around 8.3% of the total data just for 11 epochs</strong></li>
+</ul>
+<hr>
+<h3 id="results">
+  Results:
+  <a class="anchor" href="#results">#</a>
+</h3>
+<ul>
+<li>
+<p><strong>With a 91% IOU score on a completely random test-set</strong>, the model&rsquo;s results are highly promising, suggesting its potential for real-world applications.</p>
+</li>
+<li>
+<p><strong>IMPORTANT NOTE:</strong> When the same dataset (with same train-test split) was trained using <strong>U2Net</strong>,</p>
+<ul>
+<li>with <strong>1346 image (83% of the entire dataset)</strong></li>
+<li>and <strong>75 epochs</strong>,</li>
+<li>the <strong>IOU score achieved was 91%</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Check the result: <img src="https://raw.githubusercontent.com/yogendra-yatnalkar/SAM-Promptless-Task-Specific-Finetuning/main/support-assets/result-sample.png" alt="https://github.com/yogendra-yatnalkar/SAM-Promptless-Task-Specific-Finetuning/" /></p>
+</li>
+<li>
+<blockquote>
+<p><strong>(Left-most image is the ground-truth, middle image is the model prediction, right-most image is the input)</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="installing-sam-dependencies-and-loading-the-model">
+  Installing SAM dependencies and loading the model
+  <a class="anchor" href="#installing-sam-dependencies-and-loading-the-model">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">!</span>pwd
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">!</span>ls <span style="color:#f92672">/</span>kaggle<span style="color:#f92672">/</span>input<span style="color:#f92672">/</span>football<span style="color:#f92672">-</span>match<span style="color:#f92672">-</span>adboards<span style="color:#f92672">-</span>mask<span style="color:#f92672">-</span>dataset
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Installing SAM and downloading model</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">!</span>pip install git<span style="color:#f92672">+</span>https:<span style="color:#f92672">//</span>github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>facebookresearch<span style="color:#f92672">/</span>segment<span style="color:#f92672">-</span>anything<span style="color:#f92672">.</span>git
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">!</span>wget https:<span style="color:#f92672">//</span>dl<span style="color:#f92672">.</span>fbaipublicfiles<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>segment_anything<span style="color:#f92672">/</span>sam_vit_b_01ec64<span style="color:#f92672">.</span>pth
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># !wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth</span>
+</span></span></code></pre></div><pre><code>/kaggle/working
+Masks  Tagged_Images
+Collecting git+https://github.com/facebookresearch/segment-anything.git
+  Cloning https://github.com/facebookresearch/segment-anything.git to /tmp/pip-req-build-5zuh9yvi
+  Running command git clone --filter=blob:none --quiet https://github.com/facebookresearch/segment-anything.git /tmp/pip-req-build-5zuh9yvi
+  Resolved https://github.com/facebookresearch/segment-anything.git to commit 6fdee8f2727f4506cfbbe553e23b895e27956588
+  Preparing metadata (setup.py) ... [?25ldone
+[?25h--2024-01-01 14:37:07--  https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth
+Resolving dl.fbaipublicfiles.com (dl.fbaipublicfiles.com)... 3.163.189.51, 3.163.189.14, 3.163.189.96, ...
+Connecting to dl.fbaipublicfiles.com (dl.fbaipublicfiles.com)|3.163.189.51|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 375042383 (358M) [binary/octet-stream]
+Saving to: ‘sam_vit_b_01ec64.pth.1’
+
+sam_vit_b_01ec64.pt 100%[===================&gt;] 357.67M   346MB/s    in 1.0s    
+
+2024-01-01 14:37:08 (346 MB/s) - ‘sam_vit_b_01ec64.pth.1’ saved [375042383/375042383]
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch <span style="color:#f92672">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> segment_anything <span style="color:#f92672">import</span> sam_model_registry
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> glob
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchvision
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># setting global seed </span>
+</span></span><span style="display:flex;"><span>seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>manual_seed(seed)
+</span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(seed)
+</span></span><span style="display:flex;"><span>random<span style="color:#f92672">.</span>seed(seed)
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>backends<span style="color:#f92672">.</span>cudnn<span style="color:#f92672">.</span>deterministic <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># constants</span>
+</span></span><span style="display:flex;"><span>device <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>device(<span style="color:#e6db74">&#34;cuda:0&#34;</span> <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available() <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;cpu&#34;</span>)
+</span></span><span style="display:flex;"><span>base_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/kaggle/input/football-match-adboards-mask-dataset/&#34;</span>
+</span></span><span style="display:flex;"><span>save_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/kaggle/working&#34;</span>
+</span></span><span style="display:flex;"><span>images_folder <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Tagged_Images/Tagged Images&#34;</span>
+</span></span><span style="display:flex;"><span>masks_folder <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Masks/Masks&#34;</span>
+</span></span><span style="display:flex;"><span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>epochs <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>
+</span></span><span style="display:flex;"><span>t2_batch_size <span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>train_split <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Loadign the SAM model</span>
+</span></span><span style="display:flex;"><span>sam <span style="color:#f92672">=</span> sam_model_registry[<span style="color:#e6db74">&#34;vit_b&#34;</span>](checkpoint<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/kaggle/working/sam_vit_b_01ec64.pth&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># sam = sam_model_registry[&#34;vit_h&#34;](checkpoint=&#34;/kaggle/working/sam_vit_h_4b8939.pth&#34;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># moving the sam model to available device</span>
+</span></span><span style="display:flex;"><span>sam <span style="color:#f92672">=</span> sam<span style="color:#f92672">.</span>to(device)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> layer_no, param <span style="color:#f92672">in</span> enumerate(sam<span style="color:#f92672">.</span>image_encoder<span style="color:#f92672">.</span>parameters()):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>last_layer_no <span style="color:#f92672">=</span> layer_no
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Last layer No: &#34;</span>, last_layer_no)
+</span></span></code></pre></div><pre><code>Last layer No:  176
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># It seems that the last 6 layers of the model belong to CONV2d neck </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># used in the model to downsample the last attention layer embedding size</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> layer_no, param <span style="color:#f92672">in</span> enumerate(sam<span style="color:#f92672">.</span>image_encoder<span style="color:#f92672">.</span>parameters()):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(layer_no <span style="color:#f92672">&gt;</span> (last_layer_no <span style="color:#f92672">-</span> <span style="color:#ae81ff">6</span>)):
+</span></span><span style="display:flex;"><span>        print(last_layer_no, param<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>last_layer_no <span style="color:#f92672">=</span> layer_no
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Last layer No: &#34;</span>, last_layer_no)
+</span></span></code></pre></div><pre><code>176 torch.Size([256, 768, 1, 1])
+176 torch.Size([256])
+176 torch.Size([256])
+176 torch.Size([256, 256, 3, 3])
+176 torch.Size([256])
+176 torch.Size([256])
+Last layer No:  176
+</code></pre>
+<h2 id="building-the-sam-decoder">
+  Building the SAM decoder
+  <a class="anchor" href="#building-the-sam-decoder">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Layer Norm 2D code directly taken from the SAM Repository</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LayerNorm2d</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, num_channels: int, eps: float <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-6</span>) <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>weight <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Parameter(torch<span style="color:#f92672">.</span>ones(num_channels))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bias <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Parameter(torch<span style="color:#f92672">.</span>zeros(num_channels))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>eps <span style="color:#f92672">=</span> eps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x: torch<span style="color:#f92672">.</span>Tensor) <span style="color:#f92672">-&gt;</span> torch<span style="color:#f92672">.</span>Tensor:
+</span></span><span style="display:flex;"><span>        u <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>mean(<span style="color:#ae81ff">1</span>, keepdim<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> (x <span style="color:#f92672">-</span> u)<span style="color:#f92672">.</span>pow(<span style="color:#ae81ff">2</span>)<span style="color:#f92672">.</span>mean(<span style="color:#ae81ff">1</span>, keepdim<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> (x <span style="color:#f92672">-</span> u) <span style="color:#f92672">/</span> torch<span style="color:#f92672">.</span>sqrt(s <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>eps)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>weight[:, <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>] <span style="color:#f92672">*</span> x <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bias[:, <span style="color:#66d9ef">None</span>, <span style="color:#66d9ef">None</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span></code></pre></div><h4 id="it-is-observed-that-the-last-6-layers-correspond-to-the-conv2d-neck">
+  It is observed that the last 6 layers correspond to the Conv2D Neck
+  <a class="anchor" href="#it-is-observed-that-the-last-6-layers-correspond-to-the-conv2d-neck">#</a>
+</h4>
+<ul>
+<li>Freeze the ViT</li>
+<li>UnFreeze the Conv2D neck</li>
+<li>Add a Custom Decoder</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The input of the SAM encoder is: 1024x1024x3
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">the output of the SAM encoder is: 256x64x64
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Hence, having multuple conv2dTranspose to get an output shape of: 1x1024x1024
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Note: The last layer of decoder is 1x1 layer such that: 16x1024x1024 --&gt;  1x1024x1024
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SAM_Decoder</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, sam_encoder, sam_preprocess):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>sam_encoder <span style="color:#f92672">=</span> sam_encoder
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>sam_preprocess <span style="color:#f92672">=</span> sam_preprocess
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> layer_no, param <span style="color:#f92672">in</span> enumerate(self<span style="color:#f92672">.</span>sam_encoder<span style="color:#f92672">.</span>parameters()):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(layer_no <span style="color:#f92672">&gt;</span> (last_layer_no <span style="color:#f92672">-</span> <span style="color:#ae81ff">6</span>)):
+</span></span><span style="display:flex;"><span>                param<span style="color:#f92672">.</span>requires_grad <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                param<span style="color:#f92672">.</span>requires_grad <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>nn_drop <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Dropout(p <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv1 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ConvTranspose2d(<span style="color:#ae81ff">256</span>, <span style="color:#ae81ff">128</span>, kernel_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, stride <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, padding <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>norm1 <span style="color:#f92672">=</span> LayerNorm2d(<span style="color:#ae81ff">128</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv2 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ConvTranspose2d(<span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">64</span>, kernel_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, stride <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, padding <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>norm2 <span style="color:#f92672">=</span> LayerNorm2d(<span style="color:#ae81ff">64</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv3 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ConvTranspose2d(<span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">32</span>, kernel_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, stride <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, padding <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>norm3 <span style="color:#f92672">=</span> LayerNorm2d(<span style="color:#ae81ff">32</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv4 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ConvTranspose2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">16</span>, kernel_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, stride <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, padding <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>norm4 <span style="color:#f92672">=</span> LayerNorm2d(<span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>conv5 <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>ConvTranspose2d(<span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">1</span>, kernel_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, stride <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, padding <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sam_preprocess(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>sam_encoder(x)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv1(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>norm1(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>functional<span style="color:#f92672">.</span>relu(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>nn_drop(x)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv2(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>norm2(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>functional<span style="color:#f92672">.</span>relu(x)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv3(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>norm3(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>functional<span style="color:#f92672">.</span>relu(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>nn_drop(x)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv4(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>norm4(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>functional<span style="color:#f92672">.</span>relu(x)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>conv5(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>functional<span style="color:#f92672">.</span>sigmoid(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sam_decoder <span style="color:#f92672">=</span> SAM_Decoder(sam_encoder <span style="color:#f92672">=</span> sam<span style="color:#f92672">.</span>image_encoder, sam_preprocess <span style="color:#f92672">=</span> sam<span style="color:#f92672">.</span>preprocess)
+</span></span><span style="display:flex;"><span>sam_decoder <span style="color:#f92672">=</span> sam_decoder<span style="color:#f92672">.</span>to(device)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getNumParams</span>(params):
+</span></span><span style="display:flex;"><span>    numParams, numTrainable <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> param <span style="color:#f92672">in</span> params:
+</span></span><span style="display:flex;"><span>        npParamCount <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>prod(param<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>        numParams <span style="color:#f92672">+=</span> npParamCount
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> param<span style="color:#f92672">.</span>requires_grad:
+</span></span><span style="display:flex;"><span>            numTrainable <span style="color:#f92672">+=</span> npParamCount
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> numParams, numTrainable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Number of parameters and number of trainable parameters: &#34;</span>, getNumParams(sam_decoder<span style="color:#f92672">.</span>parameters()))
+</span></span></code></pre></div><pre><code>Number of parameters and number of trainable parameters:  (89845729, 962273)
+</code></pre>
+<h4 id="total-number-of-parameters-89845729">
+  Total Number of Parameters: <strong>89845729</strong>
+  <a class="anchor" href="#total-number-of-parameters-89845729">#</a>
+</h4>
+<h4 id="total-number-of-trainable-parameters-962273">
+  Total Number of Trainable-Parameters: <strong>962273</strong>
+  <a class="anchor" href="#total-number-of-trainable-parameters-962273">#</a>
+</h4>
+<h3 id="building-the-image-data-pipeline">
+  Building the image data pipeline
+  <a class="anchor" href="#building-the-image-data-pipeline">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ImageDataset</span>(torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>Dataset):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, base_path, image_folder, mask_folder, set_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;train&#34;</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>image_folder <span style="color:#f92672">=</span> image_folder
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>mask_folder <span style="color:#f92672">=</span> mask_folder
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>base_path <span style="color:#f92672">=</span> base_path
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>device <span style="color:#f92672">=</span> device
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>resize <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>Resize(
+</span></span><span style="display:flex;"><span>            (<span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">1024</span>), 
+</span></span><span style="display:flex;"><span>            interpolation<span style="color:#f92672">=</span>torchvision<span style="color:#f92672">.</span>transforms<span style="color:#f92672">.</span>InterpolationMode<span style="color:#f92672">.</span>NEAREST
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>all_img_files <span style="color:#f92672">=</span> glob<span style="color:#f92672">.</span>glob(os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(self<span style="color:#f92672">.</span>base_path, self<span style="color:#f92672">.</span>image_folder, <span style="color:#e6db74">&#34;**/*.jpg&#34;</span>),
+</span></span><span style="display:flex;"><span>                                       recursive<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> set_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;train&#34;</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>img_files <span style="color:#f92672">=</span> list(
+</span></span><span style="display:flex;"><span>                filter(<span style="color:#66d9ef">lambda</span> x: (int(x<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;frame&#34;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;.&#34;</span>)[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4000</span>), self<span style="color:#f92672">.</span>all_img_files)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>img_files <span style="color:#f92672">=</span> list(
+</span></span><span style="display:flex;"><span>                filter(<span style="color:#66d9ef">lambda</span> x: (int(x<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;frame&#34;</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;.&#34;</span>)[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">4000</span>), self<span style="color:#f92672">.</span>all_img_files)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __len__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> len(self<span style="color:#f92672">.</span>img_files)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __getitem__(self, index):
+</span></span><span style="display:flex;"><span>        image_path <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>img_files[index]
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># get the mask path</span>
+</span></span><span style="display:flex;"><span>        mask_name <span style="color:#f92672">=</span> image_path<span style="color:#f92672">.</span>rsplit(<span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#ae81ff">1</span>)[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>rsplit(<span style="color:#e6db74">&#34;.&#34;</span>)[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.png&#34;</span>
+</span></span><span style="display:flex;"><span>        mask_name <span style="color:#f92672">=</span> mask_name<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34;frame&#34;</span>, <span style="color:#e6db74">&#34;mask&#34;</span>)
+</span></span><span style="display:flex;"><span>        mask_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(self<span style="color:#f92672">.</span>base_path, self<span style="color:#f92672">.</span>mask_folder, mask_name)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># read both image and mask path</span>
+</span></span><span style="display:flex;"><span>        image <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>io<span style="color:#f92672">.</span>read_image(image_path)
+</span></span><span style="display:flex;"><span>        mask <span style="color:#f92672">=</span> torchvision<span style="color:#f92672">.</span>io<span style="color:#f92672">.</span>read_image(mask_path)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># resizing the image and mask</span>
+</span></span><span style="display:flex;"><span>        image <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>resize(image)
+</span></span><span style="display:flex;"><span>        mask <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>resize(mask)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># chaging dtype of mask</span>
+</span></span><span style="display:flex;"><span>        mask <span style="color:#f92672">=</span> mask<span style="color:#f92672">.</span>type(torch<span style="color:#f92672">.</span>float)
+</span></span><span style="display:flex;"><span>        image <span style="color:#f92672">=</span> image<span style="color:#f92672">.</span>type(torch<span style="color:#f92672">.</span>float)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># standardizing the mask between 0 and 1</span>
+</span></span><span style="display:flex;"><span>        mask <span style="color:#f92672">=</span> mask<span style="color:#f92672">/</span><span style="color:#ae81ff">255</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> image, mask
+</span></span></code></pre></div><h3 id="3-datasets">
+  3 datasets:
+  <a class="anchor" href="#3-datasets">#</a>
+</h3>
+<ul>
+<li>The original dataset is devided into 3 different sub-sets.</li>
+<li>This is because, an U2Net was trained earlier on the (training-set + T1 dataset) and T2 dataset was used as the Test/Evaluation Set.</li>
+<li><strong>But the prove the capabilities of SAM, we will be training only on  a small sample for the original U2Net train set (which is currently the Train-set + T1 Test-set)</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># checking if dataset is ready to go</span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> ImageDataset(base_path, images_folder, masks_folder, set_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;train&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># split the dataset as train, test1 and test2 datasets</span>
+</span></span><span style="display:flex;"><span>train_dataset, t1_dataset <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>random_split(dataset, [train_split, <span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>train_split])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The final test dataset</span>
+</span></span><span style="display:flex;"><span>t2_dataset <span style="color:#f92672">=</span> ImageDataset(base_path, images_folder, masks_folder, set_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;test&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print the length of each set</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Train set: &#34;</span>, len(train_dataset))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Test1 set: &#34;</span>, len(t1_dataset))
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Test2 set: &#34;</span>, len(t2_dataset))
+</span></span></code></pre></div><pre><code>Train set:  135
+Test1 set:  1211
+Test2 set:  274
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># taking the fist sample and plotting it </span>
+</span></span><span style="display:flex;"><span>temp_img, temp_mask <span style="color:#f92672">=</span> train_dataset[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Temp Img shape, Temp Mask shape: &#34;</span>, temp_img<span style="color:#f92672">.</span>shape, temp_mask<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;image and mask, device and dtype: &#34;</span>, temp_img<span style="color:#f92672">.</span>dtype, temp_img<span style="color:#f92672">.</span>device, 
+</span></span><span style="display:flex;"><span>      temp_mask<span style="color:#f92672">.</span>dtype, temp_mask<span style="color:#f92672">.</span>device)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> temp_img<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>transpose(temp_img_np, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> temp_img_np<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>temp_mask_np <span style="color:#f92672">=</span> temp_mask<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>temp_mask_np <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>transpose(temp_mask_np, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a figure with one row and two columns of subplots</span>
+</span></span><span style="display:flex;"><span>fig, axs <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img1 on the first subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>imshow(temp_img_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the first subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img2 on the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>imshow(temp_mask_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Adjust the spacing between the subplots</span>
+</span></span><span style="display:flex;"><span>fig<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show the figure</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><pre><code>Temp Img shape, Temp Mask shape:  torch.Size([3, 1024, 1024]) torch.Size([1, 1024, 1024])
+image and mask, device and dtype:  torch.float32 cpu torch.float32 cpu
+</code></pre>
+<p><img src="promtless-taskspecific-finetuning-segment-anything/output_18_1.png" alt="png" /></p>
+<h3 id="dataloader">
+  DataLoader
+  <a class="anchor" href="#dataloader">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>train_data_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(
+</span></span><span style="display:flex;"><span>    train_dataset, 
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#f92672">=</span>batch_size,
+</span></span><span style="display:flex;"><span>    shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    num_workers<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    prefetch_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>t1_data_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(
+</span></span><span style="display:flex;"><span>    t1_dataset, 
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#f92672">=</span>batch_size,
+</span></span><span style="display:flex;"><span>    shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    num_workers<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    prefetch_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>t2_data_loader <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>utils<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>DataLoader(
+</span></span><span style="display:flex;"><span>    t2_dataset, 
+</span></span><span style="display:flex;"><span>    batch_size<span style="color:#f92672">=</span>t2_batch_size,
+</span></span><span style="display:flex;"><span>    shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    num_workers<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    prefetch_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><pre><code>/opt/conda/lib/python3.10/site-packages/torch/utils/data/dataloader.py:561: UserWarning: This DataLoader will create 5 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data_iter <span style="color:#f92672">=</span> iter(train_data_loader)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get the first batch</span>
+</span></span><span style="display:flex;"><span>batch <span style="color:#f92672">=</span> next(data_iter)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Batch images and masks shape: &#34;</span>, batch[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>shape, batch[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;dtype and device: &#34;</span>, batch[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>dtype, batch[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>device)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;dtype and device: &#34;</span>, batch[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>dtype, batch[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>device)
+</span></span></code></pre></div><pre><code>Batch images and masks shape:  torch.Size([1, 3, 1024, 1024]) torch.Size([1, 1, 1024, 1024])
+dtype and device:  torch.float32 cpu
+dtype and device:  torch.float32 cpu
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>temp_decoder_output <span style="color:#f92672">=</span> sam_decoder(batch[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>to(device))
+</span></span><span style="display:flex;"><span>print(temp_decoder_output<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>print(torch<span style="color:#f92672">.</span>unique(temp_decoder_output))
+</span></span></code></pre></div><pre><code>torch.Size([1, 1, 1024, 1024])
+tensor([0.0035, 0.0040, 0.0040,  ..., 0.9227, 0.9258, 0.9289], device='cuda:0',
+       grad_fn=&lt;Unique2Backward0&gt;)
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># total steps</span>
+</span></span><span style="display:flex;"><span>total_steps <span style="color:#f92672">=</span> len(train_dataset)<span style="color:#f92672">//</span>batch_size
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Total steps in each epoch: &#34;</span>, total_steps)
+</span></span></code></pre></div><pre><code>Total steps in each epoch:  135
+</code></pre>
+<h2 id="training-on-the-dataset">
+  Training on the dataset
+  <a class="anchor" href="#training-on-the-dataset">#</a>
+</h2>
+<ul>
+<li>
+<h4 id="only-using-135-images">
+  Only using 135 images
+  <a class="anchor" href="#only-using-135-images">#</a>
+</h4>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Binary Cross Entropy Loss</span>
+</span></span><span style="display:flex;"><span>bce_loss <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>BCELoss()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optimizer</span>
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Adam(sam_decoder<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>running_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span>mini_batch_event <span style="color:#f92672">=</span> int(total_steps<span style="color:#f92672">*</span><span style="color:#ae81ff">0.25</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Mini_batch_event: &#34;</span>, mini_batch_event)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(epochs):
+</span></span><span style="display:flex;"><span>    sam_decoder<span style="color:#f92672">.</span>train()
+</span></span><span style="display:flex;"><span>    epoch_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    mini_event_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, data <span style="color:#f92672">in</span> enumerate(train_data_loader, <span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>        images, masks <span style="color:#f92672">=</span> data
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># moving them to device</span>
+</span></span><span style="display:flex;"><span>        images <span style="color:#f92672">=</span> images<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>        masks <span style="color:#f92672">=</span> masks<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># zero the parameter </span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        pred_masks <span style="color:#f92672">=</span> sam_decoder(images)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> bce_loss(pred_masks, masks)
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        epoch_loss <span style="color:#f92672">+=</span> loss<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>        mini_event_loss <span style="color:#f92672">+=</span> loss<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">%</span> mini_batch_event <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:    <span style="color:#75715e"># print every nth mini-batches</span>
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;[</span><span style="color:#e6db74">{</span>epoch <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, </span><span style="color:#e6db74">{</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">:</span><span style="color:#e6db74">5d</span><span style="color:#e6db74">}</span><span style="color:#e6db74">] loss: </span><span style="color:#e6db74">{</span>mini_event_loss <span style="color:#f92672">/</span> mini_batch_event<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>            mini_event_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;=====&gt; [</span><span style="color:#e6db74">{</span>epoch <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, </span><span style="color:#e6db74">{</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">:</span><span style="color:#e6db74">5d</span><span style="color:#e6db74">}</span><span style="color:#e6db74">] loss: </span><span style="color:#e6db74">{</span>epoch_loss <span style="color:#f92672">/</span> total_steps<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(i <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span></code></pre></div><pre><code>Mini_batch_event:  33
+[1,     1] loss: 0.011
+[1,    34] loss: 0.205
+[1,    67] loss: 0.063
+[1,   100] loss: 0.045
+[1,   133] loss: 0.034
+=====&gt; [1,   135] loss: 0.088
+[2,     1] loss: 0.001
+[2,    34] loss: 0.028
+[2,    67] loss: 0.032
+[2,   100] loss: 0.029
+[2,   133] loss: 0.028
+=====&gt; [2,   135] loss: 0.029
+[3,     1] loss: 0.001
+[3,    34] loss: 0.021
+[3,    67] loss: 0.029
+[3,   100] loss: 0.026
+[3,   133] loss: 0.026
+=====&gt; [3,   135] loss: 0.025
+[4,     1] loss: 0.000
+[4,    34] loss: 0.025
+[4,    67] loss: 0.017
+[4,   100] loss: 0.020
+[4,   133] loss: 0.027
+=====&gt; [4,   135] loss: 0.023
+[5,     1] loss: 0.001
+[5,    34] loss: 0.021
+[5,    67] loss: 0.019
+[5,   100] loss: 0.021
+[5,   133] loss: 0.027
+=====&gt; [5,   135] loss: 0.022
+[6,     1] loss: 0.001
+[6,    34] loss: 0.023
+[6,    67] loss: 0.017
+[6,   100] loss: 0.026
+[6,   133] loss: 0.020
+=====&gt; [6,   135] loss: 0.021
+[7,     1] loss: 0.000
+[7,    34] loss: 0.016
+[7,    67] loss: 0.023
+[7,   100] loss: 0.020
+[7,   133] loss: 0.019
+=====&gt; [7,   135] loss: 0.020
+[8,     1] loss: 0.001
+[8,    34] loss: 0.018
+[8,    67] loss: 0.020
+[8,   100] loss: 0.024
+[8,   133] loss: 0.021
+=====&gt; [8,   135] loss: 0.021
+[9,     1] loss: 0.001
+[9,    34] loss: 0.016
+[9,    67] loss: 0.017
+[9,   100] loss: 0.022
+[9,   133] loss: 0.023
+=====&gt; [9,   135] loss: 0.020
+[10,     1] loss: 0.000
+[10,    34] loss: 0.017
+[10,    67] loss: 0.024
+[10,   100] loss: 0.019
+[10,   133] loss: 0.019
+=====&gt; [10,   135] loss: 0.020
+[11,     1] loss: 0.001
+[11,    34] loss: 0.014
+[11,    67] loss: 0.023
+[11,   100] loss: 0.021
+[11,   133] loss: 0.015
+=====&gt; [11,   135] loss: 0.018
+</code></pre>
+<h3 id="setting-the-model-for-inferenceeval">
+  Setting the model for inference/eval
+  <a class="anchor" href="#setting-the-model-for-inferenceeval">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>sam_decoder<span style="color:#f92672">.</span>eval()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;SAM model + Custom Decoder set to EVAL mode&#34;</span>)
+</span></span></code></pre></div><pre><code>SAM model + Custom Decoder set to EVAL mode
+</code></pre>
+<h3 id="plotting-few-outputs">
+  Plotting few outputs
+  <a class="anchor" href="#plotting-few-outputs">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>inpt_0, gt_0 <span style="color:#f92672">=</span> t1_dataset[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>], t1_dataset[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    decoder_opt <span style="color:#f92672">=</span> sam_decoder(inpt_0<span style="color:#f92672">.</span>to(device)<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>print(decoder_opt<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>decoder_opt_np <span style="color:#f92672">=</span> ((decoder_opt <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>gt_0_np <span style="color:#f92672">=</span> gt_0<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Np arr shape: &#34;</span>, decoder_opt_np<span style="color:#f92672">.</span>shape, gt_0_np<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> inpt_0<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>transpose(temp_img_np, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> temp_img_np<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a figure with one row and two columns of subplots</span>
+</span></span><span style="display:flex;"><span>fig, axs <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img1 on the first subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>imshow(gt_0_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the first subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img2 on the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>imshow(decoder_opt_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img3 on the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>imshow(temp_img_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Adjust the spacing between the subplots</span>
+</span></span><span style="display:flex;"><span>fig<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show the figure</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><pre><code>torch.Size([1, 1, 1024, 1024])
+Np arr shape:  (1024, 1024, 1) (1024, 1024, 1)
+</code></pre>
+<p><img src="promtless-taskspecific-finetuning-segment-anything/output_29_1.png" alt="png" /></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>inpt_0, gt_0 <span style="color:#f92672">=</span> t1_dataset[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>], t1_dataset[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    decoder_opt <span style="color:#f92672">=</span> sam_decoder(inpt_0<span style="color:#f92672">.</span>to(device)<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>print(decoder_opt<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>decoder_opt_np <span style="color:#f92672">=</span> ((decoder_opt <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>gt_0_np <span style="color:#f92672">=</span> gt_0<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Np arr shape: &#34;</span>, decoder_opt_np<span style="color:#f92672">.</span>shape, gt_0_np<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> inpt_0<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>transpose(temp_img_np, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> temp_img_np<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a figure with one row and two columns of subplots</span>
+</span></span><span style="display:flex;"><span>fig, axs <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img1 on the first subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>imshow(gt_0_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the first subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img2 on the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>imshow(decoder_opt_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img3 on the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>imshow(temp_img_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Adjust the spacing between the subplots</span>
+</span></span><span style="display:flex;"><span>fig<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show the figure</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><pre><code>torch.Size([1, 1, 1024, 1024])
+Np arr shape:  (1024, 1024, 1) (1024, 1024, 1)
+</code></pre>
+<p><img src="promtless-taskspecific-finetuning-segment-anything/output_30_1.png" alt="png" /></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>inpt_0, gt_0 <span style="color:#f92672">=</span> t2_dataset[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>], t2_dataset[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    decoder_opt <span style="color:#f92672">=</span> sam_decoder(inpt_0<span style="color:#f92672">.</span>to(device)<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>print(decoder_opt<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>decoder_opt_np <span style="color:#f92672">=</span> ((decoder_opt <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>gt_0_np <span style="color:#f92672">=</span> gt_0<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Np arr shape: &#34;</span>, decoder_opt_np<span style="color:#f92672">.</span>shape, gt_0_np<span style="color:#f92672">.</span>shape)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> inpt_0<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cpu&#34;</span>)<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>transpose(temp_img_np, [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>temp_img_np <span style="color:#f92672">=</span> temp_img_np<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a figure with one row and two columns of subplots</span>
+</span></span><span style="display:flex;"><span>fig, axs <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img1 on the first subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>imshow(gt_0_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the first subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img2 on the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>imshow(decoder_opt_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display img3 on the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>imshow(temp_img_np)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hide the axes of the second subplot</span>
+</span></span><span style="display:flex;"><span>axs[<span style="color:#ae81ff">2</span>]<span style="color:#f92672">.</span>axis(<span style="color:#e6db74">&#39;off&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Adjust the spacing between the subplots</span>
+</span></span><span style="display:flex;"><span>fig<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show the figure</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><pre><code>torch.Size([1, 1, 1024, 1024])
+Np arr shape:  (1024, 1024, 1) (1024, 1024, 1)
+</code></pre>
+<p><img src="promtless-taskspecific-finetuning-segment-anything/output_31_1.png" alt="png" /></p>
+<h3 id="t1-dataset-loss">
+  T1 Dataset Loss
+  <a class="anchor" href="#t1-dataset-loss">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>t1_total_steps <span style="color:#f92672">=</span> len(t1_dataset)<span style="color:#f92672">//</span>batch_size
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;T1 total steps: &#34;</span>, t1_total_steps)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    t1_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, test_data <span style="color:#f92672">in</span> enumerate(t1_data_loader, <span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># get the inputs; data is a list of [inputs, labels]</span>
+</span></span><span style="display:flex;"><span>        test_inputs, test_labels <span style="color:#f92672">=</span> test_data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># moving to device</span>
+</span></span><span style="display:flex;"><span>        test_inputs <span style="color:#f92672">=</span> test_inputs<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>        test_labels <span style="color:#f92672">=</span> test_labels<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        pred_masks <span style="color:#f92672">=</span> sam_decoder(test_inputs)
+</span></span><span style="display:flex;"><span>        t1_step_loss <span style="color:#f92672">=</span> bce_loss(pred_masks, test_labels)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        t1_loss <span style="color:#f92672">+=</span> t1_step_loss
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;-------------&gt; Test T1 Loss: </span><span style="color:#e6db74">{</span>t1_loss <span style="color:#f92672">/</span> t1_total_steps<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span></code></pre></div><pre><code>T1 total steps:  1211
+-------------&gt; Test T1 Loss: 0.019
+</code></pre>
+<h3 id="t2-dataset-loss">
+  T2 dataset loss
+  <a class="anchor" href="#t2-dataset-loss">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>t2_total_steps <span style="color:#f92672">=</span> len(t2_dataset)<span style="color:#f92672">//</span>t2_batch_size
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;T1 total steps: &#34;</span>, t2_total_steps)
+</span></span><span style="display:flex;"><span>iou_loss_li <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    t2_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, test_data <span style="color:#f92672">in</span> enumerate(t2_data_loader, <span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(i<span style="color:#f92672">%</span>int(t2_total_steps<span style="color:#f92672">*</span><span style="color:#ae81ff">0.20</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>            print(i)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># get the inputs; data is a list of [inputs, labels]</span>
+</span></span><span style="display:flex;"><span>        test_inputs, test_labels <span style="color:#f92672">=</span> test_data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># moving to device</span>
+</span></span><span style="display:flex;"><span>        test_inputs <span style="color:#f92672">=</span> test_inputs<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>        test_labels <span style="color:#f92672">=</span> test_labels<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Prediction</span>
+</span></span><span style="display:flex;"><span>        pred_masks <span style="color:#f92672">=</span> sam_decoder(test_inputs)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># BCE loss</span>
+</span></span><span style="display:flex;"><span>        t2_step_loss <span style="color:#f92672">=</span> bce_loss(pred_masks, test_labels)
+</span></span><span style="display:flex;"><span>        t2_loss <span style="color:#f92672">+=</span> t2_step_loss
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># IOU loss</span>
+</span></span><span style="display:flex;"><span>        intersection <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>logical_and((pred_masks <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">1.0</span>, test_labels)
+</span></span><span style="display:flex;"><span>        union <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>logical_or((pred_masks <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.5</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">1.0</span>, test_labels)
+</span></span><span style="display:flex;"><span>        iou <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>sum(intersection) <span style="color:#f92672">/</span> torch<span style="color:#f92672">.</span>sum(union)
+</span></span><span style="display:flex;"><span>        iou_loss_li<span style="color:#f92672">.</span>append(iou)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;-------------&gt; Test T1 Loss: </span><span style="color:#e6db74">{</span>t2_loss <span style="color:#f92672">/</span> t2_total_steps<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(f&#39;-------------&gt; Test T1 IOU Loss: {iou_loss_li}&#39;)</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;IOU LOSS: &#34;</span>, sum(iou_loss_li)<span style="color:#f92672">/</span>(len(iou_loss_li)))
+</span></span></code></pre></div><pre><code>T1 total steps:  274
+0
+54
+108
+162
+216
+270
+-------------&gt; Test T1 Loss: 0.017
+IOU LOSS:  tensor(0.9103, device='cuda:0')
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(sum(iou_loss_li)<span style="color:#f92672">/</span>(len(iou_loss_li)))
+</span></span></code></pre></div><pre><code>tensor(0.9103, device='cuda:0')
+</code></pre>
+<h2 id="saving-the-model">
+  Saving the model
+  <a class="anchor" href="#saving-the-model">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(sam_decoder<span style="color:#f92672">.</span>state_dict(), os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(save_path, <span style="color:#e6db74">&#34;sam_enc_custom_decoder.pt&#34;</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#task">Task</a>
+      <ul>
+        <li><a href="#finetune-sam-model-on-custom-dataset-to-segment-objects-without-prompts-during-training-and-inference">Finetune SAM model on Custom dataset to segment objects <strong>without prompts</strong> (during training and inference)</a></li>
+      </ul>
+    </li>
+    <li><a href="#approach">Approach</a>
+      <ul>
+        <li><a href="#how-does-sam-work-high-level">How does SAM work (high-level):</a></li>
+        <li><a href="#what-i-tried-with-code-below">What I tried with code below:</a></li>
+        <li><a href="#dataset-used">Dataset Used:</a></li>
+        <li><a href="#training">Training:</a></li>
+        <li><a href="#results">Results:</a></li>
+        <li><a href="#installing-sam-dependencies-and-loading-the-model">Installing SAM dependencies and loading the model</a></li>
+      </ul>
+    </li>
+    <li><a href="#building-the-sam-decoder">Building the SAM decoder</a>
+      <ul>
+        <li></li>
+        <li><a href="#building-the-image-data-pipeline">Building the image data pipeline</a></li>
+        <li><a href="#3-datasets">3 datasets:</a></li>
+        <li><a href="#dataloader">DataLoader</a></li>
+      </ul>
+    </li>
+    <li><a href="#training-on-the-dataset">Training on the dataset</a>
+      <ul>
+        <li></li>
+        <li><a href="#setting-the-model-for-inferenceeval">Setting the model for inference/eval</a></li>
+        <li><a href="#plotting-few-outputs">Plotting few outputs</a></li>
+        <li><a href="#t1-dataset-loss">T1 Dataset Loss</a></li>
+        <li><a href="#t2-dataset-loss">T2 dataset loss</a></li>
+      </ul>
+    </li>
+    <li><a href="#saving-the-model">Saving the model</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
