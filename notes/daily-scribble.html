@@ -4,15 +4,11 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Daily Scribble:#Scribbling the content seen in the day:
-January:#vLLM: Easy, fast, and cheap LLM serving for everyone
-https://github.com/vllm-project/vllmInvented the concept of &ldquo;PagedAttention&rdquo; uses xFormer internally, so indirectly uses FlashAttention and FlashAttention2 as well Has support for continuous batching (very useful for transformer/decoder architecture) When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference Fooocus:
-Fooocus is an image generating software.">
+January:#vLLM: Easy, fast, and cheap LLM serving for everyone https://github.com/vllm-project/vllmInvented the concept of &ldquo;PagedAttention&rdquo; uses xFormer internally, so indirectly uses FlashAttention and FlashAttention2 as well Has support for continuous batching (very useful for transformer/decoder architecture) When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference Fooocus: Fooocus is an image generating software.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Daily-Scribble-2024" />
 <meta property="og:description" content="Daily Scribble:#Scribbling the content seen in the day:
-January:#vLLM: Easy, fast, and cheap LLM serving for everyone
-https://github.com/vllm-project/vllmInvented the concept of &ldquo;PagedAttention&rdquo; uses xFormer internally, so indirectly uses FlashAttention and FlashAttention2 as well Has support for continuous batching (very useful for transformer/decoder architecture) When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference Fooocus:
-Fooocus is an image generating software." />
+January:#vLLM: Easy, fast, and cheap LLM serving for everyone https://github.com/vllm-project/vllmInvented the concept of &ldquo;PagedAttention&rdquo; uses xFormer internally, so indirectly uses FlashAttention and FlashAttention2 as well Has support for continuous batching (very useful for transformer/decoder architecture) When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference Fooocus: Fooocus is an image generating software." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/daily-scribble.html" /><meta property="article:section" content="notes" />
 
@@ -22,7 +18,7 @@ Fooocus is an image generating software." />
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.031ca75784c82cc32d152ffceb44a61df5896a8c66d467d525b96dd2c89caeb2.js" integrity="sha256-AxynV4TILMMtFS/860SmHfWJaoxm1GfVJblt0sicrrI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6fa972e17892823b9ce93275c5c6cc60919a5d86e272e603b407b5c0b5ec2843.js" integrity="sha256-b6ly4XiSgjuc6TJ1xcbMYJGaXYbicuYDtAe1wLXsKEM=" crossorigin="anonymous"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
 <script>
@@ -219,6 +215,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/notes/general/benchmarking-with-torchserve.html" class="">Benchmarking Inference with Torchserve</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/evidence-lower-bound-elbo.html" class="">ELBO: Evidence Lower Bound</a>
   
 
         </li>
@@ -560,8 +569,7 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#january">#</a>
 </h2>
 <ul>
-<li>
-<p><strong>vLLM:</strong> Easy, fast, and cheap LLM serving for everyone</p>
+<li><strong>vLLM:</strong> Easy, fast, and cheap LLM serving for everyone
 <ul>
 <li><a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener">https://github.com/vllm-project/vllm</a>
 </li>
@@ -571,8 +579,10 @@ https://github.com/alex-shpak/hugo-book
 <li>When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference</li>
 </ul>
 </li>
-<li>
-<p><strong>Fooocus:</strong></p>
+</ul>
+<hr>
+<ul>
+<li><strong>Fooocus:</strong>
 <ul>
 <li>Fooocus is an image generating software. Fooocus is a rethinking of Stable Diffusion and Midjourney’s designs.</li>
 <li><strong>Made by the controlnet authors</strong></li>
@@ -584,8 +594,10 @@ https://github.com/alex-shpak/hugo-book
 </li>
 </ul>
 </li>
-<li>
-<p><strong>torchserve:</strong></p>
+</ul>
+<hr>
+<ul>
+<li><strong>torchserve:</strong>
 <ul>
 <li>Started with g4dn.xlarge instance type and model: ViT L16. Later updgraded to G4Dn.2xlarge to check the effect of increasing the CPU number and CPU memory.
 <ul>
@@ -618,6 +630,8 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ul>
+<hr>
+<hr>
 <h2 id="february">
   February:
   <a class="anchor" href="#february">#</a>
@@ -666,6 +680,39 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ul>
+<hr>
+<ul>
+<li><strong>Shape values:</strong>
+<ul>
+<li>For a given record, we have following values: y_pred, y_test, x_pred &ndash;&gt; if shape_val was the shap_values for the given x_pred and exp_val was the expected valulue for the entire set (which is nothing but the average of the y_pred)
+<ul>
+<li>Then, <strong>y_pred == sum(shap_value) + exp_val</strong></li>
+</ul>
+</li>
+<li>The feature shap value is 0 if feature value is missing or null.</li>
+<li>While using XGBoost, if we are using the native library (Not the one integrated with SKlearn), we can get shap values directly from the predicted value.</li>
+<li>(with the help of Google Gemini) <em><strong>How are shap values computed ?</strong></em> (<strong>NOTE:</strong> Very high level explanation)
+<ul>
+<li>First compute the baseline prediction value &raquo;&gt; which is nothing but the expected value for all the predictions (average of entire y_pred)</li>
+<li><em><strong>Compute Marginal Contributions and Average:</strong></em>
+<ul>
+<li>Suppose we had 4 features, and we have started with calculation of shap value for feature1:
+<ul>
+<li>then compute all possible combination of feature 1 with other features</li>
+<li>like: (feature1), (feature1, feature2), (feature1, feature3), (feature1,2,3)&hellip;.. etc etc</li>
+<li>When we just consider feature1, all other values will be NULL or 0 in the input</li>
+<li>Calculate the contribute of every combination for a given feature and average those &raquo;&gt; This is the shap value for a given feature1 for a single record.</li>
+<li>Now, perform this for every feature for every record within the dataset.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 </article>
  
       

@@ -18,6 +18,15 @@ With various different configuration ranging from min/max worker = 1 to 4 and ba
     </item>
     
     <item>
+      <title>ELBO: Evidence Lower Bound</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/evidence-lower-bound-elbo.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/evidence-lower-bound-elbo.html</guid>
+      <description>Evidence Lower Bound (ELBO):#Last Edited 18/02/2024 </description>
+    </item>
+    
+    <item>
       <title>General Notes</title>
       <link>https://yogendra-yatnalkar.github.io/notes/general/general-general.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
