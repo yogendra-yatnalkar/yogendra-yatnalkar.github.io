@@ -57,6 +57,15 @@ TorchServe: - to check model status, I am using port 8081 - for inference, I am 
     </item>
     
     <item>
+      <title>SQL</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/sql.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/sql.html</guid>
+      <description>SQL Notes:#Cross Join vs Full Join:#Full join (which is always outer), requires atleast 1 common key/column between 2 tables which are about to be joined Cross Join does not need any kind of ON clause (which is common column) between two column. Every row one table will get associated with every row of ther other table. General Notes:#There is nothing called as Left Inner Join or Right Inner Join &amp;hellip;.</description>
+    </item>
+    
+    <item>
       <title>Un-Answered Questions</title>
       <link>https://yogendra-yatnalkar.github.io/notes/general/unanswered-questions.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
