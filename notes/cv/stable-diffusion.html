@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stable Diffusion Notes#Last Edited 28/04/2024 What is generative AI: Sampling from a latent probability distribution
+Latent Space: Representation of a data-item in embedding space where similar items are close-by
+Joint Probability: likelihood of 2 events occurring together
+Conditional Prob: For two events A,B: Prob of event B when event A has occurred Marginalized Prob: For a joint prob between event A and B, what is the prob of event A irrespective of prob of event B Lets say all possible value of event B are: B1, B2,&hellip;.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Stable Diffusion Notes" />
+<meta property="og:description" content="Stable Diffusion Notes#Last Edited 28/04/2024 What is generative AI: Sampling from a latent probability distribution
+Latent Space: Representation of a data-item in embedding space where similar items are close-by
+Joint Probability: likelihood of 2 events occurring together
+Conditional Prob: For two events A,B: Prob of event B when event A has occurred Marginalized Prob: For a joint prob between event A and B, what is the prob of event A irrespective of prob of event B Lets say all possible value of event B are: B1, B2,&hellip;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/cv/stable-diffusion.html" /><meta property="article:section" content="notes" />
+
+
+<title>Stable Diffusion Notes | Yogendra Y.</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.f1f8f88a805680936a9b7c91a59d39015f1b24561e2c7a1ad5099e3cc51fa593.js" integrity="sha256-8fj4ioBWgJNqm3yRpZ05AV8bJFYeLHoa1QmePMUfpZM=" crossorigin="anonymous"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DTLBL509Z2', { 'anonymize_ip': false });
+}
+</script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Yogendra Y.</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle"  />
+    <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
+      <a href="/blogs.html" class="">Blogs</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/promptless-taskspecific-finetuning-segment-anything.html" class="">Promptless Task-Specific Finetuning of MetaAI Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/end-to-end-mlops-on-aws.html" class="">End-to-End MLOps on AWS (3 blogs)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/sam-automatic-semantic-segmentation.html" class="">Meta-AI SAM: AutoMatic Semantic Segmentation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/backtracking_aws_lookout_for_vision_service.html" class="">Backtracking AWS Lookout for Vision Service</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/finding-nth-aggregate-from-every-group-aws-athena.html" class="">Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
+    <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
+      <a role="button" class="">Notes</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/daily-scribble.html" class="">Daily-Scribble-2024</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle"  />
+    <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
+      <a role="button" class="">General</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/benchmarking-with-torchserve.html" class="">Benchmarking Inference with Torchserve</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/dsa.html" class="">DSA Basic Notes:</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/evidence-lower-bound-elbo.html" class="">ELBO: Evidence Lower Bound</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/general-general.html" class="">General Notes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/kl-divergence.html" class="">Kullback-Leibler Divergence (KL Divergence)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/model-serving.html" class="">Model Serving</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/sql.html" class="">SQL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/unanswered-questions.html" class="">Un-Answered Questions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/vector-store-and-search.html" class="">Vector Search and Stores</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/api-performance-improvement.html" class="">Web-API performance improvement</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9a03a2b641627d6ec5d4b7e484a1675b" class="toggle"  />
+    <label for="section-9a03a2b641627d6ec5d4b7e484a1675b" class="flex justify-between">
+      <a role="button" class="">AWS</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/aws/aws-general.html" class="">AWS General</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle" checked />
+    <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
+      <a role="button" class="">CV</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/sam-segment-anything.html" class="">SAM-Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/self-supervised-learning.html" class="">Self Supervised Learning</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/stable-diffusion.html" class="active">Stable Diffusion Notes</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle"  />
+    <label for="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="flex justify-between">
+      <a role="button" class="">NLP</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/bert.html" class="">BERT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/nlp_general.html" class="">NLP-General</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/transformers_at_training_vs_inference.html" class="">Transformers at Training vs Inference</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/resume/" class="">Resume</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-77dedc5429a7c70061bd8ace32d09bfc" class="toggle"  />
+    <label for="section-77dedc5429a7c70061bd8ace32d09bfc" class="flex justify-between">
+      <a href="/side-projects.html" class="">Side-Projects</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/side-projects/ai-assisted-video-generation.html" class="">AI Assisted Video Generation with White-Board Animations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Stable Diffusion Notes</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#coding-stable-diffusion-from-scratch-in-pytorch---umar-jamilhttpswwwyoutubecomwatchvzbkpap_6tgi"><a href="https://www.youtube.com/watch?v=ZBKpAp_6TGI">Coding Stable Diffusion From Scratch in Pytorch - Umar Jamil</a></a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="stable-diffusion-notes">
+  Stable Diffusion Notes
+  <a class="anchor" href="#stable-diffusion-notes">#</a>
+</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Edited</td>
+<td>28/04/2024</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>What is generative AI: Sampling from a latent probability distribution</p>
+<ul>
+<li>
+<p>Latent Space: Representation of a data-item in embedding space where similar items are close-by</p>
+</li>
+<li>
+<p>Joint Probability: likelihood of 2 events occurring together</p>
+<ul>
+<li>Conditional Prob: For two events A,B: Prob of event B when event A has occurred</li>
+<li>Marginalized Prob: For a joint prob between event A and B, what is the prob of event A irrespective of prob of event B
+<ul>
+<li>Lets say all possible value of event B are: B1, B2,&hellip;. Bn</li>
+<li>Marginalized prob of event A = prob(A|B1)*prob(B1) + prob(A|B2)*prob(B2) &hellip;&hellip; + prob(A|Bn)*prob(Bn)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Why the heck are we even going into joint probability instead of DDPM ?</p>
+<ul>
+<li>DDPM uses VAE where every pixel is a probabiltiy distribution in itself.</li>
+<li>So when we are generating one sample image, a given generated pixel value is dependent on all other pixel values (which makes sense, as the image is a grid of pixels, individual pixel values are dependent on its neighbours)</li>
+</ul>
+</li>
+<li>
+<p>Binomail Distribution:</p>
+<ul>
+<li>
+<p>Descrete probability distribution</p>
+</li>
+<li>
+<p>This 	is a probabiltiy distribution which tell the probability of getting K successes in N trials</p>
+<ul>
+<li>
+<p>Note: Each trial is called a &ldquo;Bernoulli Trail&rdquo;</p>
+</li>
+<li>
+<p><img src="notes/image-1.png" alt="probabiltiy_distribution" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Real life application: Helps in making a random judgement with limited amount of data</p>
+</li>
+<li>
+<p>My Notes from 3B1B video:</p>
+<ul>
+<li>Binomial distribution works on probabilties with binary actions: (event Yes or event No &ndash;&gt; Example: Coin Toss)</li>
+<li>It tells us, <strong>What is the probability of seeing a data sequence given  the probability of success</strong> &mdash;&gt; <strong>Which is likelihood itself i.e what is the likelihood of getting a sequence given a probability/probability-distribution is available</strong>
+<ul>
+<li>Example: Imagine we have a fair coin with P(H) = 0.5, then what is the proability that if we toss it 10 times, there will be heads 8 times.</li>
+<li>From the above formulae: N = 10, k = 8, p = 0.5 &ndash;&gt; 10C8 * 0.5<strong>8 * 0.5</strong>2 = 0.044</li>
+<li>Only 4% chance that this sequence can occur &ndash;&gt; This is possible as we have a fair coin</li>
+<li>Lets take another example, where out of 10 times, head will appear 6 times given P(H) is still 0.5
+<ul>
+<li>N=10, k=5, p=0.5 &ndash;&gt; 	0.205 &ndash;&gt; 20% likelihood</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>DDPM:</p>
+<ul>
+<li>
+<p>What is Nvidia&rsquo;s Progressive GAN</p>
+<ul>
+<li>Progressive GAN:
+<ul>
+<li>Normal GAN but start with: 4x4 block first, once this part is converged, go ahead</li>
+<li>Next thing, noise will be 4x4 &ndash;&gt; upsmaple: 8x8 &ndash;&gt; Generator output: 8x8 &ndash;&gt; Downsample 4x4 &ndash;&gt; check with discriminator</li>
+<li>Continue the above step from 4x4 and reach till desired state &ndash; example: 1024x1024</li>
+<li>WHAT IT SOLVES:
+<ul>
+<li>It is difficult to converge any GAN and get even more difficult on larger images</li>
+<li>starting with small shape and going ahead helps</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Inception Score:</p>
+<ul>
+<li>Generate 30k images form the generative model</li>
+<li>pass it through a inception network</li>
+<li>Important: calculate the conditional and marginal probabiltiy distribution
+<ul>
+<li>Conditional Probability Distribution:
+<ul>
+<li>record all the values from the softmax layer for the 30K images inferrred</li>
+<li>The entropy in this case (for individual sample) should be high &ndash;&gt; which means the model is confient in classifying the input &ndash;&gt; which in short means the generated image is of quality for which the model is able to predict well (generated quality + object refineness)</li>
+</ul>
+</li>
+<li>Marginal Probability Distribution:
+<ul>
+<li>For thr 30k inferred probability scores per calls, avg per class</li>
+<li>The avg value is the Marginal probabiltiy</li>
+<li>The entropy of marginal probability should be high which means the data has variety of samples
+SIDE NOTE: At one place, I have also read that instead of avg the conditional probability, we infer from real images (fraction of images from every class) and avg from that (instead of using generated images) &ndash;&gt; and this forms as the marginal probability aginst which the KL divergece will be calculated.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Caluculate the KL divergence between 2 marginal distribution and Conditional distribution</li>
+<li>KL divergence is the unsymmetric relative entropy between the 2 probability distributions</li>
+<li>IS score is: <strong>e raise to KL divergence</strong></li>
+</ul>
+</li>
+</ul>
+<p>FID SCORE (Yet to read in detail)</p>
+<hr>
+<ul>
+<li>
+<p>Markov Chain Property:</p>
+<ul>
+<li>A mathematical framework containing a series of events, where the probability of each event depends on the immediately preciding event (and not on the entire series)</li>
+</ul>
+</li>
+<li>
+<p>What is a Stochastic Process ?</p>
+<ul>
+<li>In Mathematics, a stochastic process is an event caused due to sequence of random variables in a given probability space</li>
+</ul>
+</li>
+<li>
+<p>What is a diffusion process (actual definition):</p>
+<ul>
+<li>the movement of molecules from region of higher concentration to regions of lower concentration</li>
+<li>In case of SD, it is a stochastic markov process having continuous sample path which converts our input from a complex distribution to a simple distribution (imgine from a complex image space (the one we look) to a standard normal gaussian noise)</li>
+</ul>
+</li>
+<li>
+<p>Why SD is not called some variant of VAE and called diffusion specifically ?</p>
+<ul>
+<li>We are converting the input to a standard normal gaussian distribution which is similar to VAE, but in VAE, this happens in a single step and in our case, we are taking multiple steps to reach our end-goal where-in, each step is dependent on the previous step only.</li>
+<li>we are doing this in a hope that this is easier to converge as compared to VAE</li>
+</ul>
+</li>
+<li>
+<p>Variational Bound:</p>
+<ul>
+<li>
+<p>Fact: Log is a concave function:</p>
+<ul>
+<li><img src="notes/image.png" alt="alt text" /></li>
+<li><a href="https://www.youtube.com/watch?v=pStDscJh2Wo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=pStDscJh2Wo</a>
+</li>
+</ul>
+</li>
+<li>
+<p>What is likelihoood ?</p>
+<ul>
+<li>it measures how well a model fits the dataset</li>
+<li>For a given input, using a given model M, we predict with a probability p that the outcome will be o &ndash;&gt; How can we trust this ? &ndash;&gt; Likelihood helps us over here in determining the amount of trust.</li>
+<li>(Yogendra&rsquo;s explanation &ndash; future readers, read it with a pinch of salt) So when we train a classification model, from first epoch itself we have a model with us which assigns a probability that a given object will be to some outcome o. Within the training process, we are maximising our turst on the model by using cross entropy loss (which is nothing but negative log-likelihood loss)</li>
+<li>Likelihood deals with fitting model, given some data</li>
+<li>Probability quantifies anticipation of outcome from a know distribution,</li>
+<li>Likelihood quantifies trust in the model from which we assume the observed data is coming</li>
+<li><a href="https://hrngok.github.io/posts/likelihood/" target="_blank" rel="noopener">https://hrngok.github.io/posts/likelihood/</a>
+</li>
+</ul>
+</li>
+</ul>
+<p>For further catchup, read: <a href="https://xyang35.github.io/2017/04/14/variational-lower-bound/" target="_blank" rel="noopener">https://xyang35.github.io/2017/04/14/variational-lower-bound/</a>
+</p>
+</li>
+<li>
+<p>Extra notes:</p>
+<ul>
+<li>what is descritization of a function: Converting a continues function into descrete function or parts</li>
+<li>We converted a image from some space to gaussian space in a descrete number of steps
+<ul>
+<li>in this process, we step by step, added small gaussian noise to the input and eventually, the input becomes gaussian noise itself.</li>
+<li>formula: xt = root(1 - beta_t)*x(t-1) * root(beta_t)*Gaussian_space(mean = 0, std = 1)
+-&gt; Start with small beta_t &hellip;.. and eventually incease it
+-&gt; which shows that, at start the noise will be very less and at the last step, the (1-beta_t) will become 0 or close to 0, by which the input becomes 0 and the xt will be equal to some form of gaussain distribution (with full of noise)
+<ul>
+<li>VAE does something similar, but it does it in a single step. <strong>In VAE, when the image is generated back from multi-variate gaussian normal distribution (vector of mean and std), it happens in a single step. But you can imagine, since it has not learned the middle steps, the model will not converge well, which also means the generation quality will degrade.</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The change of beta from t0 to time-step t take a linear schedule (and not a constant increase) &ndash;&gt; that is because, till 70% of the process, the jumps should be higher (highest at the start) and when it is close to the end, the jumps should be very small.</li>
+<li>Cross entropy is average of negative log-likelihood function. Log-likelihood explains how good a mathematical model fits a function</li>
+</ul>
+</li>
+</ul>
+<hr>
+<hr>
+<h2 id="coding-stable-diffusion-from-scratch-in-pytorch---umar-jamilhttpswwwyoutubecomwatchvzbkpap_6tgi">
+  <a href="https://www.youtube.com/watch?v=ZBKpAp_6TGI" target="_blank" rel="noopener">Coding Stable Diffusion From Scratch in Pytorch - Umar Jamil</a>
+
+  <a class="anchor" href="#coding-stable-diffusion-from-scratch-in-pytorch---umar-jamilhttpswwwyoutubecomwatchvzbkpap_6tgi">#</a>
+</h2>
+<ul>
+<li>What is generative model ?
+<ul>
+<li>Learn the prob dist of training data and during inference, samples from the learned dist</li>
+</ul>
+</li>
+<li>The primary diffference between, mapping of image to gaussian step is a markov chain (sequence of events), instead of being a single event like VAE.</li>
+<li><strong>Forward Process</strong>: Adding noise to image in markov chain. But trick is, in forward process, we can jump from x0 to xt directly and there is not graidents/wts to learn</li>
+<li><strong>Reverse Process</strong>: Removing noise from input one step at a time</li>
+<li>another thing to note is that: We just train NN to learn the SD&hellip;. even the variance part is fixed</li>
+<li>The p(x) is therotically intractable i.e the marginalized probability which states the base image irrespective of value of its noise.</li>
+<li><strong>Loss</strong>: Like VAE, we compute ELBO (Evidence Lower Bound) and maximise it.</li>
+<li><strong>Classifier Free Guidance</strong>:
+<ul>
+<li>how its used in reverse process:</li>
+</ul>
+</li>
+<li><strong>Latent Diffusion Model</strong>:
+<ul>
+<li>using VAE</li>
+</ul>
+</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#coding-stable-diffusion-from-scratch-in-pytorch---umar-jamilhttpswwwyoutubecomwatchvzbkpap_6tgi"><a href="https://www.youtube.com/watch?v=ZBKpAp_6TGI">Coding Stable Diffusion From Scratch in Pytorch - Umar Jamil</a></a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

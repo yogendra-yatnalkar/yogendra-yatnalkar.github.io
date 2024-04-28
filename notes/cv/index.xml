@@ -42,5 +42,17 @@ CV: 2 current popular ways:
 mask a patch and prediction of masked path</description>
     </item>
     
+    <item>
+      <title>Stable Diffusion Notes</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/stable-diffusion.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/stable-diffusion.html</guid>
+      <description>Stable Diffusion Notes#Last Edited 28/04/2024 What is generative AI: Sampling from a latent probability distribution
+Latent Space: Representation of a data-item in embedding space where similar items are close-by
+Joint Probability: likelihood of 2 events occurring together
+Conditional Prob: For two events A,B: Prob of event B when event A has occurred Marginalized Prob: For a joint prob between event A and B, what is the prob of event A irrespective of prob of event B Lets say all possible value of event B are: B1, B2,&amp;hellip;.</description>
+    </item>
+    
   </channel>
 </rss>

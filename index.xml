@@ -84,7 +84,7 @@ AWS Athena: Amazon Athena is an interactive query service that makes it easy to 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/benchmarking-with-torchserve.html</guid>
-      <description>Benchmarking Inference with Torchserve#Last Edited 05/01/2023 Pytorch default - g4dn.xlarge#Notes:#Instance Type: ml.g4dn.xlarge
+      <description>Benchmarking Inference with Torchserve#Last Edited 05/01/2024 Pytorch default - g4dn.xlarge#Notes:#Instance Type: ml.g4dn.xlarge
 GPU: Nvidia T4 vCPU no: 4 CPU memory: 16 GB GPU memory: 16 GB Max RPS achieved: 32
 With various different configuration ranging from min/max worker = 1 to 4 and batch-size 4 to 32, the max RPS possible was only 32. Locust Configuration: Max Users: 200, Spawn Rate: 10 Max Response time at 95th percentile: ~5-6 sec</description>
     </item>
@@ -110,6 +110,15 @@ Slow as each word is processed at a time (sequentially) Not truly bi-directional
       <guid>https://yogendra-yatnalkar.github.io/notes/daily-scribble.html</guid>
       <description>Daily Scribble:#Scribbling the content seen in the day:
 January:#vLLM: Easy, fast, and cheap LLM serving for everyone https://github.com/vllm-project/vllmInvented the concept of &amp;ldquo;PagedAttention&amp;rdquo; uses xFormer internally, so indirectly uses FlashAttention and FlashAttention2 as well Has support for continuous batching (very useful for transformer/decoder architecture) When released, claims to be much much faster than huggingface TGI. Now, even HF uses paged-attention for inference Fooocus: Fooocus is an image generating software.</description>
+    </item>
+    
+    <item>
+      <title>DSA Basic Notes:</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/dsa.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/dsa.html</guid>
+      <description>DSA#</description>
     </item>
     
     <item>
@@ -203,6 +212,18 @@ mask a patch and prediction of masked path</description>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/sql.html</guid>
       <description>SQL Notes:#Cross Join vs Full Join:#Full join (which is always outer), requires atleast 1 common key/column between 2 tables which are about to be joined Cross Join does not need any kind of ON clause (which is common column) between two column. Every row one table will get associated with every row of ther other table. General Notes:#There is nothing called as Left Inner Join or Right Inner Join &amp;hellip;.</description>
+    </item>
+    
+    <item>
+      <title>Stable Diffusion Notes</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/cv/stable-diffusion.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/cv/stable-diffusion.html</guid>
+      <description>Stable Diffusion Notes#Last Edited 28/04/2024 What is generative AI: Sampling from a latent probability distribution
+Latent Space: Representation of a data-item in embedding space where similar items are close-by
+Joint Probability: likelihood of 2 events occurring together
+Conditional Prob: For two events A,B: Prob of event B when event A has occurred Marginalized Prob: For a joint prob between event A and B, what is the prob of event A irrespective of prob of event B Lets say all possible value of event B are: B1, B2,&amp;hellip;.</description>
     </item>
     
     <item>
