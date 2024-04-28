@@ -22,7 +22,7 @@ Conditional Prob: For two events A,B: Prob of event B when event A has occurred 
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.f1f8f88a805680936a9b7c91a59d39015f1b24561e2c7a1ad5099e3cc51fa593.js" integrity="sha256-8fj4ioBWgJNqm3yRpZ05AV8bJFYeLHoa1QmePMUfpZM=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e0e464d44104963cc9f4192d98baa932616d5e790064eee87197ea98f7ffeaf4.js" integrity="sha256-4ORk1EEEljzJ9BktmLqpMmFtXnkAZO7ocZfqmPf/6vQ=" crossorigin="anonymous"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
 <script>
@@ -622,6 +622,14 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#ddpm">DDPM:</a>
+      <ul>
+        <li><a href="#what-is-nvidias-progressive-gan">What is Nvidia&rsquo;s Progressive GAN</a></li>
+        <li><a href="#inception-score">Inception Score:</a></li>
+      </ul>
+    </li>
+    <li><a href="#variational-bound">Variational Bound:</a></li>
+    <li><a href="#extra-notes">Extra notes:</a></li>
     <li><a href="#coding-stable-diffusion-from-scratch-in-pytorch---umar-jamilhttpswwwyoutubecomwatchvzbkpap_6tgi"><a href="https://www.youtube.com/watch?v=ZBKpAp_6TGI">Coding Stable Diffusion From Scratch in Pytorch - Umar Jamil</a></a></li>
   </ul>
 </nav>
@@ -691,7 +699,7 @@ https://github.com/alex-shpak/hugo-book
 <p>Note: Each trial is called a &ldquo;Bernoulli Trail&rdquo;</p>
 </li>
 <li>
-<p><img src="notes/image-1.png" alt="probabiltiy_distribution" /></p>
+<p><img src="Stable-Diffusion/image-1.png" alt="probabiltiy_distribution" /></p>
 </li>
 </ul>
 </li>
@@ -719,28 +727,26 @@ https://github.com/alex-shpak/hugo-book
 </ul>
 </li>
 </ul>
-<p>DDPM:</p>
-<ul>
-<li>
-<p>What is Nvidia&rsquo;s Progressive GAN</p>
-<ul>
-<li>Progressive GAN:
-<ul>
-<li>Normal GAN but start with: 4x4 block first, once this part is converged, go ahead</li>
-<li>Next thing, noise will be 4x4 &ndash;&gt; upsmaple: 8x8 &ndash;&gt; Generator output: 8x8 &ndash;&gt; Downsample 4x4 &ndash;&gt; check with discriminator</li>
-<li>Continue the above step from 4x4 and reach till desired state &ndash; example: 1024x1024</li>
-<li>WHAT IT SOLVES:
-<ul>
-<li>It is difficult to converge any GAN and get even more difficult on larger images</li>
-<li>starting with small shape and going ahead helps</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Inception Score:</p>
+<h2 id="ddpm">
+  DDPM:
+  <a class="anchor" href="#ddpm">#</a>
+</h2>
+<h3 id="what-is-nvidias-progressive-gan">
+  What is Nvidia&rsquo;s Progressive GAN
+  <a class="anchor" href="#what-is-nvidias-progressive-gan">#</a>
+</h3>
+<pre><code>- Progressive GAN: 
+	- Normal GAN but start with: 4x4 block first, once this part is converged, go ahead
+	- Next thing, noise will be 4x4 --&gt; upsmaple: 8x8 --&gt; Generator output: 8x8 --&gt; Downsample 4x4 --&gt; check with discriminator
+	- Continue the above step from 4x4 and reach till desired state -- example: 1024x1024 
+	- WHAT IT SOLVES:
+		- It is difficult to converge any GAN and get even more difficult on larger images 
+		- starting with small shape and going ahead helps 
+</code></pre>
+<h3 id="inception-score">
+  Inception Score:
+  <a class="anchor" href="#inception-score">#</a>
+</h3>
 <ul>
 <li>Generate 30k images form the generative model</li>
 <li>pass it through a inception network</li>
@@ -765,8 +771,6 @@ SIDE NOTE: At one place, I have also read that instead of avg the conditional pr
 <li>Caluculate the KL divergence between 2 marginal distribution and Conditional distribution</li>
 <li>KL divergence is the unsymmetric relative entropy between the 2 probability distributions</li>
 <li>IS score is: <strong>e raise to KL divergence</strong></li>
-</ul>
-</li>
 </ul>
 <p>FID SCORE (Yet to read in detail)</p>
 <hr>
@@ -797,13 +801,16 @@ SIDE NOTE: At one place, I have also read that instead of avg the conditional pr
 <li>we are doing this in a hope that this is easier to converge as compared to VAE</li>
 </ul>
 </li>
-<li>
-<p>Variational Bound:</p>
+</ul>
+<h2 id="variational-bound">
+  Variational Bound:
+  <a class="anchor" href="#variational-bound">#</a>
+</h2>
 <ul>
 <li>
 <p>Fact: Log is a concave function:</p>
 <ul>
-<li><img src="notes/image.png" alt="alt text" /></li>
+<li><img src="Stable-Diffusion/image.png" alt="alt text" /></li>
 <li><a href="https://www.youtube.com/watch?v=pStDscJh2Wo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=pStDscJh2Wo</a>
 </li>
 </ul>
@@ -824,9 +831,10 @@ SIDE NOTE: At one place, I have also read that instead of avg the conditional pr
 </ul>
 <p>For further catchup, read: <a href="https://xyang35.github.io/2017/04/14/variational-lower-bound/" target="_blank" rel="noopener">https://xyang35.github.io/2017/04/14/variational-lower-bound/</a>
 </p>
-</li>
-<li>
-<p>Extra notes:</p>
+<h2 id="extra-notes">
+  Extra notes:
+  <a class="anchor" href="#extra-notes">#</a>
+</h2>
 <ul>
 <li>what is descritization of a function: Converting a continues function into descrete function or parts</li>
 <li>We converted a image from some space to gaussian space in a descrete number of steps
@@ -843,8 +851,6 @@ SIDE NOTE: At one place, I have also read that instead of avg the conditional pr
 </li>
 <li>The change of beta from t0 to time-step t take a linear schedule (and not a constant increase) &ndash;&gt; that is because, till 70% of the process, the jumps should be higher (highest at the start) and when it is close to the end, the jumps should be very small.</li>
 <li>Cross entropy is average of negative log-likelihood function. Log-likelihood explains how good a mathematical model fits a function</li>
-</ul>
-</li>
 </ul>
 <hr>
 <hr>
@@ -922,6 +928,14 @@ SIDE NOTE: At one place, I have also read that instead of avg the conditional pr
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#ddpm">DDPM:</a>
+      <ul>
+        <li><a href="#what-is-nvidias-progressive-gan">What is Nvidia&rsquo;s Progressive GAN</a></li>
+        <li><a href="#inception-score">Inception Score:</a></li>
+      </ul>
+    </li>
+    <li><a href="#variational-bound">Variational Bound:</a></li>
+    <li><a href="#extra-notes">Extra notes:</a></li>
     <li><a href="#coding-stable-diffusion-from-scratch-in-pytorch---umar-jamilhttpswwwyoutubecomwatchvzbkpap_6tgi"><a href="https://www.youtube.com/watch?v=ZBKpAp_6TGI">Coding Stable Diffusion From Scratch in Pytorch - Umar Jamil</a></a></li>
   </ul>
 </nav>
