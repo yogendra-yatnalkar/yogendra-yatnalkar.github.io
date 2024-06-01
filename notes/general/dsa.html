@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DSA#">
+<meta name="description" content="DSA#1. Bitwise Operations for addition/subtraction/division/multiplcation:#Addition without using &#43; operator:
+a &#43; b = ? xor_val = a ^ b and_val = a &amp; b &laquo; 1 while and_val != 0: xor_val = xor_val ^ and_val and_val = xor_val &amp; and_val &laquo; 1 return xor_val https://leetcode.com/problems/sum-of-two-integers/description/Multiplication (can be applied to division using right shift instead of left shift):
+https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-only-bit-shifting-and-adding/2777225#27772252. Heap:#Heap is nothing but a priority queue:">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="DSA Basic Notes:" />
-<meta property="og:description" content="DSA#" />
+<meta property="og:description" content="DSA#1. Bitwise Operations for addition/subtraction/division/multiplcation:#Addition without using &#43; operator:
+a &#43; b = ? xor_val = a ^ b and_val = a &amp; b &laquo; 1 while and_val != 0: xor_val = xor_val ^ and_val and_val = xor_val &amp; and_val &laquo; 1 return xor_val https://leetcode.com/problems/sum-of-two-integers/description/Multiplication (can be applied to division using right shift instead of left shift):
+https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-only-bit-shifting-and-adding/2777225#27772252. Heap:#Heap is nothing but a priority queue:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/dsa.html" /><meta property="article:section" content="notes" />
 
@@ -16,7 +20,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e0e464d44104963cc9f4192d98baa932616d5e790064eee87197ea98f7ffeaf4.js" integrity="sha256-4ORk1EEEljzJ9BktmLqpMmFtXnkAZO7ocZfqmPf/6vQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.5c85f6422858c6aedd71596ace91087287841480563b173d8a042500d9d96a5f.js" integrity="sha256-XIX2QihYxq7dcVlqzpEIcoeEFIBWOxc9igQlANnZal8=" crossorigin="anonymous"></script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
 <script>
@@ -278,6 +282,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/notes/general/model-serving.html" class="">Model Serving</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/random-forest.html" class="">Random Forest Notes</a>
   
 
         </li>
@@ -614,7 +631,16 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-bitwise-operations-for-additionsubtractiondivisionmultiplcation">1. Bitwise Operations for addition/subtraction/division/multiplcation:</a></li>
+        <li><a href="#2-heap">2. Heap:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
 
@@ -629,7 +655,58 @@ https://github.com/alex-shpak/hugo-book
   DSA
   <a class="anchor" href="#dsa">#</a>
 </h1>
-<p><img src="img/2024-04-08-23-09-52.png" alt="" /></p>
+<h3 id="1-bitwise-operations-for-additionsubtractiondivisionmultiplcation">
+  1. Bitwise Operations for addition/subtraction/division/multiplcation:
+  <a class="anchor" href="#1-bitwise-operations-for-additionsubtractiondivisionmultiplcation">#</a>
+</h3>
+<p>Addition without using + operator:</p>
+<ul>
+<li>a + b = ?</li>
+<li>xor_val = a ^ b</li>
+<li>and_val = a &amp; b &laquo; 1</li>
+<li>while and_val != 0:
+<ul>
+<li>xor_val = xor_val ^ and_val</li>
+<li>and_val = xor_val &amp; and_val &laquo; 1</li>
+</ul>
+</li>
+<li>return xor_val</li>
+</ul>
+<p><a href="https://leetcode.com/problems/sum-of-two-integers/description/" target="_blank" rel="noopener">https://leetcode.com/problems/sum-of-two-integers/description/</a>
+</p>
+<p><strong>Multiplication (can be applied to division using right shift instead of left shift):</strong></p>
+<p><a href="https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-only-bit-shifting-and-adding/2777225#2777225" target="_blank" rel="noopener">https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-only-bit-shifting-and-adding/2777225#2777225</a>
+</p>
+<p><img src="DSA/2024-05-25-18-04-52.png" alt="" /></p>
+<h3 id="2-heap">
+  2. Heap:
+  <a class="anchor" href="#2-heap">#</a>
+</h3>
+<p><strong>Heap is nothing but a priority queue</strong>:</p>
+<ul>
+<li>
+<p>Python has an inbuilt module for heap named: <strong>heapq</strong></p>
+<ul>
+<li><strong>Methods:</strong>
+<ul>
+<li>heapq.heappuush()</li>
+<li>heapq.heappop()</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Problem on leetcode: <a href="https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/description/" target="_blank" rel="noopener">https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/description/</a>
+</p>
+</li>
+<li>
+<p><strong>Max Heap in Python</strong>:</p>
+<ul>
+<li>Python heapq by default only supports <strong>min-heap</strong>.</li>
+<li>To get a max-heap, multiply each number in the heap with <strong>-1</strong>.</li>
+</ul>
+</li>
+</ul>
 </article>
  
       
@@ -674,7 +751,16 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-bitwise-operations-for-additionsubtractiondivisionmultiplcation">1. Bitwise Operations for addition/subtraction/division/multiplcation:</a></li>
+        <li><a href="#2-heap">2. Heap:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
  

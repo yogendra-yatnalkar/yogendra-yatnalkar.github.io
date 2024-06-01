@@ -23,7 +23,9 @@ With various different configuration ranging from min/max worker = 1 to 4 and ba
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/dsa.html</guid>
-      <description>DSA#</description>
+      <description>DSA#1. Bitwise Operations for addition/subtraction/division/multiplcation:#Addition without using + operator:
+a + b = ? xor_val = a ^ b and_val = a &amp;amp; b &amp;laquo; 1 while and_val != 0: xor_val = xor_val ^ and_val and_val = xor_val &amp;amp; and_val &amp;laquo; 1 return xor_val https://leetcode.com/problems/sum-of-two-integers/description/Multiplication (can be applied to division using right shift instead of left shift):
+https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-only-bit-shifting-and-adding/2777225#27772252. Heap:#Heap is nothing but a priority queue:</description>
     </item>
     
     <item>
@@ -63,6 +65,16 @@ for True coin: P1 raise to something and P2 raise to something else</description
       <guid>https://yogendra-yatnalkar.github.io/notes/general/model-serving.html</guid>
       <description>Notes on Model Serving#Example: Torchserve, Tf-Serving, Triton, Flask, etc
 TorchServe: - to check model status, I am using port 8081 - for inference, I am using port 8080 - if not using ts-config while deploying a model, it generates error - Question: - when to use 8080 vs 8081 &amp;ndash;&amp;gt; Inference api is bind to 8080, management api is bind to 8081 - how to load test ?</description>
+    </item>
+    
+    <item>
+      <title>Random Forest Notes</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/random-forest.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/random-forest.html</guid>
+      <description>Learning about Random Forest#Last Edited 20/05/2024 Decision Trees:#Source: https://www.youtube.com/watch?v=_L39rN6gz7YLets suppose the above is our data on which we are going to train a model:
+How will we choose our root node ? With every column, try to classify the target. The column which gives the least gini index will be our root node Entropy can also be used as a replace for Gini index Note: The tree nodes which does not have a clear boundry of classification, i.</description>
     </item>
     
     <item>

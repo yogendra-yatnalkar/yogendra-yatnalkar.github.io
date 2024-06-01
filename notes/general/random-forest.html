@@ -3,21 +3,17 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="API Performance Improvement#Based on: Top 7 Ways to 10x Your API Performance - YouTubeOptimization should not be the first step of development
-1. Caching:#If same request is repeated multiple times &ndash;&gt; cache hence no need to recompute or hit the DB again.
-For DB, its: MemCacheD or Redis
-2. Connection Pooling:#Having continues connections with DB can slow down server as each connection requires a lot of handshake protocol.">
+<meta name="description" content="Learning about Random Forest#Last Edited 20/05/2024 Decision Trees:#Source: https://www.youtube.com/watch?v=_L39rN6gz7YLets suppose the above is our data on which we are going to train a model:
+How will we choose our root node ? With every column, try to classify the target. The column which gives the least gini index will be our root node Entropy can also be used as a replace for Gini index Note: The tree nodes which does not have a clear boundry of classification, i.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Web-API performance improvement" />
-<meta property="og:description" content="API Performance Improvement#Based on: Top 7 Ways to 10x Your API Performance - YouTubeOptimization should not be the first step of development
-1. Caching:#If same request is repeated multiple times &ndash;&gt; cache hence no need to recompute or hit the DB again.
-For DB, its: MemCacheD or Redis
-2. Connection Pooling:#Having continues connections with DB can slow down server as each connection requires a lot of handshake protocol." />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Random Forest Notes" />
+<meta property="og:description" content="Learning about Random Forest#Last Edited 20/05/2024 Decision Trees:#Source: https://www.youtube.com/watch?v=_L39rN6gz7YLets suppose the above is our data on which we are going to train a model:
+How will we choose our root node ? With every column, try to classify the target. The column which gives the least gini index will be our root node Entropy can also be used as a replace for Gini index Note: The tree nodes which does not have a clear boundry of classification, i." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/api-performance-improvement.html" /><meta property="article:section" content="notes" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/random-forest.html" /><meta property="article:section" content="notes" />
 
 
-<title>Web-API performance improvement | Yogendra Y.</title>
+<title>Random Forest Notes | Yogendra Y.</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
@@ -296,7 +292,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/general/random-forest.html" class="">Random Forest Notes</a>
+    <a href="/notes/general/random-forest.html" class="active">Random Forest Notes</a>
   
 
         </li>
@@ -348,7 +344,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/notes/general/api-performance-improvement.html" class="active">Web-API performance improvement</a>
+    <a href="/notes/general/api-performance-improvement.html" class="">Web-API performance improvement</a>
   
 
         </li>
@@ -619,7 +615,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Web-API performance improvement</strong>
+  <strong>Random Forest Notes</strong>
 
   <label for="toc-control">
     
@@ -635,13 +631,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-caching">1. Caching:</a></li>
-    <li><a href="#2-connection-pooling">2. Connection Pooling:</a></li>
-    <li><a href="#3-n1-query-problem">3. N+1 query problem:</a></li>
-    <li><a href="#4-pagination">4. Pagination:</a></li>
-    <li><a href="#5-json-serialization">5. Json Serialization:</a></li>
-    <li><a href="#6-compress-api-response-payloads-to-reduce-network-latency">6. Compress API response payloads to reduce network latency.</a></li>
-    <li><a href="#7-async-logging">7. Async Logging:</a></li>
+    <li><a href="#decision-trees">Decision Trees:</a></li>
   </ul>
 </nav>
 
@@ -654,102 +644,49 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="api-performance-improvement">
-  API Performance Improvement
-  <a class="anchor" href="#api-performance-improvement">#</a>
+  <article class="markdown"><h1 id="learning-about-random-forest">
+  Learning about Random Forest
+  <a class="anchor" href="#learning-about-random-forest">#</a>
 </h1>
-<p>Based on: <a href="https://www.youtube.com/watch?v=zvWKqUiovAM" target="_blank" rel="noopener">Top 7 Ways to 10x Your API Performance - YouTube</a>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Edited</td>
+<td>20/05/2024</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="decision-trees">
+  Decision Trees:
+  <a class="anchor" href="#decision-trees">#</a>
+</h2>
+<p>Source: <a href="https://www.youtube.com/watch?v=_L39rN6gz7Y" target="_blank" rel="noopener">https://www.youtube.com/watch?v=_L39rN6gz7Y</a>
 </p>
-<p>Optimization should not be the first step of development</p>
-<p><img src="API%20performance%20improvement/2023-07-30-00-05-16-image.png" alt="" /></p>
-<h2 id="1-caching">
-  1. Caching:
-  <a class="anchor" href="#1-caching">#</a>
-</h2>
+<p><img src="random-forest/2024-05-20-19-16-34.png" alt="" /></p>
+<p>Lets suppose the above is our data on which we are going to train a model:</p>
+<ol>
+<li>How will we choose our root node ?</li>
+</ol>
 <ul>
-<li>
-<p>If same request is repeated multiple times &ndash;&gt; cache hence no need to recompute or hit the DB again.</p>
-</li>
-<li>
-<p>For DB, its: MemCacheD or Redis</p>
-</li>
+<li>With every column, try to classify the target. The column which gives the least gini index will be our root node</li>
+<li>Entropy can also be used as a replace for Gini index</li>
+<li><strong>Note</strong>: The tree nodes which does not have a clear boundry of classification, i.e does not classify 100% of the data into 2 distinct groups, they those nodes of the decision trees are known as impure nodes. The goal is that, by leaf node, the entire population should be clearly classifiable.</li>
 </ul>
-<h2 id="2-connection-pooling">
-  2. Connection Pooling:
-  <a class="anchor" href="#2-connection-pooling">#</a>
-</h2>
+<ol start="2">
+<li>Going ahead, the left and right node of the tree will be selected using similar step as above</li>
+</ol>
 <ul>
-<li>
-<p><img src="API%20performance%20improvement/2023-07-29-23-43-59-image.png" alt="" /></p>
-</li>
-<li>
-<p>Having continues connections with DB can slow down server as each connection requires a lot of handshake protocol.  <strong>Hence, it s a good practice to already have a set of connections ready with each set of API. This is difficult in serverless applications like Lambda and can cause big problems:</strong></p>
-</li>
-<li>
-<p><img src="API%20performance%20improvement/2023-07-29-23-47-20-image.png" alt="" /></p>
-</li>
-<li>
-<p>Solution (at-least on AWs): <strong>RDS Proxy:-</strong> It sits between DB and applications (including AWS Lambda) to efficiently manage the DB connections</p>
-</li>
+<li>Select all the column which is not already indexed within a branch. For those columns, again compute the gini-index or entropy within its defined scope/strength. The next column will be column with minimum impurity.</li>
 </ul>
-<h2 id="3-n1-query-problem">
-  3. N+1 query problem:
-  <a class="anchor" href="#3-n1-query-problem">#</a>
-</h2>
-<ul>
-<li>Ideally, we should fetch data in a single request to Db instead of asking or querying it N times. Conclusion being, we should try to club requests to query our DB.</li>
-</ul>
-<h2 id="4-pagination">
-  4. Pagination:
-  <a class="anchor" href="#4-pagination">#</a>
-</h2>
-<ul>
-<li>
-<p>If data to be fetched or requested from DB or server is huge, it will slow the response time &ndash;&gt; Hence we should paginate our response into multiple pages to reduce data transfer in single go.</p>
-<p><img src="API%20performance%20improvement/2023-07-29-23-53-53-image.png" alt="" /></p>
-</li>
-</ul>
-<h2 id="5-json-serialization">
-  5. Json Serialization:
-  <a class="anchor" href="#5-json-serialization">#</a>
-</h2>
-<ul>
-<li>
-<p>Serialization takes time &hellip;hence consider ways to reduce that time</p>
-</li>
-<li>
-<p>Example: Can think of using <strong>gRPC</strong> or some json serialization library which is very fast.</p>
-</li>
-</ul>
-<h2 id="6-compress-api-response-payloads-to-reduce-network-latency">
-  6. Compress API response payloads to reduce network latency.
-  <a class="anchor" href="#6-compress-api-response-payloads-to-reduce-network-latency">#</a>
-</h2>
-<ul>
-<li>
-<p><a href="https://github.com/google/brotli" target="_blank" rel="noopener">GitHub - google/brotli: Brotli compression format</a>
-</p>
-</li>
-<li>
-<p>Various CDN also perform these tasks example: <strong>Cloudfare</strong></p>
-</li>
-</ul>
-<h2 id="7-async-logging">
-  7. Async Logging:
-  <a class="anchor" href="#7-async-logging">#</a>
-</h2>
-<ul>
-<li>
-<p>Logging is important but writing logs during stream processing applications can cause bottleneck</p>
-</li>
-<li>
-<p>Hence, in such scenarios it is better to log logs via async operations.</p>
-</li>
-<li>
-<p>But, there is a small chance that the some logs can be missed in this case.</p>
-</li>
-</ul>
-<p><img src="API%20performance%20improvement/2023-07-30-00-04-11-image.png" alt="" /></p>
+<p><strong>Note</strong>: If the gini score or entorpy score i.e the impurity score of the node is less than its parent, then we will skip using that particular leaf node.</p>
+<hr>
 </article>
  
       
@@ -796,13 +733,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#1-caching">1. Caching:</a></li>
-    <li><a href="#2-connection-pooling">2. Connection Pooling:</a></li>
-    <li><a href="#3-n1-query-problem">3. N+1 query problem:</a></li>
-    <li><a href="#4-pagination">4. Pagination:</a></li>
-    <li><a href="#5-json-serialization">5. Json Serialization:</a></li>
-    <li><a href="#6-compress-api-response-payloads-to-reduce-network-latency">6. Compress API response payloads to reduce network latency.</a></li>
-    <li><a href="#7-async-logging">7. Async Logging:</a></li>
+    <li><a href="#decision-trees">Decision Trees:</a></li>
   </ul>
 </nav>
 
