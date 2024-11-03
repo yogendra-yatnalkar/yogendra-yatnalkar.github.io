@@ -56,7 +56,7 @@ Medium Link: https://medium.com/@yogenyat/backtracking-aws-lookout-for-vision-se
       <guid>https://yogendra-yatnalkar.github.io/side-projects/vlm-drives-in-gta.html</guid>
       <description>VLM (Claude v3 Sonnet) Drives in GTA San Andreas (Exp1)#AI Video Generation for: Story of Shepherd Boy and the Wolf#Github Link: https://github.com/yogendra-yatnalkar/VLM-drives-in-GTALast Edited: 05/08/2024
 Youtube Video#/
-Description:#Trying to play with Anthropic Claude V3 (Haiku and Sonnet). My theory is that these VLM&amp;rsquo;s are quite good in deciding how to drive based on current input frame and the past actions. Need to confirm the hypothesis.</description>
+Description:#Trying to play with Anthropic Claude V3 (Sonnet). My theory is that these VLM&amp;rsquo;s can be quite good in deciding how to drive based on current input frame and the past actions. Need to confirm the hypothesis.</description>
     </item>
     
     <item>
@@ -141,6 +141,15 @@ https://stackoverflow.com/questions/2776211/how-can-i-multiply-and-divide-using-
       
       <guid>https://yogendra-yatnalkar.github.io/notes/general/evidence-lower-bound-elbo.html</guid>
       <description>Evidence Lower Bound (ELBO):#Last Edited 18/02/2024 </description>
+    </item>
+    
+    <item>
+      <title>GCP General</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/gcp/gcp-general.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/gcp/gcp-general.html</guid>
+      <description>Notes on AWS-General:#Not sure what all I will add but will try to add things which I learnt new on the go. Provisioned Lambda Function Concurrency:#Added on 22/02/2024 Concurrency: Number of in-flight lambda requests which can be handled at the same time Reserved: Max no of concurrent requests allocated This requires 0 added charge Provisioned: Number of pre-initialized execution env allocated to the functions. There are additional charges </description>
     </item>
     
     <item>
