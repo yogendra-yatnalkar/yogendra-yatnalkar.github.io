@@ -58,6 +58,26 @@ for True coin: P1 raise to something and P2 raise to something else</description
     </item>
     
     <item>
+      <title>Linear Algebra concepts related to ML</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/linear_algebra.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/linear_algebra.html</guid>
+      <description>Linear Algebra concepts related to ML#Last Edited 11/01/2025 </description>
+    </item>
+    
+    <item>
+      <title>Lower Rank Adaption (LoRA)</title>
+      <link>https://yogendra-yatnalkar.github.io/notes/general/lora.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/notes/general/lora.html</guid>
+      <description>Lower Rank Adaption (LoRA)#Last Edited 11/01/2025 Sorce: https://youtu.be/PXWYUTMt-AU?si=-xwj93XkWPPv49SpNOTE: I am watching the legend &amp;ldquo;Umar Jamil&amp;rdquo; but most of the written context below is copied from my conversation with Gemini 2 Flash
+General information around rank of a matrix#The rank of a matrix represents the number of linearly independent rows or columns it has. Example: Consider a 3x3 matrix with rows:
+Row 1: [1, 0, 0] Row 2: [0, 1, 0] Row 3: [1, 1, 0] Here, Row 3 is simply Row 1 + Row 2.</description>
+    </item>
+    
+    <item>
       <title>Model Serving</title>
       <link>https://yogendra-yatnalkar.github.io/notes/general/model-serving.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

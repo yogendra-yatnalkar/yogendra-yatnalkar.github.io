@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lower Rank Adaption (LoRA)#Last Edited 11/01/2025 Sorce: https://youtu.be/PXWYUTMt-AU?si=-xwj93XkWPPv49SpNOTE: I am watching the legend &ldquo;Umar Jamil&rdquo; but most of the written context below is copied from my conversation with Gemini 2 Flash
+General information around rank of a matrix#The rank of a matrix represents the number of linearly independent rows or columns it has. Example: Consider a 3x3 matrix with rows:
+Row 1: [1, 0, 0] Row 2: [0, 1, 0] Row 3: [1, 1, 0] Here, Row 3 is simply Row 1 &#43; Row 2.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Lower Rank Adaption (LoRA)" />
+<meta property="og:description" content="Lower Rank Adaption (LoRA)#Last Edited 11/01/2025 Sorce: https://youtu.be/PXWYUTMt-AU?si=-xwj93XkWPPv49SpNOTE: I am watching the legend &ldquo;Umar Jamil&rdquo; but most of the written context below is copied from my conversation with Gemini 2 Flash
+General information around rank of a matrix#The rank of a matrix represents the number of linearly independent rows or columns it has. Example: Consider a 3x3 matrix with rows:
+Row 1: [1, 0, 0] Row 2: [0, 1, 0] Row 3: [1, 1, 0] Here, Row 3 is simply Row 1 &#43; Row 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yogendra-yatnalkar.github.io/notes/general/lora.html" /><meta property="article:section" content="notes" />
+
+
+<title>Lower Rank Adaption (LoRA) | Yogendra Y.</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.0933d5ebbed8c08a206e6d3b23fee14140516cfe9ea419244eaae5e9a0f2173e.css" integrity="sha256-CTPV677YwIogbm07I/7hQUBRbP6epBkkTqrl6aDyFz4=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.60f118d4a884f6521a45ce21b5f1c2242add8b794848d61de29cc914abe2ccf0.js" integrity="sha256-YPEY1KiE9lIaRc4htfHCJCrdi3lISNYd4pzJFKvizPA=" crossorigin="anonymous"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DTLBL509Z2"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-DTLBL509Z2', { 'anonymize_ip': false });
+}
+</script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><img src="/logo.png" alt="Logo" /><span>Yogendra Y.</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="toggle"  />
+    <label for="section-8c14ab2d8aecfbedfb55fbca3bdb6a6b" class="flex justify-between">
+      <a href="/blogs.html" class="">Blogs</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/promptless-taskspecific-finetuning-segment-anything.html" class="">Promptless Task-Specific Finetuning of MetaAI Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/end-to-end-mlops-on-aws.html" class="">End-to-End MLOps on AWS (3 blogs)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/sam-automatic-semantic-segmentation.html" class="">Meta-AI SAM: AutoMatic Semantic Segmentation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/backtracking_aws_lookout_for_vision_service.html" class="">Backtracking AWS Lookout for Vision Service</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/blogs/finding-nth-aggregate-from-every-group-aws-athena.html" class="">Finding the n’th Aggregate Value from Every Group in AWS Athena/Presto</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/certificates.html" class="">Certifications Completed</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef46fe0aac274900fefdd5e564e236b2" class="toggle" checked />
+    <label for="section-ef46fe0aac274900fefdd5e564e236b2" class="flex justify-between">
+      <a role="button" class="">Notes</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/daily-scribble.html" class="">Daily-Scribble-2024</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-97f68e7cac7678f1405673189f8b189f" class="toggle" checked />
+    <label for="section-97f68e7cac7678f1405673189f8b189f" class="flex justify-between">
+      <a role="button" class="">General</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/benchmarking-with-torchserve.html" class="">Benchmarking Inference with Torchserve</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/dsa.html" class="">DSA Basic Notes:</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/evidence-lower-bound-elbo.html" class="">ELBO: Evidence Lower Bound</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/general-general.html" class="">General Notes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/kl-divergence.html" class="">Kullback-Leibler Divergence (KL Divergence)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/linear_algebra.html" class="">Linear Algebra concepts related to ML</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/lora.html" class="active">Lower Rank Adaption (LoRA)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/model-serving.html" class="">Model Serving</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/random-forest.html" class="">Random Forest Notes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/sql.html" class="">SQL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/unanswered-questions.html" class="">Un-Answered Questions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/vector-store-and-search.html" class="">Vector Search and Stores</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/general/api-performance-improvement.html" class="">Web-API performance improvement</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-9a03a2b641627d6ec5d4b7e484a1675b" class="toggle"  />
+    <label for="section-9a03a2b641627d6ec5d4b7e484a1675b" class="flex justify-between">
+      <a role="button" class="">AWS</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/aws/aws-general.html" class="">AWS General</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8314eced0a8c88614b1d2f53940330d5" class="toggle"  />
+    <label for="section-8314eced0a8c88614b1d2f53940330d5" class="flex justify-between">
+      <a role="button" class="">CV</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/sam-segment-anything.html" class="">SAM-Segment-Anything</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/segformer.html" class="">SegFormer: Segmentation using Transformer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/self-supervised-learning.html" class="">Self Supervised Learning</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/cv/stable-diffusion.html" class="">Stable Diffusion Notes</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-01175c0a76d10891adcfa0512eef829a" class="toggle"  />
+    <label for="section-01175c0a76d10891adcfa0512eef829a" class="flex justify-between">
+      <a role="button" class="">GCP</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/gcp/gcp-general.html" class="">GCP General</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="toggle"  />
+    <label for="section-5bf3042abef6b7e58a1750f2ab25ff7e" class="flex justify-between">
+      <a role="button" class="">NLP</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/bert.html" class="">BERT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/nlp_general.html" class="">NLP-General</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/notes/nlp/transformers_at_training_vs_inference.html" class="">Transformers at Training vs Inference</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/resume/" class="">Resume</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-77dedc5429a7c70061bd8ace32d09bfc" class="toggle"  />
+    <label for="section-77dedc5429a7c70061bd8ace32d09bfc" class="flex justify-between">
+      <a href="/side-projects.html" class="">Side-Projects</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/side-projects/vlm-drives-in-gta.html" class="">Claude Sonnet Drives in GTA San Andreas</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/side-projects/ai-assisted-video-generation.html" class="">AI Assisted Video Generation with White-Board Animations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Lower Rank Adaption (LoRA)</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#general-information-around-rank-of-a-matrix">General information around rank of a matrix</a></li>
+    <li><a href="#single-value-decomposition">Single Value Decomposition:</a></li>
+    <li><a href="#code-example">Code Example:</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="lower-rank-adaption-lora">
+  Lower Rank Adaption (LoRA)
+  <a class="anchor" href="#lower-rank-adaption-lora">#</a>
+</h1>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Last Edited</td>
+<td>11/01/2025</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote>
+<p>Sorce: <a href="https://youtu.be/PXWYUTMt-AU?si=-xwj93XkWPPv49Sp" target="_blank" rel="noopener">https://youtu.be/PXWYUTMt-AU?si=-xwj93XkWPPv49Sp</a>
+</p>
+</blockquote>
+<p><img src="LORA/image.png" alt="From youtube video (9th min)" /></p>
+<blockquote>
+<blockquote>
+<p><strong>NOTE:</strong> I am watching the legend &ldquo;Umar Jamil&rdquo; but most of the written context below is copied from my conversation with <strong>Gemini 2 Flash</strong></p>
+</blockquote>
+</blockquote>
+<h2 id="general-information-around-rank-of-a-matrix">
+  General information around rank of a matrix
+  <a class="anchor" href="#general-information-around-rank-of-a-matrix">#</a>
+</h2>
+<ul>
+<li>
+<p>The rank of a matrix represents the number of <strong>linearly independent</strong> rows or columns it has.
+<strong>Example:</strong>
+Consider a 3x3 matrix with rows:</p>
+<ul>
+<li>Row 1: [1, 0, 0]</li>
+<li>Row 2: [0, 1, 0]</li>
+<li>Row 3: [1, 1, 0]
+<ul>
+<li>Here, Row 3 is simply Row 1 + Row 2. Row 3 is <em>not</em> linearly independent, so the rank of this matrix is 2 not 3 because only 2 rows are linearly independent.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>By default, the weight matrices are <strong>full-rank</strong>. Full-rank means that the rows or columns of the matrix are linearly independent. In other words, none of the rows or columns can be formed as a combination of the others.</p>
+</li>
+<li>
+<p><strong>Rank-Deficient Matrices:</strong></p>
+<ul>
+<li>The passage also talks about rank-deficient matrices. These are matrices that are not full-rank.</li>
+<li>Specifically, it explains that the matrix W of the pre-trained model contains a lot of redundant information, so that many of the parameters convey the same information.</li>
+<li>Because of this, they can be obtained by a combination of the other parameters, meaning that some rows or columns of the matrix can be expressed as a linear combination of the other rows or columns.</li>
+<li>The fact that parameters can be gotten rid of without decreasing performance is a good way of illustrating that matrices are rank deficient.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<p><strong>Aghajanyan et al. (2020) showed that pre-trained models can still learn well even when their weights are randomly reduced to a smaller space. This implies that the original weight matrices have redundancy, since the full space is not required for effective training.</strong></p>
+</blockquote>
+</blockquote>
+<hr>
+<h2 id="single-value-decomposition">
+  Single Value Decomposition:
+  <a class="anchor" href="#single-value-decomposition">#</a>
+</h2>
+<ul>
+<li>It is used to identify rank of a matrix
+<ul>
+<li>From Umar&rsquo;s video, SVD is not just used for rank identificatoin but even for identifying the 2 sub-matrices in LoRA like situations. Ex. if Matrix A = NxN, then Lora suggests 2 matrix of rank &ldquo;r&rdquo; where (r &laquo; N) such that: there are 2 submatrix of shape: (Nxr) and (rxN). These 2 matrix are made from: <strong>U</strong> and <strong>V<!-- raw HTML omitted -->T<!-- raw HTML omitted --></strong>. (can be seen below).</li>
+<li>The rank is non-zero diagonal elements from sigma matrix</li>
+<li>For better explanation: <a href="https://github.com/hkproj/pytorch-lora/blob/main/svd.ipynb" target="_blank" rel="noopener">https://github.com/hkproj/pytorch-lora/blob/main/svd.ipynb</a>
+</li>
+</ul>
+</li>
+<li>Pasting what I quickly read from Gemini:</li>
+</ul>
+<p><strong>SVD: A Quick Overview</strong></p>
+<p>SVD is a powerful factorization technique that breaks down any matrix (let&rsquo;s call it &lsquo;A&rsquo;) into three other matrices:</p>
+<p><strong>A = U Σ V<!-- raw HTML omitted -->T<!-- raw HTML omitted --></strong></p>
+<p>Where:</p>
+<ul>
+<li><strong>U:</strong> An <em>m x m</em> orthogonal matrix (columns are orthonormal) where <em>m</em> is the number of rows of A.</li>
+<li><strong>Σ (Sigma):</strong> An <em>m x n</em> diagonal matrix, where <em>n</em> is the number of columns of A, containing the <em>singular values</em> of A. These are non-negative numbers, usually arranged in descending order. The diagonal can have zeros.</li>
+<li><strong>V<!-- raw HTML omitted -->T<!-- raw HTML omitted -->:</strong> The transpose of an <em>n x n</em> orthogonal matrix (rows are orthonormal).</li>
+</ul>
+<p><strong>How SVD Relates to Rank</strong></p>
+<p>The magic lies in the <strong>singular values</strong> (the diagonal elements of Σ):</p>
+<ul>
+<li><strong>Rank = Number of Non-Zero Singular Values:</strong> The rank of the original matrix &lsquo;A&rsquo; is equal to the number of non-zero singular values in Σ.
+<ul>
+<li>If Σ has two non-zero values (e.g., 5 and 2), the rank of A is 2.</li>
+<li>If Σ has three values (e.g., 7, 3, and 0), the rank of A is 2.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Why is SVD Useful for Rank (and More)?</strong></p>
+<ol>
+<li>
+<p><strong>Reliable Rank Determination:</strong> SVD is more numerically stable than row reduction, especially when dealing with matrices that have near-zero values (which can cause rounding errors with row reduction). This is important for real-world data.</p>
+</li>
+<li>
+<p><strong>Reveals &ldquo;Importance&rdquo; of Dimensions:</strong> The singular values tell you how much variance or &ldquo;energy&rdquo; is captured by each dimension/feature. Larger singular values correspond to more important directions.</p>
+</li>
+<li>
+<p><strong>Dimensionality Reduction:</strong> You can approximate the original matrix by only using the largest singular values and their corresponding U and V columns. This is very common for reducing noise or decreasing dimensions in your data.</p>
+</li>
+<li>
+<p><strong>Pseudo-Inverse:</strong> SVD provides a way to compute pseudo-inverses of non-square matrices, which is crucial for solving many types of equations.</p>
+</li>
+</ol>
+<p><strong>Example</strong></p>
+<p>Let&rsquo;s take the previous matrix example and assume we computed the SVD (I will not show the computation here, but in practice, you use software to do it):</p>
+<pre tabindex="0"><code>A =  [ 1  2  3 ]
+     [ 2  4  6 ]
+     [ 1  3  5 ]
+</code></pre><p>The SVD might result in (approximately) something like:</p>
+<ul>
+<li><strong>U</strong>: 3x3 orthogonal matrix</li>
+<li><strong>Σ (Sigma)</strong> =
+<pre tabindex="0"><code>[ 9.5  0    0 ]
+[  0   0.7  0 ]
+[  0    0   0 ]
+</code></pre></li>
+<li><strong>V<!-- raw HTML omitted -->T<!-- raw HTML omitted --></strong>: 3x3 orthogonal matrix</li>
+</ul>
+<p>Notice the Sigma matrix has <em>two</em> non-zero singular values (9.5 and 0.7) this is in agreement with what we found through row reduction.</p>
+<hr>
+<h2 id="code-example">
+  Code Example:
+  <a class="anchor" href="#code-example">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoRAParametrization</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, features_in, features_out, rank<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;cpu&#39;</span>):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Section 4.1 of the paper: </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   We use a random Gaussian initialization for A and zero for B, so ∆W = BA is zero at the beginning of training</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>lora_A <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Parameter(torch<span style="color:#f92672">.</span>zeros((rank,features_out))<span style="color:#f92672">.</span>to(device))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>lora_B <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Parameter(torch<span style="color:#f92672">.</span>zeros((features_in, rank))<span style="color:#f92672">.</span>to(device))
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>normal_(self<span style="color:#f92672">.</span>lora_A, mean<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, std<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Section 4.1 of the paper: </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   We then scale ∆Wx by α/r , where α is a constant in r. </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   When optimizing with Adam, tuning α is roughly the same as tuning the learning rate if we scale the initialization appropriately. </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   As a result, we simply set α to the first r we try and do not tune it. </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#   This scaling helps to reduce the need to retune hyperparameters when we vary r.</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>scale <span style="color:#f92672">=</span> alpha <span style="color:#f92672">/</span> rank
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>enabled <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, original_weights):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>enabled:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Return W + (B*A)*scale</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> original_weights <span style="color:#f92672">+</span> torch<span style="color:#f92672">.</span>matmul(self<span style="color:#f92672">.</span>lora_B, self<span style="color:#f92672">.</span>lora_A)<span style="color:#f92672">.</span>view(original_weights<span style="color:#f92672">.</span>shape) <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>scale
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> original_weights
+</span></span></code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments"><script src="https://utteranc.es/client.js"
+        repo="yogendra-yatnalkar/yogendra-yatnalkar.github.io"
+        issue-term="pathname"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#general-information-around-rank-of-a-matrix">General information around rank of a matrix</a></li>
+    <li><a href="#single-value-decomposition">Single Value Decomposition:</a></li>
+    <li><a href="#code-example">Code Example:</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
