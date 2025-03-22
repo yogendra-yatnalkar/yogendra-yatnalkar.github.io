@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>clustering on Yogendra Y.</title>
+    <link>https://yogendra-yatnalkar.github.io/tags/clustering.html</link>
+    <description>Recent content in clustering on Yogendra Y.</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://yogendra-yatnalkar.github.io/tags/clustering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dynamic Color Quantization</title>
+      <link>https://yogendra-yatnalkar.github.io/blogs/dynamic-color-quantization.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yogendra-yatnalkar.github.io/blogs/dynamic-color-quantization.html</guid>
+      <description>Dynamic Color Quantization#Co-Author: Palash NimodiaDate: March 22, 2025 Code Link: https://github.com/yogendra-yatnalkar/dynamic-color-quantizationNote: This was originally developed in December 2021
+Introduction:#This article presents a dynamic color quantization technique that intelligently reduces the number of colors in an image using K-means clustering and adaptive tree building. Learn how this method preserves visual detail without requiring you to specify the final number of colors in advance.
+Color quantization is a well-established technique, with solutions readily available in libraries like OpenCV.</description>
+    </item>
+    
+  </channel>
+</rss>

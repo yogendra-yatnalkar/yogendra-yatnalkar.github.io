@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://yogendra-yatnalkar.github.io/blogs/dynamic-color-quantization.html</loc>
+  </url><url>
     <loc>https://yogendra-yatnalkar.github.io/blogs/promptless-taskspecific-finetuning-segment-anything.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/blogs/end-to-end-mlops-on-aws.html</loc>
@@ -80,6 +82,8 @@
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/certificates.html</loc>
   </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags/clustering.html</loc>
+  </url><url>
     <loc>https://yogendra-yatnalkar.github.io/tags/computer-vision.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/notes/cv.html</loc>
@@ -121,6 +125,8 @@
     <loc>https://yogendra-yatnalkar.github.io/tags/sql.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/tags.html</loc>
+  </url><url>
+    <loc>https://yogendra-yatnalkar.github.io/tags/trees.html</loc>
   </url><url>
     <loc>https://yogendra-yatnalkar.github.io/tags/yogendra-yatnalkar.html</loc>
   </url>
